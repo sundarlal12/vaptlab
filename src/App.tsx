@@ -28,6 +28,9 @@ import MainFAQ from "./components/MainFAQ";
 import Benefits from "./components/Benefits";
 
 import VaptRadar from "./components/VaptRadar";
+
+import CookieConsent from "./components/CookieConsentBar";
+
 const FAQItem = ({ question, answer, isOpen, onToggle }: { 
   question: string; 
   answer: string; 
@@ -289,7 +292,7 @@ function App() {
       {/* Other sections */}
       <GetQuoteSection />
     </div>
-
+ <CookieConsent />
 <Footer />
 
       

@@ -7,6 +7,8 @@ import NotFound from './NotFound';
 // Lazy load all route components
 const App = React.lazy(() => import('../App'));
 const WebAppSecurityTesting = React.lazy(() => import('./WebAppSecurityTesting'));
+const DarkWebMonitor = React.lazy(() => import('./DarkWebMonitor'));
+
 const MobileAppSecurityTesting = React.lazy(() => import('./MobileAppSecurityTesting'));
 const NetworkPenetrationTesting = React.lazy(() => import('./NetworkPenetrationTesting'));
 const CloudPenetrationTesting = React.lazy(() => import('./CloudPenetrationTesting'));
@@ -77,6 +79,7 @@ const Router: React.FC = () => {
           
           {/* Service Routes */}
           <Route path="/services/web-app-security" element={<PageWrapper><WebAppSecurityTesting /></PageWrapper>} />
+          <Route path="/services/dark-web-monitoring" element={<PageWrapper><DarkWebMonitor /></PageWrapper>} />
           <Route path="/services/mobile-app-security" element={<PageWrapper><MobileAppSecurityTesting /></PageWrapper>} />
           <Route path="/services/network-penetration-testing" element={<PageWrapper><NetworkPenetrationTesting /></PageWrapper>} />
           <Route path="/services/cloud-penetration-testing" element={<PageWrapper><CloudPenetrationTesting /></PageWrapper>} />
