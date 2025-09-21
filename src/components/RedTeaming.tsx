@@ -9,11 +9,13 @@ import ClientCarousel from "./ClientCarousel";
 import ServiceSection from "./ServiceSection";
 import BenefitsSection from './BenefitsSection';
 
+const RED_GRAD = "linear-gradient(to right, rgb(217, 47, 97), rgb(143, 15, 56))";
+
 const RedTeaming = () => {
   const [isContactOpen, setIsContactOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState<'reconnaissance' | 'weaponization' | 'Transmission' | 'exploitation' | 'Deployment' | 'c2'>('c2');
+  const [activeTab, setActiveTab] = useState<'reconnaissance' | 'weaponization' | 'Transmission' | 'exploitation' | 'Deployment'>('Deployment');
 
-  // Benefits data for red teaming
+  // Benefits data for red teamingf
   const redTeamBenefits = [
     {
       icon: <Shield className="w-12 h-12 text-gray-800" />,
@@ -74,7 +76,10 @@ const RedTeaming = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              <span className="border-b-4 border-emerald-500 pb-2">Overview : Red Teaming</span>
+              <span className="pb-2"   style={{
+                  borderBottom: '4px solid',
+                  borderImage: `${RED_GRAD} 1`, // CHANGED: gradient underline
+                }}>Overview : Red Teaming</span>
             </h2>
           </div>
           <div className="max-w-4xl mx-auto text-center">
@@ -97,86 +102,72 @@ const RedTeaming = () => {
                 VAPTlabs employs a comprehensive methodology for red team exercises that simulates advanced persistent threats and sophisticated attack campaigns. Our approach includes thorough testing based on industry frameworks like MITRE ATT&CK, NIST Cybersecurity Framework, and advanced threat intelligence.
               </p>
               
-              {/* Vertical Tabs Layout */}
+         
+
+
+              
               <div className="flex gap-8 mb-8">
-                {/* Vertical Tab Navigation */}
-                <div className="flex flex-col space-y-2 min-w-[200px]">
-                  <button
-                    className={`text-left px-4 py-3 rounded-lg font-semibold transition-all ${
-                      activeTab === 'reconnaissance'
-                        ? 'bg-gray-900 text-white'
-                        : 'text-gray-700 hover:bg-gray-100'
-                    }`}
-                    onClick={() => setActiveTab('reconnaissance')}
-                  >
-                    Reconnaissance
-                  </button>
-                  <button
-                    className={`text-left px-4 py-3 rounded-lg font-semibold transition-all ${
-                      activeTab === 'weaponization'
-                        ? 'bg-gray-900 text-white'
-                        : 'text-gray-700 hover:bg-gray-100'
-                    }`}
-                    onClick={() => setActiveTab('weaponization')}
-                  >
-                    Weaponization
-                  </button>
-                  <button
-                    className={`text-left px-4 py-3 rounded-lg font-semibold transition-all ${
-                      activeTab === 'Transmission'
-                        ? 'bg-gray-900 text-white'
-                        : 'text-gray-700 hover:bg-gray-100'
-                    }`}
-                    onClick={() => setActiveTab('Transmission')}
-                  >
-                    Transmission
-                  </button>
-                  <button
-                    className={`text-left px-4 py-3 rounded-lg font-semibold transition-all ${
-                      activeTab === 'exploitation'
-                        ? 'bg-gray-900 text-white'
-                        : 'text-gray-700 hover:bg-gray-100'
-                    }`}
-                    onClick={() => setActiveTab('exploitation')}
-                  >
-                    Exploitation
-                  </button>
-                  <button
-                    className={`text-left px-4 py-3 rounded-lg font-semibold transition-all ${
-                      activeTab === 'Deployment'
-                        ? 'bg-gray-900 text-white'
-                        : 'text-gray-700 hover:bg-gray-100'
-                    }`}
-                    onClick={() => setActiveTab('Deployment')}
-                  >
-                    Deployment
-                  </button>
-                  <button
-                    className={`text-left px-4 py-3 rounded-lg font-semibold transition-all ${
-                      activeTab === 'Control'
-                        ? 'bg-emerald-500 text-white border-l-4 border-orange-500'
-                        : 'text-gray-700 hover:bg-gray-100'
-                    }`}
-                    onClick={() => setActiveTab('c2')}
-                  >
-                    Control
-                  </button>
-                </div>
+  <div className="flex flex-col space-y-2 min-w-[200px]">
+    {[
+      { id: "reconnaissance", label: "Reconnaissance" },
+      { id: "weaponization", label: "Weaponization" },
+      { id: "Transmission", label: "Transmission" },
+      { id: "exploitation", label: "Exploitation" },
+      { id: "Deployment", label: "Deployment" },
+    ].map((tab) => (
+      <button
+        key={tab.id}
+        className={`text-left px-4 py-3 rounded-lg font-semibold transition-all ${
+          activeTab === tab.id ? "text-white" : "text-gray-700"
+        }`}
+        style={{
+          background:
+            activeTab === tab.id
+              ? "linear-gradient(90deg, rgb(217,47,97), rgb(143,15,56))" // active: full gradient
+              : "transparent",
+        }}
+        onMouseEnter={(e) => {
+          if (activeTab !== tab.id) {
+            (e.currentTarget as HTMLButtonElement).style.background =
+              "linear-gradient(90deg, rgba(217,47,97,0.2), rgba(143,15,56,0.2))"; // hover: light gradient
+          }
+        }}
+        onMouseLeave={(e) => {
+          if (activeTab !== tab.id) {
+            (e.currentTarget as HTMLButtonElement).style.background = "transparent"; // back to transparent
+          }
+        }}
+        onClick={() => setActiveTab(tab.id)}
+      >
+        {tab.label}
+      </button>
+    ))}
+  </div>
 
-                {/* Tab Content */}
-                <div className="flex-1 bg-gray-50 p-6 rounded-lg shadow-md">
-                  <h3 className="text-xl font-bold text-gray-900 mb-4 capitalize">
-                    {activeTab === 'c2' ? 'Control' : activeTab}
-                  </h3>
-                  <p className="text-gray-700 leading-relaxed">
-                    {tabContent[activeTab]}
-                  </p>
-                </div>
-              </div>
-
+  {/* Tab Content */}
+  <div className="flex-1 bg-gray-50 p-6 rounded-lg shadow-md">
+    <h3 className="text-xl font-bold text-gray-900 mb-4 capitalize">
+      {activeTab === "reconnaissance"
+        ? "Reconnaissance"
+        : activeTab === "weaponization"
+        ? "Weaponization"
+        : activeTab === "Transmission"
+        ? "Transmission"
+        : activeTab === "exploitation"
+        ? "Exploitation"
+        : "Deployment"}
+    </h3>
+    <p className="text-gray-700 leading-relaxed">
+      {tabContent[activeTab]}
+    </p>
+  </div>
+</div>
               <div className="text-center mt-8">
                 <button
-                  className="bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-3 rounded-lg font-semibold transition-colors"
+                  className="bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-3 rounded-lg font-semibold transition-colors"  style={{
+                    background: RED_GRAD, // CHANGED: button background gradient
+                    color: '#fff',
+                  }}
                   onClick={() => setIsContactOpen(true)}
                 >
                   Get Free Consultation
@@ -186,7 +177,7 @@ const RedTeaming = () => {
 
             {/* Right Image */}
             <div className="relative">
-              <div className="bg-gradient-to-br from-emerald-100 to-emerald-200 rounded-lg p-8">
+              <div className="bg-gradient-to-br from-emerald-100 to-emerald-200 rounded-lg p-8" style={{ background: 'linear-gradient(180deg, rgba(217,47,97,0.06), rgba(143,15,56,0.04))' }}>
                 <img 
                   src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
                   alt="Red Teaming" 

@@ -9,6 +9,7 @@ import ClientCarousel from "./ClientCarousel";
 import ServiceSection from "./ServiceSection";
 import BenefitsSection from './BenefitsSection';
 
+const RED_GRAD = "linear-gradient(to right, rgb(217, 47, 97), rgb(143, 15, 56))";
 const SoftwareCompositionAnalysis = () => {
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<'scanning' | 'documentation' | 'accuracy' | 'vulnerability' | 'alerts' | 'policy' | 'integration'>('scanning');
@@ -75,7 +76,11 @@ const SoftwareCompositionAnalysis = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              <span className="border-b-4 border-emerald-500 pb-2">Overview : Software Composition Analysis</span>
+              <span   className="pb-2"
+                style={{
+                  borderBottom: '4px solid',
+                  borderImage: `${RED_GRAD} 1`, // CHANGED: gradient underline
+                }}>Overview : Software Composition Analysis</span>
             </h2>
           </div>
           <div className="max-w-4xl mx-auto text-center">
@@ -100,102 +105,80 @@ Since open-source components are now widely used in almost every industry, keepi
                 Our component security analysis follows a clear step-by-step approach to find, document, and secure all external libraries in your software. We use powerful tools and proven methods to give you complete visibility into your software dependencies and help you manage security risks effectively.
               </p>
               
-              {/* Vertical Tabs Layout */}
-              <div className="flex gap-8 mb-8">
-                {/* Vertical Tab Navigation */}
-                <div className="flex flex-col space-y-2 min-w-[200px]">
-                  <button
-                    className={`text-left px-4 py-3 rounded-lg font-semibold transition-all ${
-                      activeTab === 'scanning'
-                        ? 'bg-gray-900 text-white'
-                        : 'text-gray-700 hover:bg-gray-100'
-                    }`}
-                    onClick={() => setActiveTab('scanning')}
-                  >
-                    Code Scanning
-                  </button>
-                  <button
-                    className={`text-left px-4 py-3 rounded-lg font-semibold transition-all ${
-                      activeTab === 'documentation'
-                        ? 'bg-gray-900 text-white'
-                        : 'text-gray-700 hover:bg-gray-100'
-                    }`}
-                    onClick={() => setActiveTab('documentation')}
-                  >
-                    Library Documentation
-                  </button>
-                  <button
-                    className={`text-left px-4 py-3 rounded-lg font-semibold transition-all ${
-                      activeTab === 'accuracy'
-                        ? 'bg-gray-900 text-white'
-                        : 'text-gray-700 hover:bg-gray-100'
-                    }`}
-                    onClick={() => setActiveTab('accuracy')}
-                  >
-                    Detection Accuracy
-                  </button>
-                  <button
-                    className={`text-left px-4 py-3 rounded-lg font-semibold transition-all ${
-                      activeTab === 'vulnerability'
-                        ? 'bg-gray-900 text-white'
-                        : 'text-gray-700 hover:bg-gray-100'
-                    }`}
-                    onClick={() => setActiveTab('vulnerability')}
-                  >
-                    Security Risk Detection
-                  </button>
-                  <button
-                    className={`text-left px-4 py-3 rounded-lg font-semibold transition-all ${
-                      activeTab === 'alerts'
-                        ? 'bg-gray-900 text-white'
-                        : 'text-gray-700 hover:bg-gray-100'
-                    }`}
-                    onClick={() => setActiveTab('alerts')}
-                  >
-                    Security Alerts
-                  </button>
-                  <button
-                    className={`text-left px-4 py-3 rounded-lg font-semibold transition-all ${
-                      activeTab === 'policy'
-                        ? 'bg-gray-900 text-white'
-                        : 'text-gray-700 hover:bg-gray-100'
-                    }`}
-                    onClick={() => setActiveTab('policy')}
-                  >
-                    Compliance Management
-                  </button>
-                  <button
-                    className={`text-left px-4 py-3 rounded-lg font-semibold transition-all ${
-                      activeTab === 'integration'
-                        ? 'bg-emerald-500 text-white border-l-4 border-orange-500'
-                        : 'text-gray-700 hover:bg-gray-100'
-                    }`}
-                    onClick={() => setActiveTab('integration')}
-                  >
-                    CI/CD Integration
-                  </button>
-                </div>
+             
+        
 
-                {/* Tab Content */}
-                <div className="flex-1 bg-gray-50 p-6 rounded-lg shadow-md">
-                  <h3 className="text-xl font-bold text-gray-900 mb-4 capitalize">
-                    {activeTab === 'scanning' ? 'Codebase Scanning & SBOM Generation' :
-                     activeTab === 'documentation' ? 'Library Documentation & Details' :
-                     activeTab === 'accuracy' ? 'Detection Accuracy & Reliability' :
-                     activeTab === 'vulnerability' ? 'Security Risk Detection' :
-                     activeTab === 'alerts' ? 'Security Alerts & Notifications' :
-                     activeTab === 'policy' ? 'Compliance Management & Remediation' :
-                     'CI/CD Integration'}
-                  </h3>
-                  <p className="text-gray-700 leading-relaxed">
-                    {tabContent[activeTab]}
-                  </p>
-                </div>
-              </div>
+              {/* Vertical Tabs Layout */}
+<div className="flex gap-8 mb-8">
+  {/* Vertical Tab Navigation */}
+  <div className="flex flex-col space-y-2 min-w-[200px]">
+    {[
+      { id: "scanning", label: "Code Scanning" },
+      { id: "documentation", label: "Library Documentation" },
+      { id: "accuracy", label: "Detection Accuracy" },
+      { id: "vulnerability", label: "Security Risk Detection" },
+      { id: "alerts", label: "Security Alerts" },
+      { id: "policy", label: "Compliance Management" },
+      { id: "integration", label: "CI/CD Integration" },
+    ].map((tab) => (
+      <button
+        key={tab.id}
+        className={`text-left px-4 py-3 rounded-lg font-semibold transition-all ${
+          activeTab === tab.id ? "text-white" : "text-gray-700"
+        }`}
+        style={{
+          background:
+            activeTab === tab.id
+              ? "linear-gradient(90deg, rgb(217,47,97), rgb(143,15,56))" // 🔹 active = red gradient
+              : "transparent",
+        }}
+        onMouseEnter={(e) => {
+          if (activeTab !== tab.id) {
+            (e.currentTarget as HTMLButtonElement).style.background =
+              "linear-gradient(90deg, rgba(217,47,97,0.2), rgba(143,15,56,0.2))"; // 🔹 hover = light gradient
+          }
+        }}
+        onMouseLeave={(e) => {
+          if (activeTab !== tab.id) {
+            (e.currentTarget as HTMLButtonElement).style.background = "transparent"; // back to normal
+          }
+        }}
+        onClick={() => setActiveTab(tab.id)}
+      >
+        {tab.label}
+      </button>
+    ))}
+  </div>
+
+  {/* Tab Content */}
+  <div className="flex-1 bg-gray-50 p-6 rounded-lg shadow-md">
+    <h3 className="text-xl font-bold text-gray-900 mb-4 capitalize">
+      {activeTab === "scanning"
+        ? "Codebase Scanning & SBOM Generation"
+        : activeTab === "documentation"
+        ? "Library Documentation & Details"
+        : activeTab === "accuracy"
+        ? "Detection Accuracy & Reliability"
+        : activeTab === "vulnerability"
+        ? "Security Risk Detection"
+        : activeTab === "alerts"
+        ? "Security Alerts & Notifications"
+        : activeTab === "policy"
+        ? "Compliance Management & Remediation"
+        : "CI/CD Integration"}
+    </h3>
+    <p className="text-gray-700 leading-relaxed">
+      {tabContent[activeTab]}
+    </p>
+  </div>
+</div>
 
               <div className="text-center mt-8">
                 <button
-                  className="bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-3 rounded-lg font-semibold transition-colors"
+                  className="bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-3 rounded-lg font-semibold transition-colors"    style={{
+                    background: RED_GRAD, // CHANGED: button background gradient
+                    color: '#fff',
+                  }}
                   onClick={() => setIsContactOpen(true)}
                 >
                   Get Free Consultation
@@ -205,7 +188,7 @@ Since open-source components are now widely used in almost every industry, keepi
 
             {/* Right Image */}
             <div className="relative">
-              <div className="bg-gradient-to-br from-emerald-100 to-emerald-200 rounded-lg p-8">
+              <div className="bg-gradient-to-br from-emerald-100 to-emerald-200 rounded-lg p-8" style={{ background: 'linear-gradient(180deg, rgba(217,47,97,0.06), rgba(143,15,56,0.04))' }}>
                 <img 
                   src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
                   alt="Software Composition Analysis" 

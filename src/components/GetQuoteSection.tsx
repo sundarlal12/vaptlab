@@ -401,6 +401,304 @@ export default GetQuoteSection;
 
 
 
+// import { Shield, Settings, Monitor, Cloud, Cpu } from "lucide-react";
+// import React, { useState } from "react";
+// import Loader from "./Loader";
+
+// const GetQuoteSection = () => {
+//   const [form, setForm] = useState({
+//     name: "",
+//     emailId: "",
+//     phone: "",
+//     company: "",
+//     message: "",
+//   });
+
+//   const [services, setServices] = useState<string[]>([]);
+//   const [loading, setLoading] = useState(false);
+//   const [status, setStatus] = useState<{ type: "success" | "error"; text: string } | null>(null);
+
+//   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+//     const { name, value } = e.target;
+//     setForm((prev) => ({ ...prev, [name]: value }));
+//   };
+
+//   const handleServiceToggle = (service: string) => {
+//     setServices((prev) =>
+//       prev.includes(service) ? prev.filter((s) => s !== service) : [...prev, service]
+//     );
+//   };
+
+//   const handleSubmit = async (e: React.FormEvent) => {
+//     e.preventDefault();
+
+//     if (!form.name || !form.emailId || !form.phone) {
+//       setStatus({ type: "error", text: "Please fill all required fields." });
+//       return;
+//     }
+
+//     setLoading(true);
+//     setStatus(null);
+
+//     try {
+//       const response = await fetch("https://vaptlabreport.com/shieldapi/mail.php", {
+//         method: "POST",
+//         headers: { "Content-Type": "application/json" },
+//         body: JSON.stringify({
+//           ...form,
+//           services: services.join(", "),
+//         }),
+//       });
+
+//       if (response.ok) {
+//         setStatus({ type: "success", text: "Message sent successfully!" });
+//         setForm({ name: "", emailId: "", phone: "", company: "", message: "" });
+//         setServices([]);
+//       } else {
+//         setStatus({ type: "error", text: "Failed to send message. Try again later." });
+//       }
+//     } catch (err) {
+//       console.error("Error:", err);
+//       setStatus({ type: "error", text: "Network error. Please try again." });
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+//   return (
+//     <section className="py-16 md:py-20 bg-gray-50 relative">
+//       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+//         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
+//           {/* Left side (unchanged) */}
+//           <div>
+//             <p className="text-emerald-500 font-semibold mb-3 tracking-wider uppercase text-sm">
+//               GET A QUOTE
+//             </p>
+//             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
+//               Want To Protect Your Organization from Emerging Cyber Threats?
+//             </h2>
+//             <p className="text-base md:text-lg text-gray-600 mb-8 leading-relaxed">
+//               Stay one step ahead of evolving cyber threats. Fill out the form,
+//               and our expert pentesters will help you identify and address
+//               vulnerabilities before they escalate.
+//             </p>
+
+//             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
+//               <div className="flex items-start space-x-4">
+//                 <div className="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center flex-shrink-0">
+//                   <Shield className="w-6 h-6 text-emerald-600" />
+//                 </div>
+//                 <div>
+//                   <div className="text-2xl md:text-3xl font-bold text-emerald-600 mb-1">
+//                     1000+
+//                   </div>
+//                   <div className="text-gray-500 text-sm md:text-base">
+//                     Total No. Vulnerabilities
+//                   </div>
+//                 </div>
+//               </div>
+
+//               <div className="flex items-start space-x-4">
+//                 <div className="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center flex-shrink-0">
+//                   <Settings className="w-6 h-6 text-emerald-600" />
+//                 </div>
+//                 <div>
+//                   <div className="text-2xl md:text-3xl font-bold text-emerald-600 mb-1">
+//                     60+
+//                   </div>
+//                   <div className="text-gray-500 text-sm md:text-base">
+//                     Assessment Completed
+//                   </div>
+//                 </div>
+//               </div>
+
+//               <div className="flex items-start space-x-4">
+//                 <div className="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center flex-shrink-0">
+//                   <Monitor className="w-6 h-6 text-emerald-600" />
+//                 </div>
+//                 <div>
+//                   <div className="text-2xl md:text-3xl font-bold text-emerald-600 mb-1">
+//                     4+
+//                   </div>
+//                   <div className="text-gray-500 text-sm md:text-base">
+//                     Years in Business
+//                   </div>
+//                 </div>
+//               </div>
+
+//               <div className="flex items-start space-x-4">
+//                 <div className="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center flex-shrink-0">
+//                   <Cloud className="w-6 h-6 text-emerald-600" />
+//                 </div>
+//                 <div>
+//                   <div className="text-2xl md:text-3xl font-bold text-emerald-600 mb-1">
+//                     5+
+//                   </div>
+//                   <div className="text-gray-500 text-sm md:text-base">
+//                     Countries Served
+//                   </div>
+//                 </div>
+//               </div>
+
+//               <div className="flex items-start space-x-4 sm:col-span-2">
+//                 <div className="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center flex-shrink-0">
+//                   <Cpu className="w-6 h-6 text-emerald-600" />
+//                 </div>
+//                 <div>
+//                   <div className="text-2xl md:text-3xl font-bold text-emerald-600 mb-1">
+//                     10+
+//                   </div>
+//                   <div className="text-gray-500 text-sm md:text-base">
+//                     Trusted Clients
+//                   </div>
+//                 </div>
+//               </div>
+//             </div>
+       
+
+            
+//           </div>
+
+//           {/* Right side - Contact Form */}
+//           <div className="bg-white rounded-2xl md:rounded-3xl p-6 md:p-8 shadow-xl relative">
+//             {/* Loader only inside the form box */}
+//             {loading && (
+//               <div className="absolute inset-0 bg-white/70 backdrop-blur-sm flex items-center justify-center rounded-2xl z-10">
+//                 <Loader size="medium" text="Sending..." />
+//               </div>
+//             )}
+
+//             <form className="space-y-6" onSubmit={handleSubmit}>
+//               {/* Name & Email */}
+//               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+//                 <div>
+//                   <label className="block text-sm font-semibold text-gray-700 mb-2">
+//                     Full Name*
+//                   </label>
+//                   <input
+//                     type="text"
+//                     name="name"
+//                     value={form.name}
+//                     onChange={handleChange}
+//                     className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500"
+//                   />
+//                 </div>
+//                 <div>
+//                   <label className="block text-sm font-semibold text-gray-700 mb-2">
+//                     Work Email*
+//                   </label>
+//                   <input
+//                     type="email"
+//                     name="emailId"
+//                     value={form.emailId}
+//                     onChange={handleChange}
+//                     className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500"
+//                   />
+//                 </div>
+//               </div>
+
+//               {/* Phone */}
+//               <div>
+//                 <label className="block text-sm font-semibold text-gray-700 mb-2">
+//                   Phone Number*
+//                 </label>
+//                 <input
+//                   type="tel"
+//                   name="phone"
+//                   value={form.phone}
+//                   onChange={handleChange}
+//                   className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500"
+//                 />
+//               </div>
+
+//               {/* Company */}
+//               <div>
+//                 <label className="block text-sm font-semibold text-gray-700 mb-2">
+//                   Company
+//                 </label>
+//                 <input
+//                   type="text"
+//                   name="company"
+//                   value={form.company}
+//                   onChange={handleChange}
+//                   className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500"
+//                 />
+//               </div>
+
+//               {/* Services */}
+//               <div>
+//                 <label className="block text-sm font-semibold text-gray-700 mb-4">
+//                   Services you need*
+//                 </label>
+//                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+//                   {[
+//                     "Web app pentesting",
+//                     "API pentesting",
+//                     "External Network Pentesting",
+//                     "Cloud security assessment",
+//                     "Mobile app pentesting",
+//                     "IoT Pentesting",
+//                     "Partner with VAPTlabs",
+//                     "Others",
+//                   ].map((service) => (
+//                     <label key={service} className="flex items-center space-x-3 cursor-pointer">
+//                       <input
+//                         type="checkbox"
+//                         checked={services.includes(service)}
+//                         onChange={() => handleServiceToggle(service)}
+//                         className="w-4 h-4 text-emerald-600 border-gray-300 rounded focus:ring-emerald-500"
+//                       />
+//                       <span className="text-sm text-gray-700">{service}</span>
+//                     </label>
+//                   ))}
+//                 </div>
+//               </div>
+
+//               {/* Message */}
+//               <div>
+//                 <label className="block text-sm font-semibold text-gray-700 mb-2">
+//                   Message
+//                 </label>
+//                 <textarea
+//                   name="message"
+//                   value={form.message}
+//                   onChange={handleChange}
+//                   rows={4}
+//                   className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 resize-none"
+//                 />
+//               </div>
+
+//               {/* Submit */}
+//               <button
+//                 type="submit"
+//                 disabled={loading}
+//                 className="w-full bg-gradient-to-r from-emerald-500 to-green-600 text-white py-3 px-6 rounded-xl font-semibold text-lg hover:from-emerald-600 hover:to-green-700 shadow-lg"
+//               >
+//                 Send Message
+//               </button>
+
+//               {/* Status */}
+//               {status && (
+//                 <p
+//                   className={`mt-4 text-center font-medium ${
+//                     status.type === "success" ? "text-emerald-600" : "text-red-500"
+//                   }`}
+//                 >
+//                   {status.text}
+//                 </p>
+//               )}
+//             </form>
+//           </div>
+//         </div>
+//       </div>
+//     </section>
+//   );
+// };
+
+// export default GetQuoteSection;
+
+
+
 import { Shield, Settings, Monitor, Cloud, Cpu } from "lucide-react";
 import React, { useState } from "react";
 import Loader from "./Loader";
@@ -469,9 +767,16 @@ const GetQuoteSection = () => {
     <section className="py-16 md:py-20 bg-gray-50 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-start">
-          {/* Left side (unchanged) */}
+          {/* Left side */}
           <div>
-            <p className="text-emerald-500 font-semibold mb-3 tracking-wider uppercase text-sm">
+            <p
+              className="font-semibold mb-3 tracking-wider uppercase text-sm"
+              style={{
+                background: "linear-gradient(to right, rgb(217, 47, 97), rgb(143, 15, 56))",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}
+            >
               GET A QUOTE
             </p>
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
@@ -483,85 +788,52 @@ const GetQuoteSection = () => {
               vulnerabilities before they escalate.
             </p>
 
+            {/* Stats */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
-              <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <Shield className="w-6 h-6 text-emerald-600" />
-                </div>
-                <div>
-                  <div className="text-2xl md:text-3xl font-bold text-emerald-600 mb-1">
-                    1000+
+              {[
+                { icon: Shield, value: "1000+", label: "Total No. Vulnerabilities" },
+                { icon: Settings, value: "60+", label: "Assessment Completed" },
+                { icon: Monitor, value: "4+", label: "Years in Business" },
+                { icon: Cloud, value: "5+", label: "Countries Served" },
+                { icon: Cpu, value: "10+", label: "Trusted Clients", span: true },
+              ].map(({ icon: Icon, value, label, span }, idx) => (
+                <div
+                  key={idx}
+                  className={`flex items-start space-x-4 ${span ? "sm:col-span-2" : ""}`}
+                >
+                  <div
+                    className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0"
+                    style={{
+                      background: "linear-gradient(to right, rgba(217,47,97,0.1), rgba(143,15,56,0.1))",
+                    }}
+                  >
+                    <Icon
+                      className="w-6 h-6"
+                      style={{
+                        color: "rgb(217, 47, 97)",
+                      }}
+                    />
                   </div>
-                  <div className="text-gray-500 text-sm md:text-base">
-                    Total No. Vulnerabilities
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <Settings className="w-6 h-6 text-emerald-600" />
-                </div>
-                <div>
-                  <div className="text-2xl md:text-3xl font-bold text-emerald-600 mb-1">
-                    60+
-                  </div>
-                  <div className="text-gray-500 text-sm md:text-base">
-                    Assessment Completed
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <Monitor className="w-6 h-6 text-emerald-600" />
-                </div>
-                <div>
-                  <div className="text-2xl md:text-3xl font-bold text-emerald-600 mb-1">
-                    4+
-                  </div>
-                  <div className="text-gray-500 text-sm md:text-base">
-                    Years in Business
+                  <div>
+                    <div
+                      className="text-2xl md:text-3xl font-bold mb-1"
+                      style={{
+                        background: "linear-gradient(to right, rgb(217, 47, 97), rgb(143, 15, 56))",
+                        WebkitBackgroundClip: "text",
+                        WebkitTextFillColor: "transparent",
+                      }}
+                    >
+                      {value}
+                    </div>
+                    <div className="text-gray-500 text-sm md:text-base">{label}</div>
                   </div>
                 </div>
-              </div>
-
-              <div className="flex items-start space-x-4">
-                <div className="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <Cloud className="w-6 h-6 text-emerald-600" />
-                </div>
-                <div>
-                  <div className="text-2xl md:text-3xl font-bold text-emerald-600 mb-1">
-                    5+
-                  </div>
-                  <div className="text-gray-500 text-sm md:text-base">
-                    Countries Served
-                  </div>
-                </div>
-              </div>
-
-              <div className="flex items-start space-x-4 sm:col-span-2">
-                <div className="w-12 h-12 bg-emerald-100 rounded-xl flex items-center justify-center flex-shrink-0">
-                  <Cpu className="w-6 h-6 text-emerald-600" />
-                </div>
-                <div>
-                  <div className="text-2xl md:text-3xl font-bold text-emerald-600 mb-1">
-                    10+
-                  </div>
-                  <div className="text-gray-500 text-sm md:text-base">
-                    Trusted Clients
-                  </div>
-                </div>
-              </div>
+              ))}
             </div>
-       
-
-            
           </div>
 
           {/* Right side - Contact Form */}
           <div className="bg-white rounded-2xl md:rounded-3xl p-6 md:p-8 shadow-xl relative">
-            {/* Loader only inside the form box */}
             {loading && (
               <div className="absolute inset-0 bg-white/70 backdrop-blur-sm flex items-center justify-center rounded-2xl z-10">
                 <Loader size="medium" text="Sending..." />
@@ -580,7 +852,7 @@ const GetQuoteSection = () => {
                     name="name"
                     value={form.name}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-pink-600"
                   />
                 </div>
                 <div>
@@ -592,7 +864,7 @@ const GetQuoteSection = () => {
                     name="emailId"
                     value={form.emailId}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-pink-600"
                   />
                 </div>
               </div>
@@ -607,7 +879,7 @@ const GetQuoteSection = () => {
                   name="phone"
                   value={form.phone}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-pink-600"
                 />
               </div>
 
@@ -621,7 +893,7 @@ const GetQuoteSection = () => {
                   name="company"
                   value={form.company}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-emerald-500"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-pink-600"
                 />
               </div>
 
@@ -646,7 +918,7 @@ const GetQuoteSection = () => {
                         type="checkbox"
                         checked={services.includes(service)}
                         onChange={() => handleServiceToggle(service)}
-                        className="w-4 h-4 text-emerald-600 border-gray-300 rounded focus:ring-emerald-500"
+                        className="w-4 h-4 border-gray-300 rounded focus:ring-pink-600 text-pink-600"
                       />
                       <span className="text-sm text-gray-700">{service}</span>
                     </label>
@@ -664,7 +936,7 @@ const GetQuoteSection = () => {
                   value={form.message}
                   onChange={handleChange}
                   rows={4}
-                  className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 resize-none"
+                  className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-pink-600 resize-none"
                 />
               </div>
 
@@ -672,7 +944,7 @@ const GetQuoteSection = () => {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full bg-gradient-to-r from-emerald-500 to-green-600 text-white py-3 px-6 rounded-xl font-semibold text-lg hover:from-emerald-600 hover:to-green-700 shadow-lg"
+                className="w-full py-3 px-6 rounded-xl font-semibold text-lg shadow-lg text-white bg-gradient-to-r from-pink-600 to-red-700 hover:from-pink-700 hover:to-red-800"
               >
                 Send Message
               </button>
@@ -681,7 +953,9 @@ const GetQuoteSection = () => {
               {status && (
                 <p
                   className={`mt-4 text-center font-medium ${
-                    status.type === "success" ? "text-emerald-600" : "text-red-500"
+                    status.type === "success"
+                      ? "text-pink-600"
+                      : "text-red-600"
                   }`}
                 >
                   {status.text}

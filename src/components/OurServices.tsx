@@ -653,14 +653,24 @@ export default function OurServices(): JSX.Element {
         {/* Heading */}
         <div className="text-center mb-8">
           <h2 className="text-3xl font-bold text-gray-900">Our Services and Products</h2>
-          <div className="text-emerald-600 font-semibold mt-2">VAPT SERVICES</div>
+       <div
+  className="font-semibold mt-2 text-transparent bg-clip-text"
+  style={{
+    background: "linear-gradient(to right, rgb(217, 47, 97), rgb(143, 15, 56))",
+    WebkitBackgroundClip: "text", // for Safari/Chrome
+    WebkitTextFillColor: "transparent", // ensure text itself is transparent
+  }}
+>
+  VAPT SERVICES
+</div>
         </div>
 
         {/* Tabs */}
-        <div className="flex items-center justify-center gap-15 mb-12">
+        {/* <div className="flex items-center justify-center gap-15 mb-12">
           <button onClick={prev} disabled={activeIndex === 0} className="p-2 disabled:opacity-40">
             <ChevronLeft className="w-6 h-6 text-gray-400" />
           </button>
+          
           <div ref={tabsRef} className="flex gap-12 overflow-x-auto no-scrollbar px-2" role="tablist">
             {SERVICES.map((s, idx) => (
               <div
@@ -674,21 +684,77 @@ export default function OurServices(): JSX.Element {
                   setImageLoaded(false);
                 }}
                 className="cursor-pointer select-none text-center whitespace-nowrap"
-                style={{ minWidth: 250 }}
+                style={{ minWidth: 295 }}
               >
-                <div className={`text-base lg:text-lg font-semibold ${idx === activeIndex ? "text-emerald-600" : "text-black"}`}>
-                  {s.title}
-                </div>
+                
+                <div
+        className={`text-base lg:text-lg font-semibold ${
+          idx === activeIndex ? "text-transparent bg-clip-text" : "text-black"
+        }`}
+        style={
+          idx === activeIndex
+            ? {
+                background: "linear-gradient(to right, rgb(217, 47, 97), rgb(143, 15, 56))",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }
+            : {}
+        }
+      >
+        {s.title}
+      </div>
                 <div className="mt-2 h-0.5 bg-gray-300 mx-auto w-72" />
-                {idx === activeIndex && <div className="mt-[-6px] h-1.5 bg-emerald-600 mx-auto rounded-sm w-72" />}
+                {idx === activeIndex && <div  className="mt-[-6px] h-1.5 bg-emerald-600 mx-auto rounded-sm w-72" />}
               </div>
             ))}
           </div>
           <button onClick={next} disabled={activeIndex === SERVICES.length - 1} className="p-2 disabled:opacity-40">
             <ChevronRight className="w-6 h-6 text-gray-400" />
           </button>
-        </div>
+        </div> */}
 
+
+        <div ref={tabsRef} className="flex gap-12 overflow-x-auto no-scrollbar px-2" role="tablist">
+  {SERVICES.map((s, idx) => (
+    <div
+      key={s.id}
+      data-index={idx}
+      role="tab"
+      aria-selected={idx === activeIndex}
+      tabIndex={0}
+      onClick={() => {
+        setActiveIndex(idx);
+        setImageLoaded(false);
+      }}
+      className="cursor-pointer select-none text-center whitespace-nowrap"
+      style={{ minWidth: 295 }}
+    >
+      <div
+        className={`text-base lg:text-lg font-semibold ${
+          idx === activeIndex ? "text-transparent bg-clip-text" : "text-black"
+        }`}
+        style={
+          idx === activeIndex
+            ? {
+                background: "linear-gradient(to right, rgb(217, 47, 97), rgb(143, 15, 56))",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }
+            : {}
+        }
+      >
+        {s.title}
+      </div>
+
+      <div className="mt-2 h-0.5 bg-gray-300 mx-auto w-72" />
+      {idx === activeIndex && (
+        <div className="mt-[-6px] h-1.5 bg-gradient-to-r from-pink-600 to-red-700 mx-auto rounded-sm w-72" />
+      )}
+    </div>
+  ))}
+</div>
+
+        
         {/* Active service */}
         <div className="flex justify-center">
           <div className="w-full lg:w-4/5 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -705,7 +771,11 @@ export default function OurServices(): JSX.Element {
                 >
                   {!imageLoaded && (
                     <div className="absolute inset-0 flex items-center justify-center bg-gray-100 animate-pulse rounded-3xl w-[400px] h-[400px]">
-                      <span className="text-gray-400 text-sm">Loading...</span>
+                      <span className="text-gray-400 text-sm" style={{
+    background: "linear-gradient(to right, rgb(217, 47, 97), rgb(143, 15, 56))",
+    WebkitBackgroundClip: "text", // for Safari/Chrome
+    WebkitTextFillColor: "transparent", // ensure text itself is transparent
+  }}>Loading...</span>
                     </div>
                   )}
                   <img
@@ -724,7 +794,7 @@ export default function OurServices(): JSX.Element {
               <p className="text-sm italic text-gray-600 mt-1">{active.subtitle}</p>
               <p className="text-gray-700 leading-relaxed mt-4">{active.paragraph}</p>
               <div className="mt-6">
-                <button
+                <button style={{ background: "linear-gradient(to right, rgb(217, 47, 97), rgb(143, 15, 56))" }}
                   onClick={() => goToService(active.id)}
                   className="bg-emerald-600 hover:bg-emerald-700 text-white px-5 py-2 rounded-full inline-flex items-center gap-2 font-semibold"
                 >

@@ -502,8 +502,12 @@ const ClientCarousel: React.FC = () => {
   return (
     <section className="py-10 bg-white relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <p className="text-center text-gray-500 mb-8 text-lg">
-          Securing leaders and startups alike
+        <p className="text-center text-gray-500 mb-8 text-lg"  style={{
+                background: "linear-gradient(to right, rgb(217, 47, 97), rgb(143, 15, 56))",
+                WebkitBackgroundClip: "text",
+                WebkitTextFillColor: "transparent",
+              }}><strong>
+          Securing leaders and startups alike</strong>
         </p>
 
         <div className="relative overflow-hidden">

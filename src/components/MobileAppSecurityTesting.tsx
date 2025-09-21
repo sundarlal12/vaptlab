@@ -9,6 +9,8 @@ import ClientCarousel from "./ClientCarousel";
 import ServiceSection from "./ServiceSection";
 import BenefitsSection from './BenefitsSection';
 
+const RED_GRAD = "linear-gradient(to right, rgb(217, 47, 97), rgb(143, 15, 56))";
+
 const MobileAppSecurityTesting = () => {
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<'black' | 'gray' | 'white'>('black');
@@ -70,7 +72,11 @@ const MobileAppSecurityTesting = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              <span className="border-b-4 border-emerald-500 pb-2">Overview : Mobile Application Security Testing</span>
+              <span  className="pb-2"
+                style={{
+                  borderBottom: '4px solid',
+                  borderImage: `${RED_GRAD} 1`, // CHANGED: gradient underline
+                }} >Overview : Mobile Application Security Testing</span>
             </h2>
           </div>
           <div className="max-w-4xl mx-auto text-center">
@@ -118,13 +124,24 @@ const MobileAppSecurityTesting = () => {
                 >
                   Gray Box
                 </button>
-                <button
+                {/* <button
                   className={`px-6 py-2 rounded-t-lg font-semibold ${
                     activeTab === 'white'
                       ? 'bg-emerald-500 text-white'
                       : 'bg-gray-200 text-gray-600 hover:bg-gray-300'
                   }`}
                   onClick={() => setActiveTab('white')}
+                >
+                  White Box
+                </button> */}
+                <button
+                  className={`px-6 py-2 rounded-t-lg font-semibold ${activeTab === 'white' ? '' : 'bg-gray-200 text-gray-600 hover:bg-gray-300'}`}
+                  onClick={() => setActiveTab('white')}
+                  style={
+                    activeTab === 'white'
+                      ? { background: RED_GRAD, color: 'white' } // CHANGED: active white tab uses red gradient
+                      : undefined
+                  }
                 >
                   White Box
                 </button>
@@ -137,7 +154,10 @@ const MobileAppSecurityTesting = () => {
 
               <div className="text-center mt-8">
                 <button
-                  className="bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-3 rounded-lg font-semibold transition-colors"
+                  className="bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-3 rounded-lg font-semibold transition-colors"  style={{
+                    background: RED_GRAD, // CHANGED: button background gradient
+                    color: '#fff',
+                  }}
                   onClick={() => setIsContactOpen(true)}
                 >
                   Get Free Consultation
@@ -147,7 +167,7 @@ const MobileAppSecurityTesting = () => {
 
             {/* Right Image */}
             <div className="relative">
-              <div className="bg-gradient-to-br from-emerald-100 to-emerald-200 rounded-lg p-8">
+              <div className="bg-gradient-to-br from-emerald-100 to-emerald-200 rounded-lg p-8" style={{ background: 'linear-gradient(180deg, rgba(217,47,97,0.06), rgba(143,15,56,0.04))' }}>
                 <img 
                   src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
                   alt="Mobile Security" 

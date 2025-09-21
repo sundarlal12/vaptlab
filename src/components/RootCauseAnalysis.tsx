@@ -8,7 +8,7 @@ import RootCauseAnalysisFAQ from './FAQ/RootCauseAnalysisFAQ';
 import ClientCarousel from "./ClientCarousel";
 import ServiceSection from "./ServiceSection";
 import BenefitsSection from './BenefitsSection';
-
+const RED_GRAD = "linear-gradient(to right, rgb(217, 47, 97), rgb(143, 15, 56))";
 const RootCauseAnalysis = () => {
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<'investigation' | 'analysis' | 'timeline' | 'causes' | 'remediation'>('investigation');
@@ -73,7 +73,10 @@ const RootCauseAnalysis = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              <span className="border-b-4 border-emerald-500 pb-2">Overview : Root Cause Analysis</span>
+              <span  style={{
+                  borderBottom: '4px solid',
+                  borderImage: `${RED_GRAD} 1`, // CHANGED: gradient underline
+                }}>Overview : Root Cause Analysis</span>
             </h2>
           </div>
           <div className="max-w-4xl mx-auto text-center">
@@ -96,80 +99,72 @@ const RootCauseAnalysis = () => {
                 Our root cause analysis follows a systematic approach to investigate security incidents and identify why they happened. We use proven methodologies and industry best practices to ensure thorough investigation and accurate findings that help prevent future incidents.
               </p>
               
-              {/* Vertical Tabs Layout */}
+           
+
               <div className="flex gap-8 mb-8">
-                {/* Vertical Tab Navigation */}
-                <div className="flex flex-col space-y-2 min-w-[200px]">
-                  <button
-                    className={`text-left px-4 py-3 rounded-lg font-semibold transition-all ${
-                      activeTab === 'investigation'
-                        ? 'bg-gray-900 text-white'
-                        : 'text-gray-700 hover:bg-gray-100'
-                    }`}
-                    onClick={() => setActiveTab('investigation')}
-                  >
-                    Evidence Collection
-                  </button>
-                  <button
-                    className={`text-left px-4 py-3 rounded-lg font-semibold transition-all ${
-                      activeTab === 'analysis'
-                        ? 'bg-gray-900 text-white'
-                        : 'text-gray-700 hover:bg-gray-100'
-                    }`}
-                    onClick={() => setActiveTab('analysis')}
-                  >
-                    Incident Analysis
-                  </button>
-                  <button
-                    className={`text-left px-4 py-3 rounded-lg font-semibold transition-all ${
-                      activeTab === 'timeline'
-                        ? 'bg-gray-900 text-white'
-                        : 'text-gray-700 hover:bg-gray-100'
-                    }`}
-                    onClick={() => setActiveTab('timeline')}
-                  >
-                    Timeline Reconstruction
-                  </button>
-                  <button
-                    className={`text-left px-4 py-3 rounded-lg font-semibold transition-all ${
-                      activeTab === 'causes'
-                        ? 'bg-gray-900 text-white'
-                        : 'text-gray-700 hover:bg-gray-100'
-                    }`}
-                    onClick={() => setActiveTab('causes')}
-                  >
-                    Root Cause Identification
-                  </button>
-                  <button
-                    className={`text-left px-4 py-3 rounded-lg font-semibold transition-all ${
-                      activeTab === 'remediation'
-                        ? 'bg-emerald-500 text-white border-l-4 border-orange-500'
-                        : 'text-gray-700 hover:bg-gray-100'
-                    }`}
-                    onClick={() => setActiveTab('remediation')}
-                  >
-                    Remediation Planning
-                  </button>
-                </div>
+  <div className="flex flex-col space-y-2 min-w-[200px]">
+    {[
+      { id: "investigation", label: "Evidence Collection" },
+      { id: "analysis", label: "Incident Analysis" },
+      { id: "timeline", label: "Timeline Reconstruction" },
+      { id: "causes", label: "Root Cause Identification" },
+      { id: "remediation", label: "Remediation Planning" },
+    ].map((tab) => (
+      <button
+        key={tab.id}
+        className={`text-left px-4 py-3 rounded-lg font-semibold transition-all ${
+          activeTab === tab.id ? "text-white" : "text-gray-700"
+        }`}
+        style={{
+          background:
+            activeTab === tab.id
+              ? "linear-gradient(90deg, rgb(217,47,97), rgb(143,15,56))" // active: full gradient
+              : "transparent",
+        }}
+        onMouseEnter={(e) => {
+          if (activeTab !== tab.id) {
+            (e.currentTarget as HTMLButtonElement).style.background =
+              "linear-gradient(90deg, rgba(217,47,97,0.2), rgba(143,15,56,0.2))"; // hover: light gradient
+          }
+        }}
+        onMouseLeave={(e) => {
+          if (activeTab !== tab.id) {
+            (e.currentTarget as HTMLButtonElement).style.background = "transparent"; // back to transparent
+          }
+        }}
+        onClick={() => setActiveTab(tab.id)}
+      >
+        {tab.label}
+      </button>
+    ))}
+  </div>
 
-                {/* Tab Content */}
-                <div className="flex-1 bg-gray-50 p-6 rounded-lg shadow-md">
-                  <h3 className="text-xl font-bold text-gray-900 mb-4 capitalize">
-                    {activeTab === 'investigation' ? 'Evidence Collection' :
-                     activeTab === 'analysis' ? 'Incident Analysis' :
-                     activeTab === 'timeline' ? 'Timeline Reconstruction' :
-                     activeTab === 'causes' ? 'Root Cause Identification' :
-                     'Remediation Planning'}
-                  </h3>
-                  <p className="text-gray-700 leading-relaxed">
-                    {tabContent[activeTab]}
-                  </p>
-                </div>
-              </div>
+  {/* Tab Content */}
+  <div className="flex-1 bg-gray-50 p-6 rounded-lg shadow-md">
+    <h3 className="text-xl font-bold text-gray-900 mb-4 capitalize">
+      {activeTab === "investigation"
+        ? "Evidence Collection"
+        : activeTab === "analysis"
+        ? "Incident Analysis"
+        : activeTab === "timeline"
+        ? "Timeline Reconstruction"
+        : activeTab === "causes"
+        ? "Root Cause Identification"
+        : "Remediation Planning"}
+    </h3>
+    <p className="text-gray-700 leading-relaxed">
+      {tabContent[activeTab]}
+    </p>
+  </div>
+</div>
 
+              
               <div className="text-center mt-8">
                 <button
-                  className="bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-3 rounded-lg font-semibold transition-colors"
+                  className="bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-3 rounded-lg font-semibold transition-colors"  style={{
+                    background: RED_GRAD, // CHANGED: button background gradient
+                    color: '#fff',
+                  }}
                   onClick={() => setIsContactOpen(true)}
                 >
                   Get Free Consultation
@@ -179,7 +174,7 @@ const RootCauseAnalysis = () => {
 
             {/* Right Image */}
             <div className="relative">
-              <div className="bg-gradient-to-br from-emerald-100 to-emerald-200 rounded-lg p-8">
+              <div className="bg-gradient-to-br from-emerald-100 to-emerald-200 rounded-lg p-8"  style={{ background: 'linear-gradient(180deg, rgba(217,47,97,0.06), rgba(143,15,56,0.04))' }}>
                 <img 
                   src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80" 
                   alt="Root Cause Analysis" 

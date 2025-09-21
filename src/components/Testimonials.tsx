@@ -1609,7 +1609,7 @@ const testimonials = [
     quote:
       "VAPTlabs has efficiently and affordably helped us meet our cybersecurity goals. Their tailored solutions and proactive approach have fortified our defenses, providing peace of mind.",
     name: "Shreyans Daga",
-    position: "Co-Founde",
+    position: "Co-Founder",
     company: "MyGate",
     image:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhgJGWlfqlr_-jBOUOCqGpGd635fYxnav_KkWmMKMYYa4qHa6_gDPlZ4mrBORbNi8n_ndPBWP1jAs316q5gnJELHr6exm2pdAo8tQ1aRrO4A",
@@ -1622,6 +1622,15 @@ const testimonials = [
     company: "PaySquare",
     image:
       "https://www.financialexpress.com/wp-content/uploads/2019/09/1-843.jpg?w=310&h=174&crop=1",
+  },
+  {
+    quote:
+      "The comprehensive penetration testing provided by VAPTlabs uncovered critical vulnerabilities we never knew existed. Their detailed reports and remediation guidance were invaluable.",
+    name: "Rakesh Jain",
+    position: "CTO",
+    company: "DrDroid",
+    image:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2G5mGdUNRm_khMITWkhsJqv4qKygkFi8XUQ&s",
   },
 ];
 
@@ -1685,7 +1694,7 @@ export default function Testimonials() {
         {/* Header */}
         <div className="flex flex-col md:flex-row justify-between items-start mb-10 md:mb-16 gap-6 text-center md:text-left">
           <div className="w-full md:w-2/3 mx-auto md:mx-0">
-            <p className="text-green-600 font-semibold mb-3 tracking-wider uppercase">
+            <p className=" font-semibold mb-3 tracking-wider uppercase" style={{ background: "linear-gradient(to right, rgb(217, 47, 97), rgb(143, 15, 56))",WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", }}>
               TESTIMONIALS
             </p>
             <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-3">
@@ -1722,8 +1731,8 @@ export default function Testimonials() {
                     />
                   </div>
                   <div className="flex-1">
-                    <div className="text-6xl mb-6 opacity-30 leading-none">"</div>
-                    <p className="text-xl mb-8 leading-relaxed">{t.quote}</p>
+                    <div className="text-6xl mb-6 opacity-30 leading-none" style={{ background: "linear-gradient(to right, rgb(217, 47, 97), rgb(143, 15, 56))",WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", }}>"</div>
+                    <p className="text-xl mb-8 leading-relaxed" >{t.quote}</p>
                     <div>
                       <h4 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-pink-600 to-red-700 mb-1">
                         {t.name}
@@ -1764,7 +1773,7 @@ export default function Testimonials() {
           {/* Arrows */}
           <div>
             {/* Desktop arrows (left & right middle corners) */}
-            <button
+            {/* <button
               onClick={prevTestimonial}
               aria-label="Previous testimonial"
               className="hidden md:flex absolute top-1/2 left-3 -translate-y-1/2 w-12 h-12 bg-gradient-to-r from-pink-600 to-red-700 text-white rounded-full items-center justify-center hover:opacity-90 transition"
@@ -1777,8 +1786,51 @@ export default function Testimonials() {
               className="hidden md:flex absolute top-1/2 right-3 -translate-y-1/2 w-12 h-12 bg-gradient-to-r from-pink-600 to-red-700 text-white rounded-full items-center justify-center hover:opacity-90 transition"
             >
               <ChevronRight className="w-6 h-6" />
-            </button>
+            </button> */}
+{/* <div className="hidden md:flex absolute bottom-6 right-6 space-x-3">
+  <button
+    onClick={prevTestimonial}
+    aria-label="Previous testimonial"
+    className="w-12 h-12 bg-gradient-to-r from-pink-600 to-red-700 text-white 
+               rounded-full flex items-center justify-center hover:opacity-90 
+               transition shadow-lg"
+  >
+    <ChevronLeft className="w-6 h-6" />
+  </button>
+  <button
+    onClick={nextTestimonial}
+    aria-label="Next testimonial"
+    className="w-12 h-12 bg-gradient-to-r from-pink-600 to-red-700 text-white 
+               rounded-full flex items-center justify-center hover:opacity-90 
+               transition shadow-lg"
+  >
+    <ChevronRight className="w-6 h-6" />
+  </button>
+</div> */}
+              <div className="hidden md:flex absolute bottom-6 right-6 space-x-3">
+  <button
+    onClick={prevTestimonial}
+    aria-label="Previous testimonial"
+    className="w-12 h-12 border-2 border-gray-400 bg-white text-black 
+               rounded-full flex items-center justify-center 
+               hover:bg-gradient-to-r hover:from-pink-600 hover:to-red-700 
+               hover:text-white transition"
+  >
+    <ChevronLeft className="w-6 h-6" />
+  </button>
+  <button
+    onClick={nextTestimonial}
+    aria-label="Next testimonial"
+    className="w-12 h-12 border-2 border-gray-400 bg-white text-black 
+               rounded-full flex items-center justify-center 
+               hover:bg-gradient-to-r hover:from-pink-600 hover:to-red-700 
+               hover:text-white transition"
+  >
+    <ChevronRight className="w-6 h-6" />
+  </button>
+</div>
 
+            
             {/* Mobile arrows (unchanged: bottom corners) */}
             <button
               onClick={prevTestimonial}

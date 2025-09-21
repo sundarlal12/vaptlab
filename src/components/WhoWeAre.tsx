@@ -254,7 +254,10 @@ const WhoWeAre: React.FC = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           {/* Left: Text */}
           <div className="space-y-6">
-            <div className="text-sm tracking-widest text-emerald-500 font-semibold">
+            <div className="text-sm tracking-widest text-emerald-500 font-semibold" style={{
+
+                  color: "rgb(217, 47, 97)",
+                }}>
               THE VAPTlabs PROMISE IN CYBERSECURITY
             </div>
 
@@ -263,12 +266,12 @@ const WhoWeAre: React.FC = () => {
               <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold leading-tight text-gray-900">
                 Who We Are?
               </h2>
-              <button
+              {/* <button
                 onClick={() => navigate("/contact")}
                 className="inline-block bg-emerald-500 hover:bg-emerald-600 text-white font-semibold px-5 py-2 sm:px-6 sm:py-3 rounded-full shadow-md transition self-start sm:self-auto"
               >
                 Get a Quote
-              </button>
+              </button> */}
             </div>
 
             <p className="text-lg sm:text-xl text-gray-600 leading-relaxed max-w-2xl">
@@ -295,6 +298,7 @@ const WhoWeAre: React.FC = () => {
 
           {/* Right: Lottie Animation */}
           <div className="flex justify-center">
+            
             <div
               className="relative flex items-center justify-center rounded-lg"
               style={{ width: "min(520px, 100%)", maxWidth: 520 }}
