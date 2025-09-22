@@ -1595,10 +1595,49 @@ export default function Testimonials(): JSX.Element {
 import React, { useState, useRef, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
+// const testimonials = [
+//   {
+//     quote:
+//       "The team was highly professional and consistently met all deadlines. They went above and beyond by expanding the project scope to address unexpected issues—despite having no obligation to do so. A truly dependable and great team to work with.",
+//     name: "Pratap Chandana",
+//     position: "Co-Founder & Head of Tech",
+//     company: "Aurm",
+//     image:
+//       "https://pub-assets.aurm.in/teamimages%2Fteamimages_People_Card_v2_Pratap.webp",
+//   },
+//   {
+//     quote:
+//       "VAPTlabs has efficiently and affordably helped us meet our cybersecurity goals. Their tailored solutions and proactive approach have fortified our defenses, providing peace of mind.",
+//     name: "Shreyans Daga",
+//     position: "Co-Founder",
+//     company: "MyGate",
+//     image:
+//       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhgJGWlfqlr_-jBOUOCqGpGd635fYxnav_KkWmMKMYYa4qHa6_gDPlZ4mrBORbNi8n_ndPBWP1jAs316q5gnJELHr6exm2pdAo8tQ1aRrO4A",
+//   },
+//   {
+//     quote:
+//       "The comprehensive penetration testing provided by VAPTlabs uncovered critical vulnerabilities we never knew existed. Their detailed reports and remediation guidance were invaluable.",
+//     name: "Rakesh Jain",
+//     position: "CTO",
+//     company: "PaySquare",
+//     image:
+//       "https://www.financialexpress.com/wp-content/uploads/2019/09/1-843.jpg?w=310&h=174&crop=1",
+//   },
+//   {
+//     quote:
+//       "The comprehensive penetration testing provided by VAPTlabs uncovered critical vulnerabilities we never knew existed. Their detailed reports and remediation guidance were invaluable.",
+//     name: "Siddarth Jain",
+//     position: "CTO",
+//     company: "DrDroid",
+//     image:
+//       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2G5mGdUNRm_khMITWkhsJqv4qKygkFi8XUQ&s",
+//   },
+// ];
+
 const testimonials = [
   {
     quote:
-      "The team was highly professional and consistently met all deadlines. They went above and beyond by expanding the project scope to address unexpected issues—despite having no obligation to do so. A truly dependable and great team to work with.",
+      "The team demonstrated exceptional professionalism and reliability, consistently meeting deadlines while exceeding expectations. They even expanded the project scope to tackle unforeseen challenges—without any obligation—showcasing their commitment and integrity. A dependable partner we truly value.",
     name: "Pratap Chandana",
     position: "Co-Founder & Head of Tech",
     company: "Aurm",
@@ -1607,7 +1646,7 @@ const testimonials = [
   },
   {
     quote:
-      "VAPTlabs has efficiently and affordably helped us meet our cybersecurity goals. Their tailored solutions and proactive approach have fortified our defenses, providing peace of mind.",
+      "VAPTlabs has been instrumental in helping us achieve our cybersecurity objectives with efficiency and cost-effectiveness. Their customized solutions, proactive monitoring, and hands-on support have strengthened our defenses and given us complete peace of mind.",
     name: "Shreyans Daga",
     position: "Co-Founder",
     company: "MyGate",
@@ -1616,7 +1655,7 @@ const testimonials = [
   },
   {
     quote:
-      "The comprehensive penetration testing provided by VAPTlabs uncovered critical vulnerabilities we never knew existed. Their detailed reports and remediation guidance were invaluable.",
+      "The penetration testing by VAPTlabs revealed crucial security gaps that had gone unnoticed. Their thorough assessments, clear documentation, and actionable remediation guidance enabled us to fortify our systems effectively and with confidence.",
     name: "Rakesh Jain",
     position: "CTO",
     company: "PaySquare",
@@ -1625,14 +1664,15 @@ const testimonials = [
   },
   {
     quote:
-      "The comprehensive penetration testing provided by VAPTlabs uncovered critical vulnerabilities we never knew existed. Their detailed reports and remediation guidance were invaluable.",
-    name: "Rakesh Jain",
+      "Working with VAPTlabs was an excellent experience. Their expertise helped us identify hidden vulnerabilities and strengthen our application’s security posture. The team’s professionalism, clarity in reporting, and practical recommendations truly stood out.",
+    name: "Siddarth Jain",
     position: "CTO",
     company: "DrDroid",
     image:
       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2G5mGdUNRm_khMITWkhsJqv4qKygkFi8XUQ&s",
   },
 ];
+
 
 export default function Testimonials() {
   const [currentTestimonial, setCurrentTestimonial] = useState(0);

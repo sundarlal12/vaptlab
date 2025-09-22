@@ -554,7 +554,7 @@ const Footer = () => {
                   Company
                 </span>
               </h3>
-              <ul className="space-y-4 mb-10">
+              {/* <ul className="space-y-4 mb-10">
                 {[
                   { name: "About Us", path: "/about/vaptlabs" },
                   { name: "Our Clients", path: "/about/clients" },
@@ -564,12 +564,7 @@ const Footer = () => {
                       onClick={() => handleNavigation(item.path)}
                       className="text-gray-300 hover:text-white transition-colors font-medium flex items-center group"
                     >
-                      {/* <div
-                        className="w-2 h-2 rounded-full mr-3 transition-colors"
-                        style={{
-                          background: "rgba(255,255,255,0.06)",
-                        }}
-                      /> */}  <div
+                     <div
           className="w-2 h-2 rounded-full mr-3 transition-all"
           style={{
             background: "linear-gradient(to right, rgb(217, 47, 97), rgb(143, 15, 56))", // default white
@@ -581,8 +576,63 @@ const Footer = () => {
                     </button>
                   </li>
                 ))}
-              </ul>
+              </ul> */}
 
+
+
+              <ul className="space-y-4 mb-10">
+  {[
+    { name: "About Us", path: "/about/vaptlabs" },
+    { name: "Our Clients", path: "/about/clients" },
+    { name: "VAPT Services Brochure", url: "https://ik.imagekit.io/5biqvaptlabsnfbqw/Design%201.pdf?updatedAt=1758474539462", external: true }, // new browser link
+  ].map((item) => (
+    <li key={item.name}>
+      {item.external ? (
+        <a
+          href={item.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-gray-300 hover:text-white transition-colors font-medium flex items-center group"
+        >
+          <div
+            className="w-2 h-2 rounded-full mr-3 transition-all"
+            style={{
+              background:
+                "linear-gradient(to right, rgb(217, 47, 97), rgb(143, 15, 56))",
+            }}
+          />
+          <span
+            className="group-hover:text-white"
+            style={{ color: "rgba(255,255,255,0.85)" }}
+          >
+            {item.name}
+          </span>
+        </a>
+      ) : (
+        <button
+          onClick={() => handleNavigation(item.path)}
+          className="text-gray-300 hover:text-white transition-colors font-medium flex items-center group"
+        >
+          <div
+            className="w-2 h-2 rounded-full mr-3 transition-all"
+            style={{
+              background:
+                "linear-gradient(to right, rgb(217, 47, 97), rgb(143, 15, 56))",
+            }}
+          />
+          <span
+            className="group-hover:text-white"
+            style={{ color: "rgba(255,255,255,0.85)" }}
+          >
+            {item.name}
+          </span>
+        </button>
+      )}
+    </li>
+  ))}
+</ul>
+
+              
               {/* Social Links */}
               <h3 className="text-lg md:text-xl font-semibold mb-4">Follow Us</h3>
               <div className="flex space-x-4">
