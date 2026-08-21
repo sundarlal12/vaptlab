@@ -739,7 +739,7 @@ const GetQuoteSection = () => {
     setStatus(null);
 
     try {
-      const response = await fetch("https://vaptlabreport.com/shieldapi/mail.php", {
+      const response = await fetch("https://securelint-api.vercel.app/api/contactus", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

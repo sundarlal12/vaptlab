@@ -1,12 +1,30 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
+import path from 'path';
 
-// https://vitejs.dev/config/
-export default defineConfig({
-  base: '/',          // root deploy (vapt.vercel.app). Change to "./" if needed.
-  plugins: [react()],
-  optimizeDeps: {
-    exclude: ['lucide-react'],
+export default defineConfig(({ mode }) => ({
+  plugins: [
+    react({
+      fastRefresh: mode !== 'production', // Disable React Refresh in production
+    }),
+  ],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+    },
   },
-  // build: { outDir: 'dist' } // optional, default is 'dist'
-});
+  server: {
+    port: 3002,
+    open: true,
+    hmr: mode !== 'production', // Disable HMR in production
+  },
+  build: {
+    outDir: 'dist',
+    minify: 'esbuild',
+    sourcemap: false,
+    rollupOptions: {
+      input: 'index.html',
+    },
+  },
+}));
+

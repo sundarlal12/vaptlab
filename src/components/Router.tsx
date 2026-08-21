@@ -21,6 +21,7 @@ const RootCauseAnalysis = React.lazy(() => import('./RootCauseAnalysis'));
 const AboutVAPTlabs = React.lazy(() => import('./AboutVAPTlabs'));
 const OurTeam = React.lazy(() => import('./OurTeam'));
 const OurClients = React.lazy(() => import('./OurClients'));
+const redteam = React.lazy(() => import('./RedTeaming'));
 const RedTeaming = React.lazy(() => import('./RedTeaming'));
 const SoftwareCompositionAnalysis = React.lazy(() => import('./SoftwareCompositionAnalysis'));
 const OTSecurity = React.lazy(() => import('./OTSecurity'));
@@ -94,7 +95,7 @@ const Router: React.FC = () => {
           <Route path="/services/software-composition-analysis" element={<PageWrapper><SoftwareCompositionAnalysis /></PageWrapper>} />
           <Route path="/services/external-network-pentesting" element={<PageWrapper><ComingSoon title="External Network Penetration Testing" /></PageWrapper>} />
           <Route path="/services/iot-pentesting" element={<PageWrapper><ComingSoon title="IoT Penetration Testing" /></PageWrapper>} />
-
+   <Route path="/red-team" element={<PageWrapper><RedTeaming /></PageWrapper>} />
 
        <Route path="/contact" element={<ContactUs />} />
           

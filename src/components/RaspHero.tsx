@@ -1,5 +1,4 @@
 
-
 import React, { useState, useEffect } from "react";
 import { Shield } from "lucide-react";
 import { useNavigate } from "react-router-dom";
@@ -12,7 +11,7 @@ interface RaspHeroProps {
 }
 
 const RaspHero: React.FC<RaspHeroProps> = ({
-  raspLink = "https://vaptlab.com",
+  raspLink = "https://vaptlab.com?c=123",
   ctaText = "Get Protected Now",
   badgeText = "24X7 Cyber Security Solutions",
   heroLetter = "VAPT",
@@ -176,3 +175,4 @@ const RaspHero: React.FC<RaspHeroProps> = ({
 };
 
 export default RaspHero;
+

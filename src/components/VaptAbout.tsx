@@ -1,4 +1,5 @@
 
+
 // src/components/VaptAbout.tsx
 import React, { useEffect, useState } from "react";
 import { Shield } from "lucide-react";
@@ -13,7 +14,7 @@ interface VaptAboutProps {
 }
 
 const VaptAbout: React.FC<VaptAboutProps> = ({
-  raspLink = "https://vaptlab.com",
+  raspLink = "https://vaptlab.com?c=es",
   ctaText = "Get Protected Now",
   badgeText = "24X7 Cyber Security Solutions",
   heroLetter = "VAPT",
@@ -193,7 +194,7 @@ const VaptAbout: React.FC<VaptAboutProps> = ({
               </button>
 
               <a
-                href= "https://vaptlab.com"
+                href="https://vaptlab.com"
                 className="w-full sm:w-auto rounded-lg font-medium transition-all border-2 gradient-border text-black hover:bg-red-50 px-8 py-3 text-lg text-center"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -255,3 +256,4 @@ const VaptAbout: React.FC<VaptAboutProps> = ({
 };
 
 export default VaptAbout;
+

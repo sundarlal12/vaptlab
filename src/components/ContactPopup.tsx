@@ -635,7 +635,7 @@ const ContactPopup: React.FC<ContactPopupProps> = ({ isOpen, onClose }) => {
         reason: "Book Free consultation",
       };
 
-      const res = await fetch("https://vaptlabreport.com/shieldapi/mail.php", {
+      const res = await fetch("https://securelint-api.vercel.app/api/contactus", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
