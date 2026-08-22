@@ -1,12 +1,14 @@
 import React from 'react';
-import { Shield, Smartphone, Eye, Lock, Fingerprint, AlertTriangle, Activity, ArrowUpRight } from 'lucide-react';
+import { Shield, Eye, Lock, Fingerprint, AlertTriangle, Activity, ArrowUpRight } from 'lucide-react';
 import Header from './Header';
 import Footer from './Footer';
 import SEO from './SEO';
 import BenefitsSection from './BenefitsSection';
+import RaspDemoAnimation from './RaspDemoAnimation';
 
 const RED_GRAD = "linear-gradient(to right, rgb(217, 47, 97), rgb(143, 15, 56))";
 const VAPTLAB_URL = "https://vaptlab.com";
+const VAPTLAB_CONTACT_URL = "https://vaptlab.com/contact/";
 
 const features = [
   {
@@ -92,7 +94,7 @@ const SecureLintProtect: React.FC = () => {
               <ArrowUpRight className="w-5 h-5" />
             </a>
             <a
-              href={VAPTLAB_URL}
+              href={VAPTLAB_CONTACT_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="border-2 border-white/40 text-white px-6 py-3 rounded-lg font-semibold hover:bg-white/10 transition-colors"
@@ -154,13 +156,8 @@ const SecureLintProtect: React.FC = () => {
                 <ArrowUpRight className="w-4 h-4" />
               </a>
             </div>
-            <div className="flex items-center justify-center">
-              <div
-                className="w-56 h-56 rounded-full flex items-center justify-center"
-                style={{ background: 'linear-gradient(135deg, rgba(217,47,97,0.08), rgba(143,15,56,0.08))', border: '2px solid rgba(217,47,97,0.2)' }}
-              >
-                <Smartphone className="w-24 h-24" style={{ color: 'rgb(217,47,97)' }} strokeWidth={1.5} />
-              </div>
+            <div className="flex items-center justify-center min-w-0">
+              <RaspDemoAnimation />
             </div>
           </div>
         </div>
@@ -174,7 +171,7 @@ const SecureLintProtect: React.FC = () => {
             Talk to sales or book a demo of SecureLint Protect on vaptlab.com.
           </p>
           <a
-            href={VAPTLAB_URL}
+            href={VAPTLAB_CONTACT_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 bg-white px-8 py-3 rounded-lg font-semibold transition-transform hover:scale-105"
