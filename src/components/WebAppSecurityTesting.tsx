@@ -408,7 +408,7 @@ const WebAppSecurityTesting = () => {
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
               {/* CHANGED: replaced border-emerald-500 with gradient border (underline) */}
               <span
-                className="pb-2"
+                className="pb-2 inline-block"
                 style={{
                   borderBottom: '4px solid',
                   borderImage: `${RED_GRAD} 1`, // CHANGED: gradient underline
@@ -510,7 +510,7 @@ const WebAppSecurityTesting = () => {
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
               {/* CHANGED: replaced emerald underline with red gradient underline */}
               <span
-                className="pb-2"
+                className="pb-2 inline-block"
                 style={{
                   borderBottom: '4px solid',
                   borderImage: `${RED_GRAD} 1`,

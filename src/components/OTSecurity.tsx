@@ -10,6 +10,8 @@ import ClientCarousel from "./ClientCarousel";
 import ServiceSection from "./ServiceSection";
 import BenefitsSection from './BenefitsSection';
 
+const RED_GRAD = "linear-gradient(to right, rgb(217, 47, 97), rgb(143, 15, 56))";
+
 const OTSecurity = () => {
   const [isContactOpen, setIsContactOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<'black' | 'gray' | 'white'>('black');
@@ -79,7 +81,13 @@ const OTSecurity = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
-              <span className="border-b-4 border-emerald-500 pb-2">Overview : OT Security</span>
+              <span
+                className="pb-2 inline-block"
+                style={{
+                  borderBottom: '4px solid',
+                  borderImage: `${RED_GRAD} 1`,
+                }}
+              >Overview : OT Security</span>
             </h2>
           </div>
           <div className="max-w-4xl mx-auto text-center">
