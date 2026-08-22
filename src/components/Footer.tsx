@@ -24,7 +24,7 @@ const Footer = () => {
             <div>
               <div className="flex items-center mb-6">
                 <img
-                  src="https://vaptlabs.com/src/images/logo-light.png"
+                  src="/images/logo-light.png"
                   alt="VAPTlabs"
                   className="h-10 w-auto mr-3"
                 />
@@ -226,7 +226,7 @@ export default Footer;
                 
 //                   <div className="absolute inset-0 rounded-xl bg-white blur-2xl opacity-30"></div>
 //                   <img
-//                     src="https://vaptlabs.com/src/images/logo-light.png"
+//                     src="/images/logo-light.png"
 //                     alt="VAPTlabs"
 //                     className="relative z-10 h-10 w-auto"
 //                   />
@@ -239,7 +239,7 @@ export default Footer;
 //       {/* glowing light effect */}
 //       <div className="absolute inset-0 rounded-lg bg-white blur-lg opacity-1"></div>
 //       <img
-//         src="https://vaptlabs.com/src/images/logo-light.png"
+//         src="/images/logo-light.png"
 //         alt="VAPTlabs"
 //         className="relative z-10 h-10 w-auto"
 //       />
@@ -445,7 +445,7 @@ const Footer = () => {
                   {/* subtle glow */}
                   <div className="absolute inset-0 rounded-lg bg-white blur-lg opacity-10"></div>
                   <img
-                    src="https://vaptlabs.com/src/images/logo-light.png"
+                    src="/images/logo-light.png"
                     alt="VAPTlabs"
                     className="relative z-10 h-10 w-auto"
                   />

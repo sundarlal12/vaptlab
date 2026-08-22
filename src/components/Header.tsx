@@ -112,7 +112,7 @@ const Header: React.FC = () => {
             <div className="flex-shrink-0">
               <Link to="/" onClick={closeMenus}>
                 <img
-                  src="https://vaptlabs.com/src/images/logo-light.png"
+                  src="/images/logo-light.png"
                   alt="VAPTlabs"
                   className="h-8 w-auto cursor-pointer"
                 />

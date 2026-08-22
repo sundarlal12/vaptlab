@@ -4,23 +4,23 @@
 // const clientLogos = [
 //   { 
 //     name: "Blinkit", 
-//     src: "https://vaptlabs.com/src/images/blinkit1.svg" 
+//     src: "/images/blinkit1.svg" 
 //   },
 //   { 
 //     name: "OYO", 
-//     src: "https://vaptlabs.com/src/images/oyo1.png" 
+//     src: "/images/oyo1.png" 
 //   },
 //   { 
 //     name: "BigBasket", 
-//     src: "https://vaptlabs.com/src/images/bb1.png" 
+//     src: "/images/bb1.png" 
 //   },
 //   { 
 //     name: "MyGate", 
-//     src: "https://vaptlabs.com/src/images/MyGate1.png" 
+//     src: "/images/MyGate1.png" 
 //   },
 //   { 
 //     name: "PaySquare", 
-//     src: "https://vaptlabs.com/src/images/paysquare.png" 
+//     src: "/images/paysquare.png" 
 //   }
 // ];
 
@@ -72,11 +72,11 @@
 // import React from "react";
 
 // const clientLogos = [
-//   { name: "Blinkit", src: "https://vaptlabs.com/src/images/blinkit1.svg" },
-//   { name: "OYO", src: "https://vaptlabs.com/src/images/oyo1.png" },
-//   { name: "BigBasket", src: "https://vaptlabs.com/src/images/bb1.png" },
-//   { name: "MyGate", src: "https://vaptlabs.com/src/images/MyGate1.png" },
-//   { name: "PaySquare", src: "https://vaptlabs.com/src/images/paysquare.png" }
+//   { name: "Blinkit", src: "/images/blinkit1.svg" },
+//   { name: "OYO", src: "/images/oyo1.png" },
+//   { name: "BigBasket", src: "/images/bb1.png" },
+//   { name: "MyGate", src: "/images/MyGate1.png" },
+//   { name: "PaySquare", src: "/images/paysquare.png" }
 // ];
 
 // const ClientCarousel: React.FC = () => {
@@ -172,13 +172,13 @@
 import React from "react";
 
 const clientLogos = [
-    { name: "PaySquare", src: "https://vaptlabs.com/src/images/paysquare.png" },
-   { name: "MyGate", src: "https://vaptlabs.com/src/images/MyGate1.png" },
+    { name: "PaySquare", src: "/images/paysquare.png" },
+   { name: "MyGate", src: "/images/MyGate1.png" },
   { name: "Aurm", src: "https://aurm.in/static/media/Aurm_Logo.83cb04327421fb628f30593393d1102c.svg" },
 
-  { name: "Blinkit", src: "https://vaptlabs.com/src/images/blinkit1.svg" },
-  { name: "OYO", src: "https://vaptlabs.com/src/images/oyo1.png" },
-  { name: "BigBasket", src: "https://vaptlabs.com/src/images/bb1.png" },
+  { name: "Blinkit", src: "/images/blinkit1.svg" },
+  { name: "OYO", src: "/images/oyo1.png" },
+  { name: "BigBasket", src: "/images/bb1.png" },
 
   
 ];
@@ -250,12 +250,12 @@ export default ClientCarousel;
 import React from "react";
 
 const clientLogos = [
-  { name: "PaySquare", src: "https://vaptlabs.com/src/images/paysquare.png" },
-  { name: "MyGate", src: "https://vaptlabs.com/src/images/MyGate1.png" },
+  { name: "PaySquare", src: "/images/paysquare.png" },
+  { name: "MyGate", src: "/images/MyGate1.png" },
   { name: "Aurm", src: "https://aurm.in/static/media/Aurm_Logo.83cb04327421fb628f30593393d1102c.svg" },
-  { name: "Blinkit", src: "https://vaptlabs.com/src/images/blinkit1.svg" },
-  { name: "OYO", src: "https://vaptlabs.com/src/images/oyo1.png" },
-  { name: "BigBasket", src: "https://vaptlabs.com/src/images/bb1.png" },
+  { name: "Blinkit", src: "/images/blinkit1.svg" },
+  { name: "OYO", src: "/images/oyo1.png" },
+  { name: "BigBasket", src: "/images/bb1.png" },
 ];
 
 const duplicated = [...clientLogos, ...clientLogos];
@@ -370,13 +370,13 @@ export default ClientCarousel;
 import React from "react";
 
 const clientLogos = [
-  { name: "PaySquare", src: "https://vaptlabs.com/src/images/paysquare.png" },
-  { name: "MyGate", src: "https://vaptlabs.com/src/images/MyGate1.png" },
+  { name: "PaySquare", src: "/images/paysquare.png" },
+  { name: "MyGate", src: "/images/MyGate1.png" },
   { name: "Aurm", src: "https://aurm.in/static/media/Aurm_Logo.83cb04327421fb628f30593393d1102c.svg" },
-  { name: "Blinkit", src: "https://vaptlabs.com/src/images/blinkit1.svg" },
-  { name: "OYO", src: "https://vaptlabs.com/src/images/oyo1.png" },
+  { name: "Blinkit", src: "/images/blinkit1.svg" },
+  { name: "OYO", src: "/images/oyo1.png" },
   
-  { name: "BigBasket", src: "https://vaptlabs.com/src/images/bb1.png" },
+  { name: "BigBasket", src: "/images/bb1.png" },
 ];
 
 const duplicated = [...clientLogos, ...clientLogos];
@@ -487,12 +487,12 @@ export default ClientCarousel;
 import React from "react";
 
 const clientLogos = [
-  { name: "PaySquare", src: "https://vaptlabs.com/src/images/paysquare.png" },
-  { name: "MyGate", src: "https://vaptlabs.com/src/images/MyGate1.png" },
+  { name: "PaySquare", src: "/images/paysquare.png" },
+  { name: "MyGate", src: "/images/MyGate1.png" },
   { name: "Aurm", src: "https://aurm.in/static/media/Aurm_Logo.83cb04327421fb628f30593393d1102c.svg" },
-  { name: "Blinkit", src: "https://vaptlabs.com/src/images/blinkit1.svg" },
-  { name: "OYO", src: "https://vaptlabs.com/src/images/oyo1.png" },
-  { name: "BigBasket", src: "https://vaptlabs.com/src/images/bb1.png" },
+  { name: "Blinkit", src: "/images/blinkit1.svg" },
+  { name: "OYO", src: "/images/oyo1.png" },
+  { name: "BigBasket", src: "/images/bb1.png" },
 ];
 
 // triple duplication
