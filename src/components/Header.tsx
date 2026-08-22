@@ -301,10 +301,14 @@ const Header: React.FC = () => {
                           <span className="text-gray-500">AI Gen VAPT</span>
                         </div>
 
-                        <div className="flex items-center p-2 rounded w-full text-left opacity-80" title="Coming soon">
+                        <Link
+                          to="/product/securelint-extension"
+                          onClick={closeMenus}
+                          className="flex items-center p-2 hover:bg-gray-50 rounded w-full text-left"
+                        >
                           <Package style={{ color: BRAND_RED }} className="h-5 w-5 mr-3" />
-                          <span className="text-gray-500">Secret Sniffer Extension</span>
-                        </div>
+                          <span className="text-gray-700">SecureLint (Browser Extension)</span>
+                        </Link>
                       </div>
                     </div>
                   </div>
@@ -487,8 +491,17 @@ const Header: React.FC = () => {
               <Shield style={{ color: BRAND_RED }} className="h-4 w-4" />
               SecureLint Protect (RASP SDK)
             </Link>
+            <Link
+              to="/product/securelint-extension"
+              onClick={closeMenus}
+              className="flex items-center gap-3 px-3 py-2 rounded-md text-gray-600"
+              onMouseEnter={(e) => (e.currentTarget.style.background = "linear-gradient(90deg, rgba(217,47,97,0.12), rgba(143,15,56,0.08))")}
+              onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
+            >
+              <Package style={{ color: BRAND_RED }} className="h-4 w-4" />
+              SecureLint (Browser Extension)
+            </Link>
             <div className="block text-gray-400 opacity-70 px-3 py-2">AI Gen VAPT (Coming soon)</div>
-            <div className="block text-gray-400 opacity-70 px-3 py-2">Secret Sniffer Extension (Coming soon)</div>
           </div>
         )}
       </div>

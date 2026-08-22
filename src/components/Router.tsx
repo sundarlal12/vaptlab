@@ -36,6 +36,7 @@ const FDA510KCompliance = React.lazy(() => import('./FDA510KCompliance'));
 const TermsOfService = React.lazy(() => import('./TermsOfService'));
 const ContactUs = React.lazy(() => import('./ContactUs'));
 const SecureLintProtect = React.lazy(() => import('./SecureLintProtect'));
+const SecureLintExtension = React.lazy(() => import('./SecureLintExtension'));
 // Placeholder components for routes that don't exist yet
 const ComingSoon: React.FC<{ title: string }> = ({ title }) => {
   const location = useLocation();
@@ -136,6 +137,7 @@ const Router: React.FC = () => {
 
           {/* Product Routes */}
           <Route path="/product/securelint-protect" element={<PageWrapper><SecureLintProtect /></PageWrapper>} />
+          <Route path="/product/securelint-extension" element={<PageWrapper><SecureLintExtension /></PageWrapper>} />
 
           {/* Challenge Routes */}
           <Route path="/challenges/vapt-report" element={<PageWrapper><ComingSoon title="Professional VAPT Report" /></PageWrapper>} />
