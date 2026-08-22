@@ -21,9 +21,10 @@ interface SEOProps {
   noindex?: boolean;
   faqItems?: FAQItem[];
   serviceSchema?: ServiceSchema;
+  extraJsonLd?: object;
 }
 
-const SEO: React.FC<SEOProps> = ({ title, description, path, keywords, noindex, faqItems, serviceSchema }) => {
+const SEO: React.FC<SEOProps> = ({ title, description, path, keywords, noindex, faqItems, serviceSchema, extraJsonLd }) => {
   const canonical = `${SITE_URL}${path === '/' ? '/' : path.replace(/\/$/, '')}`;
   const fullTitle = /vaptlabs/i.test(title) ? title : `${title} | VAPTlabs`;
 
@@ -72,6 +73,7 @@ const SEO: React.FC<SEOProps> = ({ title, description, path, keywords, noindex, 
 
       {svcSchema && <script type="application/ld+json">{JSON.stringify(svcSchema)}</script>}
       {faqSchema && <script type="application/ld+json">{JSON.stringify(faqSchema)}</script>}
+      {extraJsonLd && <script type="application/ld+json">{JSON.stringify(extraJsonLd)}</script>}
     </Helmet>
   );
 };

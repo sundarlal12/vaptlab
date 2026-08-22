@@ -287,13 +287,14 @@ const Header: React.FC = () => {
                       </div>
 
                       <div className="space-y-2">
-                        <a
-                          href="https://www.vaptlab.com"
+                        <Link
+                          to="/product/securelint-protect"
+                          onClick={closeMenus}
                           className="flex items-center p-2 hover:bg-gray-50 rounded w-full text-left"
                         >
                           <Shield style={{ color: BRAND_RED }} className="h-5 w-5 mr-3" />
-                          <span className="text-gray-700">RASP Shield SDK</span>
-                        </a>
+                          <span className="text-gray-700">SecureLint Protect (RASP SDK)</span>
+                        </Link>
 
                         <div className="flex items-center p-2 rounded w-full text-left opacity-80" title="Coming soon">
                           <Cpu style={{ color: BRAND_RED }} className="h-5 w-5 mr-3" />
@@ -476,16 +477,16 @@ const Header: React.FC = () => {
 
         {openMenu === "product" && (
           <div className="ml-4 mt-2 space-y-2">
-            <a
-              href="https://www.vaptlab.com"
+            <Link
+              to="/product/securelint-protect"
               onClick={closeMenus}
               className="flex items-center gap-3 px-3 py-2 rounded-md text-gray-600"
               onMouseEnter={(e) => (e.currentTarget.style.background = "linear-gradient(90deg, rgba(217,47,97,0.12), rgba(143,15,56,0.08))")}
               onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
             >
               <Shield style={{ color: BRAND_RED }} className="h-4 w-4" />
-              RASP Shield SDK
-            </a>
+              SecureLint Protect (RASP SDK)
+            </Link>
             <div className="block text-gray-400 opacity-70 px-3 py-2">AI Gen VAPT (Coming soon)</div>
             <div className="block text-gray-400 opacity-70 px-3 py-2">Secret Sniffer Extension (Coming soon)</div>
           </div>

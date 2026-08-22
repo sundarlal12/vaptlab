@@ -35,6 +35,7 @@ const HIPAAPentesting = React.lazy(() => import('./HIPAAPentesting'));
 const FDA510KCompliance = React.lazy(() => import('./FDA510KCompliance'));
 const TermsOfService = React.lazy(() => import('./TermsOfService'));
 const ContactUs = React.lazy(() => import('./ContactUs'));
+const SecureLintProtect = React.lazy(() => import('./SecureLintProtect'));
 // Placeholder components for routes that don't exist yet
 const ComingSoon: React.FC<{ title: string }> = ({ title }) => {
   const location = useLocation();
@@ -132,6 +133,9 @@ const Router: React.FC = () => {
           <Route path="/compliance/hipaa" element={<PageWrapper><HIPAAPentesting /></PageWrapper>} />
           {/*  <Route path="/compliance/fda-510k" element={<PageWrapper><FDA510KCompliance /></PageWrapper>} />
           */}
+
+          {/* Product Routes */}
+          <Route path="/product/securelint-protect" element={<PageWrapper><SecureLintProtect /></PageWrapper>} />
 
           {/* Challenge Routes */}
           <Route path="/challenges/vapt-report" element={<PageWrapper><ComingSoon title="Professional VAPT Report" /></PageWrapper>} />
