@@ -6,5 +6,6 @@ dist-ssr/
 .env
 .env.*
 
-# stray file unrelated to this project, found 2026-08-22 - not this repo's data
+# stray files unrelated to this project, found 2026-08-22 - not this repo's data
 365Mtaka.csv
+bharatmatka.csv

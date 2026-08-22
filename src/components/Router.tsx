@@ -75,9 +75,24 @@ const PageWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return <>{children}</>;
 };
 
+// Client-side <Link> navigation preserves scroll position by default, unlike a
+// full page load. Reset to top on every route change so navigating (e.g. from
+// the footer) doesn't land the user mid-page on the new route.
+const ScrollToTop: React.FC = () => {
+  const location = useLocation();
+  useEffect(() => {
+    // Explicit "instant" behavior overrides the global CSS `scroll-behavior:
+    // smooth` (index.css) - without it this scroll animates and gets cut
+    // short by the lazy-loaded route's own layout shift, landing mid-page.
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+  }, [location.pathname]);
+  return null;
+};
+
 const Router: React.FC = () => {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Suspense fallback={<Loader text="Loading page..." />}>
         <Routes>
           {/* Main Routes */}
