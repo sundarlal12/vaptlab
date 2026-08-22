@@ -123,11 +123,18 @@ import ClientCarousel from "./ClientCarousel";
 import Testimonials from "./Testimonials";
 import Header from "./Header";
 import Footer from "./Footer";
+import SEO from './SEO';
 
 const ContactUs: React.FC = () => {
   return (
     <div className="bg-gradient-to-br from-red-50 via-pink-50 to-rose-50 min-h-screen flex flex-col">
       {/* Site Header */}
+      <SEO
+        title="Contact VAPTlabs — Get a VAPT Quote"
+        description="Talk to VAPTlabs about AI-powered or human-led penetration testing for your web, mobile, cloud or API. We serve clients across the US, UAE, Saudi Arabia, Singapore, Europe and Australia — get a scoped quote in hours."
+        path="/contact"
+        keywords="vapt quote, contact vaptlabs, vapt service provider"
+      />
       <Header />
 
       {/* Hero Section */}

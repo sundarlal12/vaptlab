@@ -74,10 +74,12 @@
 import React from 'react';
 import { AlertTriangle, Home, ArrowLeft } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import SEO from './SEO';
 
 const NotFound: React.FC = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 flex items-center justify-center px-4 relative">
+      <SEO title="Page Not Found" description="The page you're looking for doesn't exist." path="/404" noindex />
       <div className="max-w-2xl mx-auto text-center">
         {/* 404 Animation */}
         <div className="relative mb-8">

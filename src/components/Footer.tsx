@@ -423,26 +423,19 @@ export default Footer;
 
 
 // src/components/Footer.tsx
-import React, { useState } from "react";
+import React from "react";
+import { Link } from "react-router-dom";
 import { Shield, FileText, MapPin, ArrowUpRight } from "lucide-react";
 import { FaFacebookF, FaLinkedinIn, FaInstagram } from "react-icons/fa";
-import Loader from "./Loader";
 
 const Footer = () => {
-  const [isLoading, setIsLoading] = useState(false);
   const currentYear = new Date().getFullYear();
-
-  const handleNavigation = (path: string) => {
-    setIsLoading(true);
-    window.location.href = path.startsWith("/") ? path : `/${path}`;
-  };
 
   const redGradient = "linear-gradient(to right, rgb(217, 47, 97), rgb(143, 15, 56))";
   const redGradientTint = "linear-gradient(to right, rgba(217,47,97,0.08), rgba(143,15,56,0.08))";
 
   return (
     <>
-      {isLoading && <Loader text="Loading page..." />}
       <footer className="bg-[#0A0F1F] text-white pt-16 pb-10 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
@@ -521,16 +514,10 @@ const Footer = () => {
                   { name: "Secure Code Review", path: "/services/secure-code-review" },
                 ].map((service) => (
                   <li key={service.name}>
-                    <button
-                      onClick={() => handleNavigation(service.path)}
+                    <Link
+                      to={service.path}
                       className="text-gray-300 hover:text-white transition-colors font-medium flex items-center group"
                     >
-                      {/* <div
-                        className="w-2 h-2 rounded-full mr-3 transition-colors"
-                        style={{
-                          background: "rgba(255,255,255,0.06)",
-                        }}
-                      /> */}
                       <div
           className="w-2 h-2 rounded-full mr-3 transition-all"
           style={{
@@ -540,7 +527,7 @@ const Footer = () => {
                       <span className="group-hover:text-white" style={{ color: "rgba(255,255,255,0.85)" }}>
                         {service.name}
                       </span>
-                    </button>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -609,8 +596,8 @@ const Footer = () => {
           </span>
         </a>
       ) : (
-        <button
-          onClick={() => handleNavigation(item.path)}
+        <Link
+          to={item.path as string}
           className="text-gray-300 hover:text-white transition-colors font-medium flex items-center group"
         >
           <div
@@ -626,7 +613,7 @@ const Footer = () => {
           >
             {item.name}
           </span>
-        </button>
+        </Link>
       )}
     </li>
   ))}
@@ -700,30 +687,21 @@ const Footer = () => {
                 © {currentYear} VAPTlabs Pentesting Solution. All rights reserved.
               </div>
               <div className="flex gap-6 text-gray-400 text-sm">
-                <button
-                  onClick={() => handleNavigation("/privacy-policy")}
-                  className="hover:text-white transition-colors"
-                >
+                <Link to="/privacy-policy" className="hover:text-white transition-colors">
                   <span style={{ background: redGradient, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
                     Privacy Policy
                   </span>
-                </button>
-                <button
-                  onClick={() => handleNavigation("/terms-of-service")}
-                  className="hover:text-white transition-colors"
-                >
+                </Link>
+                <Link to="/terms-of-service" className="hover:text-white transition-colors">
                   <span style={{ background: redGradient, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
                     Terms of Service
                   </span>
-                </button>
-                <button
-                  onClick={() => handleNavigation("/compliance/iso-27001")}
-                  className="hover:text-white transition-colors"
-                >
+                </Link>
+                <Link to="/compliance/iso-27001" className="hover:text-white transition-colors">
                   <span style={{ background: redGradient, WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
                     Compliance
                   </span>
-                </button>
+                </Link>
               </div>
             </div>
           </div>

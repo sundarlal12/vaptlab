@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Shield, FileText, Lock, Star, Code, Search } from 'lucide-react';
 import Header from "./Header";
+import SEO from './SEO';
 import ContactPopup from './ContactPopup';
 import ProcessCarousel from './ProcessCarousel';
 import Footer from './Footer';
@@ -58,6 +59,13 @@ const IoTSecurityTesting = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      <SEO
+        title="IoT Security Testing & Penetration Testing Services"
+        description="IoT device and firmware penetration testing covering hardware, firmware, protocol and cloud-backend attack surfaces."
+        path="/services/iot-security-testing"
+        keywords="iot security testing, iot penetration testing services, iot vapt, iot device security testing"
+        serviceSchema={{ name: 'IoT Security Testing', description: 'Penetration testing for IoT devices, firmware and connected cloud backends.' }}
+      />
       <Header />
 
       {/* Hero Section */}

@@ -354,6 +354,7 @@ import {
   CheckCircle, AlertTriangle, Settings, ChevronLeft, ChevronRight
 } from 'lucide-react';
 import Header from "./Header";
+import SEO from './SEO';
 import ContactPopup from './ContactPopup'; // import the popup
 import ProcessCarousel from './ProcessCarousel';
 import Footer from './Footer';
@@ -383,6 +384,13 @@ const WebAppSecurityTesting = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      <SEO
+        title="Web Application Penetration Testing Services"
+        description="AI-accelerated web app VAPT that finds OWASP Top 10 vulnerabilities and delivers an expert-validated penetration testing report in hours."
+        path="/services/web-app-security"
+        keywords="web application penetration testing, web app vapt, web application security testing service"
+        serviceSchema={{ name: 'Web Application Security Testing', description: 'Penetration testing for web applications covering the OWASP Top 10.' }}
+      />
       <Header />
 
       {/* Hero via ServiceSection (unchanged props) */}

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Shield, FileText, Lock, Star, Code, Search } from 'lucide-react';
 import Header from "./Header";
+import SEO from './SEO';
 import ContactPopup from './ContactPopup';
 import ProcessCarousel from './ProcessCarousel';
 import Footer from './Footer';
@@ -62,6 +63,13 @@ const CloudPenetrationTesting = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      <SEO
+        title="Cloud Penetration Testing Services (AWS, Azure, GCP)"
+        description="Cloud-native VAPT for AWS, Azure and GCP — IAM misconfigurations, exposed storage and workload vulnerabilities, tested and reported fast."
+        path="/services/cloud-penetration-testing"
+        keywords="cloud penetration testing services, cloud vapt, cloud-based penetration testing service"
+        serviceSchema={{ name: 'Cloud Penetration Testing', description: 'Cloud security testing for AWS, Azure and GCP environments.' }}
+      />
       <Header />
 
       {/* Hero Section */}

@@ -609,6 +609,7 @@
 import React, { useState } from 'react';
 import { Shield, FileText, Lock, Star, Code, Search } from 'lucide-react';
 import Header from "./Header";
+import SEO from './SEO';
 import ContactPopup from './ContactPopup';
 import ProcessCarousel from './ProcessCarousel';
 import Footer from './Footer';
@@ -673,6 +674,13 @@ const DarkWebMonitor: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      <SEO
+        title="Dark Web Monitoring Services"
+        description="Continuous dark web monitoring for leaked credentials, data and brand mentions — with alerts before an incident happens."
+        path="/services/dark-web-monitoring"
+        keywords="dark web monitoring, dark web audit"
+        serviceSchema={{ name: 'Dark Web Monitoring', description: 'Continuous monitoring of the dark web for leaked credentials and data.' }}
+      />
       <Header />
 
       {/* Hero Section */}

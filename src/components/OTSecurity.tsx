@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Shield, FileText, Lock, Star, Code, Search } from 'lucide-react';
 import Header from "./Header";
+import SEO from './SEO';
 import ContactPopup from './ContactPopup';
 import ProcessCarousel from './ProcessCarousel';
 import Footer from './Footer';
@@ -56,6 +57,13 @@ const OTSecurity = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      <SEO
+        title="OT & ICS Security Testing Services"
+        description="Operational technology and industrial control system security testing designed for safety-critical environments."
+        path="/services/ot-security"
+        keywords="ot security testing, ics penetration testing, ot vapt"
+        serviceSchema={{ name: 'OT Security Testing', description: 'Security testing for operational technology and industrial control systems.' }}
+      />
       <Header />
 
       {/* Hero Section */}

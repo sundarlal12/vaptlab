@@ -1,6 +1,7 @@
 import React from 'react';
 import { Shield, Target, Heart, Users, Globe, Award, CheckCircle, ArrowRight } from 'lucide-react';
 import Header from './Header';
+import SEO from './SEO';
 import Footer from './Footer';
 import ApproachSection from "./ApproachSection";
 import GetQuoteSection from "./GetQuoteSection";
@@ -14,6 +15,12 @@ import WhoWeAre from "./WhoWeAre";
 const AboutVAPTlabs: React.FC = () => {
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
+      <SEO
+        title="About VAPTlabs — AI-Powered & Human-Led VAPT Company"
+        description="VAPTlabs combines AI-driven automation with expert manual validation to deliver fast, accurate VAPT for startups to Fortune 500 companies across the US, UAE, Saudi Arabia, Singapore, Europe and Australia."
+        path="/about/vaptlabs"
+        keywords="vapt company, vapt labs, about vaptlabs"
+      />
       <Header />
       
       {/* Hero Section */}

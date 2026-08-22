@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Shield, FileText, Lock, Star, Code, Search } from 'lucide-react';
 import Header from "./Header";
+import SEO from './SEO';
 import ContactPopup from './ContactPopup';
 import ProcessCarousel from './ProcessCarousel';
 import Footer from './Footer';
@@ -56,6 +57,13 @@ const MedicalDeviceSecurityTesting = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      <SEO
+        title="Medical Device Penetration Testing Services"
+        description="FDA-aligned medical device penetration testing and vulnerability assessment for connected devices, covering IEC 62443 and premarket cybersecurity requirements."
+        path="/services/medical-device-security-testing"
+        keywords="medical device penetration testing services, medical device penetration testing solutions, pentest medical devices, medical device security testing service"
+        serviceSchema={{ name: 'Medical Device Security Testing', description: 'Penetration testing and vulnerability assessment for connected medical devices.' }}
+      />
       <Header />
 
       {/* Hero Section */}

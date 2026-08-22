@@ -15,6 +15,7 @@ import RedTeaming from './components/RedTeaming';
 import SoftwareCompositionAnalysis from './components/SoftwareCompositionAnalysis';
 import OTSecurity from './components/OTSecurity';
 import Header from './components/Header';
+import SEO from './components/SEO';
 import GetQuoteSection from "./components/GetQuoteSection";
 import Footer from "./components/Footer";
 import Testimonials from "./components/Testimonials";
@@ -194,6 +195,12 @@ function App() {
 
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
+      <SEO
+        title="VAPTLabs — AI-Powered Penetration Testing & Security Audits"
+        description="VAPTlabs runs AI-powered and human-led VAPT (vulnerability assessment & penetration testing), validated by experts, so you get an audit-ready report for SOC 2, ISO 27001, HIPAA or PCI-DSS in hours. Serving clients across the US, UAE, Saudi Arabia, Singapore, Europe, Germany and Australia."
+        path="/"
+        keywords="vapt, vapt labs, ai vapt, vapt ai, genai vapt, automated vapt, ai powered vapt, ai audits, human-led vapt, human-made vapt audits, manual penetration testing, vapt services, vapt testing, vapt companies, penetration testing, ethical hacking, vapt services usa, vapt company uae, penetration testing singapore, vapt saudi arabia"
+      />
       <Header />
 
 

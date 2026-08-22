@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Shield, FileText, Lock, Star, Code, Search } from 'lucide-react';
 import Header from "./Header";
+import SEO from './SEO';
 import ContactPopup from './ContactPopup';
 import ProcessCarousel from './ProcessCarousel';
 import Footer from './Footer';
@@ -57,6 +58,13 @@ const APIPenetrationTesting = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      <SEO
+        title="API Penetration Testing Services"
+        description="REST and GraphQL API penetration testing covering the OWASP API Top 10 — authentication, authorization and business-logic flaws found fast."
+        path="/services/api-penetration-testing"
+        keywords="api penetration testing, api vapt, api security assessment service, api pentesting labs"
+        serviceSchema={{ name: 'API Penetration Testing', description: 'REST and GraphQL API security testing covering the OWASP API Top 10.' }}
+      />
       <Header />
 
       {/* Hero Section */}

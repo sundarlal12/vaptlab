@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Shield, FileText, Lock, Star, Code, Search } from 'lucide-react';
 import Header from "./Header";
+import SEO from './SEO';
 import ContactPopup from './ContactPopup';
 import ProcessCarousel from './ProcessCarousel';
 import Footer from './Footer';
@@ -61,6 +62,13 @@ const SoftwareCompositionAnalysis = () => {
 
   return (
     <div className="min-h-screen bg-white overflow-x-hidden" >
+      <SEO
+        title="Software Composition Analysis (SCA) Services"
+        description="Identify vulnerable and outdated open-source dependencies with software composition analysis, mapped to known CVEs and license risk."
+        path="/services/software-composition-analysis"
+        keywords="software composition analysis, sca security testing"
+        serviceSchema={{ name: 'Software Composition Analysis', description: 'Open-source dependency vulnerability and license risk analysis.' }}
+      />
       <Header />
 
       {/* Hero Section */}

@@ -203,6 +203,7 @@
 import React, { useState } from 'react';
 import { Shield, FileText, Lock, Star, Code, Search } from 'lucide-react';
 import Header from "./Header";
+import SEO from './SEO';
 import ContactPopup from './ContactPopup';
 import ProcessCarousel from './ProcessCarousel';
 import Footer from './Footer';
@@ -264,6 +265,13 @@ const SecureCodeReview = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      <SEO
+        title="Secure Code Review Services"
+        description="Manual and AI-assisted secure code review to catch vulnerabilities before they reach production, mapped to OWASP and CWE standards."
+        path="/services/secure-code-review"
+        keywords="secure code review, source code review service, application security testing"
+        serviceSchema={{ name: 'Secure Code Review', description: 'Manual and automated secure code review mapped to OWASP and CWE.' }}
+      />
       <Header />
 
       {/* Hero Section */}

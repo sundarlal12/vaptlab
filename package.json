@@ -4,8 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    
-     "start": "vite --port 3002 --host",
+    "start": "vite --port 3002 --host",
     "dev": "vite --port 3002 --host",
     "build": "vite build",
     "lint": "eslint .",
@@ -21,6 +20,7 @@
     "lucide-react": "^0.344.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-helmet-async": "^3.0.0",
     "react-icons": "^5.5.0",
     "react-router-dom": "^7.8.2"
   },

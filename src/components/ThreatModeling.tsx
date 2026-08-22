@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Shield, FileText, Lock, Star, Code, Search } from 'lucide-react';
 import Header from "./Header";
+import SEO from './SEO';
 import ContactPopup from './ContactPopup';
 import ProcessCarousel from './ProcessCarousel';
 import Footer from './Footer';
@@ -59,6 +60,13 @@ const ThreatModeling = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      <SEO
+        title="Threat Modeling Services"
+        description="Structured threat modeling (STRIDE/DREAD) to identify design-level security risks before you build — integrated into your SDLC."
+        path="/services/threat-modeling"
+        keywords="threat modeling services, threat modeling"
+        serviceSchema={{ name: 'Threat Modeling', description: 'Structured threat modeling integrated into the software development lifecycle.' }}
+      />
       <Header />
 
       {/* Hero Section */}

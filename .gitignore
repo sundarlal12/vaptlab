@@ -5,3 +5,6 @@ dist-ssr/
 *.local
 .env
 .env.*
+
+# stray file unrelated to this project, found 2026-08-22 - not this repo's data
+365Mtaka.csv

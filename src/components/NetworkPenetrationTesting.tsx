@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Shield, FileText, Lock, Star, Code, Search } from 'lucide-react';
 import Header from "./Header";
+import SEO from './SEO';
 import ContactPopup from './ContactPopup';
 import ProcessCarousel from './ProcessCarousel';
 import Footer from './Footer';
@@ -57,6 +58,13 @@ const NetworkPenetrationTesting = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      <SEO
+        title="Network Penetration Testing Services"
+        description="Internal and external network VAPT that uncovers misconfigurations, weak segmentation and exploitable vulnerabilities across your infrastructure, with an audit-ready report."
+        path="/services/network-penetration-testing"
+        keywords="network penetration testing, network vapt, infrastructure vapt, vapt testing companies"
+        serviceSchema={{ name: 'Network Penetration Testing', description: 'Internal and external network vulnerability assessment and penetration testing.' }}
+      />
       <Header />
 
       {/* Hero Section */}

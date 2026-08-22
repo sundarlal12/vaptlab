@@ -190,6 +190,7 @@ import React from 'react';
 import { Building, Award, Globe, TrendingUp, Users, Star } from 'lucide-react';
 import Header from './Header';
 import Footer from './Footer';
+import SEO from './SEO';
 import ClientCarousel from './ClientCarousel';
 import Testimonials from "./Testimonials";
 
@@ -257,6 +258,12 @@ const OurClients: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      <SEO
+        title="Our Clients"
+        description="Startups to Fortune 500 companies trust VAPTlabs for AI-powered and human-led penetration testing and compliance-ready security audits."
+        path="/about/clients"
+        keywords="vapt clients, vapt case studies"
+      />
       <Header />
       
       {/* Hero Section */}

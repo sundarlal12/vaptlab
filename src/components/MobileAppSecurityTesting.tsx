@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Shield, FileText, Lock, Star, Code, Search } from 'lucide-react';
 import Header from "./Header";
+import SEO from './SEO';
 import ContactPopup from './ContactPopup';
 import ProcessCarousel from './ProcessCarousel';
 import Footer from './Footer';
@@ -57,6 +58,13 @@ const MobileAppSecurityTesting = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      <SEO
+        title="Mobile App Penetration Testing Services (iOS & Android)"
+        description="Comprehensive mobile application VAPT for iOS and Android — API, storage and runtime security testing with a fast, audit-ready report."
+        path="/services/mobile-app-security"
+        keywords="mobile application security testing, mobile app pentesting, mobile app vapt"
+        serviceSchema={{ name: 'Mobile Application Security Testing', description: 'Penetration testing for iOS and Android mobile applications.' }}
+      />
       <Header />
 
       {/* Hero Section */}

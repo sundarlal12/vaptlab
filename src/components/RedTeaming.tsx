@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Shield, FileText, Lock, Star, Code, Search } from 'lucide-react';
 import Header from "./Header";
+import SEO from './SEO';
 import ContactPopup from './ContactPopup';
 import ProcessCarousel from './ProcessCarousel';
 import Footer from './Footer';
@@ -61,6 +62,14 @@ const RedTeaming = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      {/* Rendered at both /red-team and /services/red-teaming; canonicalize to /red-team, which already has search visibility */}
+      <SEO
+        title="Red Team Testing Services"
+        description="Objective-based red team engagements that simulate real adversaries across network, application and social attack paths — beyond standard VAPT."
+        path="/red-team"
+        keywords="red team labs, red teaming vs vapt, red team testing services, red team penetration testing, advanced red teaming"
+        serviceSchema={{ name: 'Red Teaming', description: 'Objective-based red team engagements simulating real-world adversaries.' }}
+      />
       <Header />
 
       {/* Hero Section */}

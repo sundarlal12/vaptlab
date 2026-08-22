@@ -1,8 +1,9 @@
 import React from 'react';
 import { Suspense, useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Loader from './Loader';
 import NotFound from './NotFound';
+import SEO from './SEO';
 
 // Lazy load all route components
 const App = React.lazy(() => import('../App'));
@@ -35,20 +36,24 @@ const FDA510KCompliance = React.lazy(() => import('./FDA510KCompliance'));
 const TermsOfService = React.lazy(() => import('./TermsOfService'));
 const ContactUs = React.lazy(() => import('./ContactUs'));
 // Placeholder components for routes that don't exist yet
-const ComingSoon: React.FC<{ title: string }> = ({ title }) => (
-  <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 flex items-center justify-center px-4">
-    <div className="max-w-2xl mx-auto text-center">
-      <div className="w-32 h-32 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-full flex items-center justify-center mx-auto mb-8">
-        <span className="text-4xl font-bold text-white">🚀</span>
+const ComingSoon: React.FC<{ title: string }> = ({ title }) => {
+  const location = useLocation();
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 flex items-center justify-center px-4">
+      <SEO title={title} description={`${title} — coming soon from VAPTlabs.`} path={location.pathname} noindex />
+      <div className="max-w-2xl mx-auto text-center">
+        <div className="w-32 h-32 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-full flex items-center justify-center mx-auto mb-8">
+          <span className="text-4xl font-bold text-white">🚀</span>
+        </div>
+        <h1 className="text-4xl font-bold text-gray-900 mb-6">{title}</h1>
+        <p className="text-xl text-gray-600 mb-8">This page is coming soon. We're working hard to bring you the best cybersecurity solutions.</p>
+        <a href="/" className="bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-3 rounded-lg font-semibold transition-colors">
+          Back to Home
+        </a>
       </div>
-      <h1 className="text-4xl font-bold text-gray-900 mb-6">{title}</h1>
-      <p className="text-xl text-gray-600 mb-8">This page is coming soon. We're working hard to bring you the best cybersecurity solutions.</p>
-      <a href="/" className="bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-3 rounded-lg font-semibold transition-colors">
-        Back to Home
-      </a>
     </div>
-  </div>
-);
+  );
+};
 
 // Wrapper component to handle loading states
 const PageWrapper: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -132,7 +137,6 @@ const Router: React.FC = () => {
           {/* Other Routes */}
           <Route path="/pricing" element={<PageWrapper><ComingSoon title="Pricing" /></PageWrapper>} />
           <Route path="/resources" element={<PageWrapper><ComingSoon title="Resources" /></PageWrapper>} />
-          <Route path="/contact" element={<PageWrapper><ComingSoon title="Contact Us" /></PageWrapper>} />
           <Route path="/get-quote" element={<PageWrapper><ComingSoon title="Get a Quote" /></PageWrapper>} />
 
           {/* Legal Routes */}

@@ -1,11 +1,17 @@
 import React from 'react';
 import { Shield } from 'lucide-react';
 import Header from './Header';
+import SEO from './SEO';
 import Footer from './Footer';
 
 const TermsOfService: React.FC = () => {
   return (
     <div className="min-h-screen bg-white">
+      <SEO
+        title="Terms of Service"
+        description="Terms and conditions for using VAPTlabs' services and website."
+        path="/terms-of-service"
+      />
       <Header />
       
       {/* Hero Section */}

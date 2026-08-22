@@ -1,6 +1,7 @@
 import React from 'react';
 import { Users, Award, Target, Mail, Linkedin, Twitter } from 'lucide-react';
 import Header from './Header';
+import SEO from './SEO';
 import Footer from './Footer';
 
 const OurTeam: React.FC = () => {
@@ -119,6 +120,12 @@ const OurTeam: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-white">
+      <SEO
+        title="Our Team"
+        description="Meet the security researchers and penetration testers behind VAPTlabs."
+        path="/about/team"
+        keywords="vapt experts, vapt team, vapt analyst"
+      />
       <Header />
       
       {/* Hero Section */}

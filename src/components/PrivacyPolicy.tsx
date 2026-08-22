@@ -1,11 +1,17 @@
 import React from 'react';
 import { Shield } from 'lucide-react';
 import Header from './Header';
+import SEO from './SEO';
 import Footer from './Footer';
 
 const PrivacyPolicy: React.FC = () => {
   return (
     <div className="min-h-screen bg-white">
+      <SEO
+        title="Privacy Policy"
+        description="How VAPTlabs collects, uses and protects your data."
+        path="/privacy-policy"
+      />
       <Header />
       
       {/* Hero Section */}

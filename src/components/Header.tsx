@@ -1,7 +1,7 @@
 
 // src/components/Header.tsx
 import React, { useState, useEffect, useRef } from "react";
-import Loader from "./Loader";
+import { Link } from "react-router-dom";
 import {
   ChevronDown,
   ArrowRight,
@@ -27,21 +27,44 @@ import {
   Settings,
 } from "lucide-react";
 
+const SERVICE_LINKS: [string, string, any][] = [
+  ["/services/web-app-security", "Web Application Security Testing", Monitor],
+  ["/services/mobile-app-security", "Mobile Application Security Testing", Smartphone],
+  ["/services/network-penetration-testing", "Network Penetration Testing", Network],
+  ["/services/api-penetration-testing", "API Penetration Testing", Settings],
+  ["/services/cloud-penetration-testing", "Cloud Penetration Testing", Cloud],
+  ["/services/iot-security-testing", "IoT Security Testing", Cpu],
+  ["/services/dark-web-monitoring", "Dark Web Assessment", Search],
+  ["/services/secure-code-review", "Secure Code Review", Code],
+  ["/services/medical-device-security-testing", "Medical Device Security Testing", Heart],
+  ["/services/threat-modeling", "Threat Modeling", AlertTriangle],
+  ["/services/root-cause-analysis", "Root Cause Analysis", Search],
+  ["/red-team", "Red Teaming", UserCheck],
+  ["/services/software-composition-analysis", "Software Composition Analysis", Package],
+];
+
+const COMPLIANCE_LINKS: [string, string, any][] = [
+  ["/compliance/pci-dss", "PCI-DSS Pentesting", Shield],
+  ["/compliance/iso-27001", "ISO 27001 Pentesting", Lock],
+  ["/compliance/soc2", "SOC2 Pentesting", Users],
+  ["/compliance/gdpr", "GDPR Pentesting", Globe],
+  ["/compliance/hipaa", "HIPAA Pentesting", Heart],
+];
+
+const BROCHURE_URL = "https://ik.imagekit.io/5biqvaptlabsnfbqw/Design%201.pdf?updatedAt=1758474539462";
+
 const Header: React.FC = () => {
   const [openMenu, setOpenMenu] = useState<string | null>(null);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
   const closeTimerRef = useRef<number | null>(null);
 
   const handleMenuClick = (menu: string) => {
     setOpenMenu((prev) => (prev === menu ? null : menu));
   };
 
-  const handleNavigation = (path: string) => {
-    setIsLoading(true);
+  const closeMenus = () => {
     setOpenMenu(null);
     setIsMenuOpen(false);
-    window.location.href = path.startsWith("/") ? path : `/${path}`;
   };
 
   useEffect(() => {
@@ -82,19 +105,18 @@ const Header: React.FC = () => {
 
   return (
     <>
-      {isLoading && <Loader text="Loading page..." />}
-
       <header className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-sm shadow-sm z-50">
         <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
             <div className="flex-shrink-0">
-              <img
-                src="https://vaptlabs.com/src/images/logo-light.png"
-                alt="VAPTlabs"
-                className="h-8 w-auto cursor-pointer"
-                onClick={() => handleNavigation("/")}
-              />
+              <Link to="/" onClick={closeMenus}>
+                <img
+                  src="https://vaptlabs.com/src/images/logo-light.png"
+                  alt="VAPTlabs"
+                  className="h-8 w-auto cursor-pointer"
+                />
+              </Link>
             </div>
 
             {/* Desktop Navigation */}
@@ -117,132 +139,23 @@ const Header: React.FC = () => {
                   <div className="absolute top-full left-0 mt-2 w-full sm:w-[28rem] md:w-[32rem] bg-white rounded-lg shadow-lg border z-50" >
                     <div className="p-4">
                       <div className="flex items-center mb-4">
-                        {/* ICON COLOR CHANGED -> BRAND_RED */}
                         <Shield style={{ color: BRAND_RED }} className="h-5 w-5 mr-2" />
                         <span className="font-semibold text-gray-800">VAPT Services</span>
                         <ArrowRight className="ml-auto h-4 w-4 text-gray-400" />
                       </div>
 
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                        <button
-                          type="button"
-                          onClick={() => handleNavigation("/services/web-app-security")}
-                          className="flex items-center p-2 hover:bg-gray-50 rounded w-full text-left"
-                        >
-                          {/* ICON COLOR CHANGED -> BRAND_RED */}
-                          <Monitor style={{ color: BRAND_RED }} className="h-5 w-5 mr-3" />
-                          <span className="text-gray-700">Web Application Security Testing</span>
-                        </button>
-
-                        <button
-                          type="button"
-                          onClick={() => handleNavigation("/services/mobile-app-security")}
-                          className="flex items-center p-2 hover:bg-gray-50 rounded w-full text-left"
-                        >
-                          <Smartphone style={{ color: BRAND_RED }} className="h-5 w-5 mr-3" />
-                          <span className="text-gray-700">Mobile Application Security Testing</span>
-                        </button>
-
-                        <button
-                          type="button"
-                          onClick={() => handleNavigation("/services/network-penetration-testing")}
-                          className="flex items-center p-2 hover:bg-gray-50 rounded w-full text-left"
-                        >
-                          <Network style={{ color: BRAND_RED }} className="h-5 w-5 mr-3" />
-                          <span className="text-gray-700">Network Penetration Testing</span>
-                        </button>
-
-                        <button
-                          type="button"
-                          onClick={() => handleNavigation("/services/api-penetration-testing")}
-                          className="flex items-center p-2 hover:bg-gray-50 rounded w-full text-left"
-                        >
-                          <Settings style={{ color: BRAND_RED }} className="h-5 w-5 mr-3" />
-                          <span className="text-gray-700">API Penetration Testing</span>
-                        </button>
-
-                        <button
-                          type="button"
-                          onClick={() => handleNavigation("/services/cloud-penetration-testing")}
-                          className="flex items-center p-2 hover:bg-gray-50 rounded w-full text-left"
-                        >
-                          <Cloud style={{ color: BRAND_RED }} className="h-5 w-5 mr-3" />
-                          <span className="text-gray-700">Cloud Penetration Testing</span>
-                        </button>
-
-                        <button
-                          type="button"
-                          onClick={() => handleNavigation("/services/iot-security-testing")}
-                          className="flex items-center p-2 hover:bg-gray-50 rounded w-full text-left"
-                        >
-                          <Cpu style={{ color: BRAND_RED }} className="h-5 w-5 mr-3" />
-                          <span className="text-gray-700">IoT Security Testing</span>
-                        </button>
-
-                         <button
-                          type="button"
-                          onClick={() => handleNavigation("/services/dark-web-monitoring")}
-                          className="flex items-center p-2 hover:bg-gray-50 rounded w-full text-left"
-                        >
-                          <Cpu style={{ color: BRAND_RED }} className="h-5 w-5 mr-3" />
-                          <span className="text-gray-700">Dark Web Assessment</span>
-                        </button>
-
-                        
-                        
-                        <button
-                          type="button"
-                          onClick={() => handleNavigation("/services/secure-code-review")}
-                          className="flex items-center p-2 hover:bg-gray-50 rounded w-full text-left"
-                        >
-                          <Code style={{ color: BRAND_RED }} className="h-5 w-5 mr-3" />
-                          <span className="text-gray-700">Secure Code Review</span>
-                        </button>
-
-                        <button
-                          type="button"
-                          onClick={() => handleNavigation("/services/medical-device-security-testing")}
-                          className="flex items-center p-2 hover:bg-gray-50 rounded w-full text-left"
-                        >
-                          <Heart style={{ color: BRAND_RED }} className="h-5 w-5 mr-3" />
-                          <span className="text-gray-700">Medical Device Security Testing</span>
-                        </button>
-
-                        <button
-                          type="button"
-                          onClick={() => handleNavigation("/services/threat-modeling")}
-                          className="flex items-center p-2 hover:bg-gray-50 rounded w-full text-left"
-                        >
-                          <AlertTriangle style={{ color: BRAND_RED }} className="h-5 w-5 mr-3" />
-                          <span className="text-gray-700">Threat Modeling</span>
-                        </button>
-
-                        <button
-                          type="button"
-                          onClick={() => handleNavigation("/services/root-cause-analysis")}
-                          className="flex items-center p-2 hover:bg-gray-50 rounded w-full text-left"
-                        >
-                          <Search style={{ color: BRAND_RED }} className="h-5 w-5 mr-3" />
-                          <span className="text-gray-700">Root Cause Analysis</span>
-                        </button>
-
-                        <button
-                          type="button"
-                          onClick={() => handleNavigation("/services/red-teaming")}
-                          className="flex items-center p-2 hover:bg-gray-50 rounded w-full text-left"
-                        >
-                          <UserCheck style={{ color: BRAND_RED }} className="h-5 w-5 mr-3" />
-                          <span className="text-gray-700">Red Teaming</span>
-                        </button>
-
-                        <button
-                          type="button"
-                          onClick={() => handleNavigation("/services/software-composition-analysis")}
-                          className="flex items-center p-2 hover:bg-gray-50 rounded w-full text-left"
-                        >
-                          <Package style={{ color: BRAND_RED }} className="h-5 w-5 mr-3" />
-                          <span className="text-gray-700">Software Composition Analysis</span>
-                        </button>
+                        {SERVICE_LINKS.map(([path, label, Icon]) => (
+                          <Link
+                            key={path}
+                            to={path}
+                            onClick={closeMenus}
+                            className="flex items-center p-2 hover:bg-gray-50 rounded w-full text-left"
+                          >
+                            <Icon style={{ color: BRAND_RED }} className="h-5 w-5 mr-3" />
+                            <span className="text-gray-700">{label}</span>
+                          </Link>
+                        ))}
                       </div>
                     </div>
                   </div>
@@ -276,50 +189,17 @@ const Header: React.FC = () => {
                       </p>
 
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                        <button
-                          type="button"
-                          onClick={() => handleNavigation("/compliance/pci-dss")}
-                          className="flex items-center p-2 hover:bg-gray-50 rounded w-full text-left"
-                        >
-                          <Shield style={{ color: BRAND_RED }} className="h-5 w-5 mr-3" />
-                          <span className="text-gray-700">PCI-DSS Pentesting</span>
-                        </button>
-
-                        <button
-                          type="button"
-                          onClick={() => handleNavigation("/compliance/iso-27001")}
-                          className="flex items-center p-2 hover:bg-gray-50 rounded w-full text-left"
-                        >
-                          <Lock style={{ color: BRAND_RED }} className="h-5 w-5 mr-3" />
-                          <span className="text-gray-700">ISO 27001 Pentesting</span>
-                        </button>
-
-                        <button
-                          type="button"
-                          onClick={() => handleNavigation("/compliance/soc2")}
-                          className="flex items-center p-2 hover:bg-gray-50 rounded w-full text-left"
-                        >
-                          <Users style={{ color: BRAND_RED }} className="h-5 w-5 mr-3" />
-                          <span className="text-gray-700">SOC2 Pentesting</span>
-                        </button>
-
-                        <button
-                          type="button"
-                          onClick={() => handleNavigation("/compliance/gdpr")}
-                          className="flex items-center p-2 hover:bg-gray-50 rounded w-full text-left"
-                        >
-                          <Globe style={{ color: BRAND_RED }} className="h-5 w-5 mr-3" />
-                          <span className="text-gray-700">GDPR Pentesting</span>
-                        </button>
-
-                        <button
-                          type="button"
-                          onClick={() => handleNavigation("/compliance/hipaa")}
-                          className="flex items-center p-2 hover:bg-gray-50 rounded w-full text-left"
-                        >
-                          <Heart style={{ color: BRAND_RED }} className="h-5 w-5 mr-3" />
-                          <span className="text-gray-700">HIPAA Pentesting</span>
-                        </button>
+                        {COMPLIANCE_LINKS.map(([path, label, Icon]) => (
+                          <Link
+                            key={path}
+                            to={path}
+                            onClick={closeMenus}
+                            className="flex items-center p-2 hover:bg-gray-50 rounded w-full text-left"
+                          >
+                            <Icon style={{ color: BRAND_RED }} className="h-5 w-5 mr-3" />
+                            <span className="text-gray-700">{label}</span>
+                          </Link>
+                        ))}
                       </div>
                     </div>
                   </div>
@@ -350,36 +230,33 @@ const Header: React.FC = () => {
                       </div>
 
                       <div className="space-y-2">
-                        <button
-                          type="button"
-                          onClick={() => handleNavigation("/about/vaptlabs")}
+                        <Link
+                          to="/about/vaptlabs"
+                          onClick={closeMenus}
                           className="flex items-center p-2 hover:bg-gray-50 rounded w-full text-left"
                         >
                           <Shield style={{ color: BRAND_RED }} className="h-5 w-5 mr-3" />
                           <span className="text-gray-700">About VAPTlabs</span>
-                        </button>
+                        </Link>
 
-                        <button
-                          type="button"
-                          onClick={() => handleNavigation("/about/clients")}
+                        <Link
+                          to="/about/clients"
+                          onClick={closeMenus}
                           className="flex items-center p-2 hover:bg-gray-50 rounded w-full text-left"
                         >
                           <Globe style={{ color: BRAND_RED }} className="h-5 w-5 mr-3" />
                           <span className="text-gray-700">Our Clients</span>
-                        </button>
+                        </Link>
 
-                        <button type="button"
-  onClick={() =>
-    window.open(
-      "https://ik.imagekit.io/5biqvaptlabsnfbqw/Design%201.pdf?updatedAt=1758474539462",
-      "_blank"
-    )
-  }
-  className="flex items-center p-2 hover:bg-gray-50 rounded w-full text-left"
->
-  <FileText style={{ color: BRAND_RED }} className="h-5 w-5 mr-3" />
-  <span className="text-gray-700">VAPT Services Brochure</span>
-</button>
+                        <a
+                          href={BROCHURE_URL}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex items-center p-2 hover:bg-gray-50 rounded w-full text-left"
+                        >
+                          <FileText style={{ color: BRAND_RED }} className="h-5 w-5 mr-3" />
+                          <span className="text-gray-700">VAPT Services Brochure</span>
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -410,14 +287,13 @@ const Header: React.FC = () => {
                       </div>
 
                       <div className="space-y-2">
-                        <button
-                          type="button"
-                          onClick={() => (window.location.href = "https://www.vaptlab.com")}
+                        <a
+                          href="https://www.vaptlab.com"
                           className="flex items-center p-2 hover:bg-gray-50 rounded w-full text-left"
                         >
                           <Shield style={{ color: BRAND_RED }} className="h-5 w-5 mr-3" />
                           <span className="text-gray-700">RASP Shield SDK</span>
-                        </button>
+                        </a>
 
                         <div className="flex items-center p-2 rounded w-full text-left opacity-80" title="Coming soon">
                           <Cpu style={{ color: BRAND_RED }} className="h-5 w-5 mr-3" />
@@ -437,15 +313,16 @@ const Header: React.FC = () => {
 
             {/* Contact Button (RED GRADIENT) */}
             <div className="hidden md:block">
-              <button
-                className="text-white px-6 py-2 rounded-full transition-all duration-300"
+              <Link
+                to="/contact"
+                onClick={closeMenus}
+                className="text-white px-6 py-2 rounded-full transition-all duration-300 inline-block"
                 style={{
                   background: RED_GRADIENT,
                 }}
-                onClick={() => handleNavigation("/contact")}
               >
                 Contact Us
-              </button>
+              </Link>
             </div>
 
             {/* Mobile menu button */}
@@ -455,15 +332,9 @@ const Header: React.FC = () => {
           </div>
 
           {/* Mobile Navigation */}
-        {/* Mobile Navigation */}
 {isMenuOpen && (
   <div className="md:hidden bg-white border-t border-gray-200 py-4 transition-all duration-300">
     <div className="space-y-3 px-4">
-      {/* helper to produce nav rows with icon + hover bg */}
-      {/*
-        NOTE: we use inline mouse handlers to apply a light red-gradient background on hover
-        instead of changing the text color to white. This keeps readability intact on mobile.
-      */}
       <div>
         <button
           type="button"
@@ -483,48 +354,40 @@ const Header: React.FC = () => {
 
         {openMenu === "about" && (
           <div className="ml-4 mt-2 space-y-2">
-            <button
-              type="button"
-              onClick={() => { handleNavigation("/about/vaptlabs"); setIsMenuOpen(false); setOpenMenu(null); }}
+            <Link
+              to="/about/vaptlabs"
+              onClick={closeMenus}
               className="flex items-center gap-3 px-3 py-2 rounded-md text-gray-600"
               onMouseEnter={(e) => (e.currentTarget.style.background = "linear-gradient(90deg, rgba(217,47,97,0.12), rgba(143,15,56,0.08))")}
               onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
             >
               <Shield style={{ color: BRAND_RED }} className="h-4 w-4" />
               About VAPTlabs
-            </button>
+            </Link>
 
-            <button
-              type="button"
-              onClick={() => { handleNavigation("/about/clients"); setIsMenuOpen(false); setOpenMenu(null); }}
+            <Link
+              to="/about/clients"
+              onClick={closeMenus}
               className="flex items-center gap-3 px-3 py-2 rounded-md text-gray-600"
               onMouseEnter={(e) => (e.currentTarget.style.background = "linear-gradient(90deg, rgba(217,47,97,0.12), rgba(143,15,56,0.08))")}
               onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
             >
               <Globe style={{ color: BRAND_RED }} className="h-4 w-4" />
               Our Clients
-            </button>
+            </Link>
 
-            <button
-  type="button"
-  onClick={() => { 
-    window.open(
-      "https://ik.imagekit.io/5biqvaptlabsnfbqw/Design%201.pdf?updatedAt=1758474539462", 
-      "_blank"
-    ); 
-    setIsMenuOpen(false); 
-    setOpenMenu(null); 
-  }}
-  className="flex items-center gap-3 px-3 py-2 rounded-md text-gray-600"
-  onMouseEnter={(e) => (e.currentTarget.style.background = "linear-gradient(90deg, rgba(217,47,97,0.12), rgba(143,15,56,0.08))")}
-  onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
->
-  <FileText style={{ color: BRAND_RED }} className="h-4 w-4" />
-              {/* <FileText style={{ color: BRAND_RED }} className="h-5 w-5 mr-3" /> */}
-     VAPT Services Brochure
-</button>
-
-            
+            <a
+              href={BROCHURE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={closeMenus}
+              className="flex items-center gap-3 px-3 py-2 rounded-md text-gray-600"
+              onMouseEnter={(e) => (e.currentTarget.style.background = "linear-gradient(90deg, rgba(217,47,97,0.12), rgba(143,15,56,0.08))")}
+              onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
+            >
+              <FileText style={{ color: BRAND_RED }} className="h-4 w-4" />
+              VAPT Services Brochure
+            </a>
           </div>
         )}
       </div>
@@ -545,35 +408,20 @@ const Header: React.FC = () => {
         </button>
 
         {openMenu === "services" && (
-          <div  className="ml-4 mt-2 grid grid-cols-1 gap-2 max-h-[60vh] overflow-y-auto pr-2"
+          <div className="ml-4 mt-2 grid grid-cols-1 gap-2 max-h-[60vh] overflow-y-auto pr-2"
     style={{ scrollbarWidth: "thin" }} >
-            {[
-              ["/services/web-app-security", "Web App Security", Monitor],
-              ["/services/mobile-app-security", "Mobile App Security", Smartphone],
-              ["/services/network-penetration-testing", "Network Testing", Network],
-              ["/services/api-penetration-testing", "API Testing", Settings],
-              ["/services/cloud-penetration-testing", "Cloud Testing", Cloud],
-              ["/services/iot-security-testing", "IoT Testing", Cpu],
-           ["/services/dark-web-monitoring", "Dark Web Assessment", Search],
-              ["/services/secure-code-review", "Secure Code Review", Code],
-              ["/services/medical-device-security-testing", "Medical Device Testing", Heart],
-              ["/services/threat-modeling", "Threat Modeling", AlertTriangle],
-              ["/services/root-cause-analysis", "Root Cause Analysis", Search],
-              ["/services/red-teaming", "Red Teaming", UserCheck],
-              ["/services/software-composition-analysis", "Software Composition", Package],
-            ].map(([path, label, Icon]) => (
-              <button
-                key={String(path)}
-                type="button"
-                onClick={() => { handleNavigation(String(path)); setIsMenuOpen(false); setOpenMenu(null); }}
+            {SERVICE_LINKS.map(([path, label, Icon]) => (
+              <Link
+                key={path}
+                to={path}
+                onClick={closeMenus}
                 className="flex items-center gap-3 px-3 py-2 rounded-md text-gray-600 justify-start"
                 onMouseEnter={(e) => (e.currentTarget.style.background = "linear-gradient(90deg, rgba(217,47,97,0.12), rgba(143,15,56,0.08))")}
                 onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
               >
-                {/* @ts-ignore */}
                 <Icon style={{ color: BRAND_RED }} className="h-4 w-4" />
-                <span>{String(label)}</span>
-              </button>
+                <span>{label}</span>
+              </Link>
             ))}
           </div>
         )}
@@ -595,25 +443,18 @@ const Header: React.FC = () => {
 
         {openMenu === "solutions" && (
           <div className="ml-4 mt-2 grid grid-cols-1 gap-2">
-            {[
-              ["/compliance/pci-dss", "PCI-DSS", Shield],
-              ["/compliance/iso-27001", "ISO 27001", Lock],
-              ["/compliance/soc2", "SOC2", Users],
-              ["/compliance/gdpr", "GDPR", Globe],
-              ["/compliance/hipaa", "HIPAA", Heart],
-            ].map(([path, label, Icon]) => (
-              <button
-                key={String(path)}
-                type="button"
-                onClick={() => { handleNavigation(String(path)); setIsMenuOpen(false); setOpenMenu(null); }}
+            {COMPLIANCE_LINKS.map(([path, label, Icon]) => (
+              <Link
+                key={path}
+                to={path}
+                onClick={closeMenus}
                 className="flex items-center gap-3 px-3 py-2 rounded-md text-gray-600 justify-start"
                 onMouseEnter={(e) => (e.currentTarget.style.background = "linear-gradient(90deg, rgba(217,47,97,0.12), rgba(143,15,56,0.08))")}
                 onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
               >
-                {/* @ts-ignore */}
                 <Icon style={{ color: BRAND_RED }} className="h-4 w-4" />
-                <span>{String(label)}</span>
-              </button>
+                <span>{label}</span>
+              </Link>
             ))}
           </div>
         )}
@@ -635,16 +476,16 @@ const Header: React.FC = () => {
 
         {openMenu === "product" && (
           <div className="ml-4 mt-2 space-y-2">
-            <button
-              type="button"
-              onClick={() => { window.location.href = "https://www.vaptlab.com"; setIsMenuOpen(false); setOpenMenu(null); }}
+            <a
+              href="https://www.vaptlab.com"
+              onClick={closeMenus}
               className="flex items-center gap-3 px-3 py-2 rounded-md text-gray-600"
               onMouseEnter={(e) => (e.currentTarget.style.background = "linear-gradient(90deg, rgba(217,47,97,0.12), rgba(143,15,56,0.08))")}
               onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
             >
               <Shield style={{ color: BRAND_RED }} className="h-4 w-4" />
               RASP Shield SDK
-            </button>
+            </a>
             <div className="block text-gray-400 opacity-70 px-3 py-2">AI Gen VAPT (Coming soon)</div>
             <div className="block text-gray-400 opacity-70 px-3 py-2">Secret Sniffer Extension (Coming soon)</div>
           </div>
@@ -653,14 +494,14 @@ const Header: React.FC = () => {
 
       {/* Contact */}
       <div className="pt-4">
-        <button
-          type="button"
-          onClick={() => { handleNavigation("/contact"); setIsMenuOpen(false); setOpenMenu(null); }}
-          className="w-full text-white px-6 py-2 rounded-full transition-all duration-300"
+        <Link
+          to="/contact"
+          onClick={closeMenus}
+          className="w-full text-white px-6 py-2 rounded-full transition-all duration-300 block text-center"
           style={{ background: RED_GRADIENT }}
         >
           Contact Us
-        </button>
+        </Link>
       </div>
     </div>
   </div>

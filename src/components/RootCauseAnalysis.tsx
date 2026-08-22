@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Shield, FileText, Lock, Star, Code, Search } from 'lucide-react';
 import Header from "./Header";
+import SEO from './SEO';
 import ContactPopup from './ContactPopup';
 import ProcessCarousel from './ProcessCarousel';
 import Footer from './Footer';
@@ -58,6 +59,13 @@ const RootCauseAnalysis = () => {
 
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
+      <SEO
+        title="Vulnerability Root Cause Analysis Services"
+        description="Go beyond the finding — root cause analysis that traces vulnerabilities to their source so fixes actually stick."
+        path="/services/root-cause-analysis"
+        keywords="root cause analysis, vulnerability root cause analysis"
+        serviceSchema={{ name: 'Root Cause Analysis', description: 'Root cause analysis for security vulnerabilities.' }}
+      />
       <Header />
 
       {/* Hero Section */}
