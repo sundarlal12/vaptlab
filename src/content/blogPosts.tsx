@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import {
   ShieldCheck, Workflow, Coins, LucideIcon,
   ScanSearch, Swords, Building2, Layers, Radar, Crosshair, FileCheck, RefreshCw, Wallet,
+  Code2, ClipboardCheck, FileText, Bug, KeySquare, BadgeCheck, AlertOctagon, Gauge, Camera,
 } from 'lucide-react';
 
 export interface FAQBlock {
@@ -315,6 +316,262 @@ export const blogPosts: BlogPost[] = [
       {
         question: 'Does VAPT pricing include remediation retesting?',
         answer: 'This varies by provider - some include one round of retesting after remediation in the base price, others bill it separately. Always confirm this before signing a scope of work.',
+      },
+    ],
+  },
+  {
+    slug: 'web-application-vapt-guide',
+    title: 'Web Application VAPT: Attack Vectors, Vulnerabilities & How Testing Works',
+    metaTitle: 'Web Application VAPT: Attack Vectors & Vulnerabilities Explained',
+    description: 'A deep dive into web application VAPT - the attack vectors it covers, client-side vs. server-side vulnerabilities, session and API security, and how the testing actually works.',
+    keywords: 'web application vapt, web vapt testing, web app penetration testing, what is web vapt, web application security testing, web vapt vulnerabilities',
+    publishDate: '2026-08-24',
+    readTime: '8 min read',
+    excerpt: 'Web applications are the most commonly tested - and most commonly breached - attack surface. Here is exactly what web application VAPT covers and why.',
+    author: authors.minakshi,
+    heroIcon: Code2,
+    content: [
+      {
+        type: 'p',
+        text: <>Web applications are the most internet-exposed asset most organizations have, and the most commonly tested. If you've read our <Link to="/blog/what-is-vapt" className="text-inherit underline">general guide to VAPT</Link>, this is the deeper look at what <Link to="/services/web-app-security" className="text-inherit underline">web application VAPT</Link> specifically covers.</>,
+      },
+      { type: 'h2', text: 'Common Web Application Attack Vectors' },
+      {
+        type: 'p',
+        text: 'Web VAPT systematically works through the attack surfaces that account for the overwhelming majority of real-world web breaches:',
+      },
+      {
+        type: 'ul',
+        items: [
+          <><strong>Injection flaws</strong> - SQL injection, command injection, and similar attacks that trick an application into executing unintended commands.</>,
+          <><strong>Cross-site scripting (XSS)</strong> - injecting malicious scripts that run in another user's browser.</>,
+          <><strong>Broken authentication</strong> - weak session handling, credential stuffing exposure, missing multi-factor enforcement.</>,
+          <><strong>Broken access control (IDOR)</strong> - manipulating identifiers to access another user's data or admin functionality.</>,
+          <><strong>Server-side request forgery (SSRF)</strong> - tricking the server into making requests to internal systems it shouldn't reach.</>,
+          <><strong>Business logic flaws</strong> - abusing legitimate application features in unintended sequences (e.g. race conditions in checkout flows) - the class of bug automated scanners are worst at catching.</>,
+        ],
+      },
+      { type: 'image', icon: Bug, caption: "Most real-world web breaches trace back to a handful of well-understood attack classes - the OWASP Top 10 among them." },
+      { type: 'h2', text: 'Client-Side vs. Server-Side Vulnerabilities' },
+      {
+        type: 'p',
+        text: "Client-side vulnerabilities live in what runs in the browser - XSS, insecure client-side storage, exposed API keys in frontend code, weak Content Security Policy configuration. Server-side vulnerabilities live in backend logic - injection flaws, broken access control, insecure deserialization, server misconfiguration. A thorough web VAPT engagement tests both, since an attacker doesn't care which side of the wire a weakness sits on - they care whether it gets them what they want.",
+      },
+      { type: 'h2', text: 'Session Management & Authentication' },
+      {
+        type: 'p',
+        text: 'This covers how the application identifies and trusts a user across requests: session token generation and expiry, cookie security flags, password policy and storage, multi-factor authentication enforcement, and account lockout/rate-limiting on login attempts. Weaknesses here often turn a minor bug elsewhere into full account takeover.',
+      },
+      { type: 'h2', text: 'API Security in Web VAPT' },
+      {
+        type: 'p',
+        text: <>Modern web applications are largely APIs with a frontend attached, so web VAPT increasingly overlaps with <Link to="/services/api-penetration-testing" className="text-inherit underline">dedicated API testing</Link> - authorization checks on every endpoint, rate limiting, mass assignment vulnerabilities, and excessive data exposure in API responses that a UI might hide but the raw API doesn't.</>,
+      },
+      { type: 'image', icon: KeySquare, caption: 'Session handling and API authorization are where a single missed check tends to cause the most damage.' },
+      { type: 'h2', text: 'How Web Application VAPT Testing Works' },
+      {
+        type: 'p',
+        text: <>The high-level flow follows the same lifecycle as any VAPT engagement - scoping, reconnaissance, scanning, exploitation and verification, reporting, remediation and retest (see our <Link to="/blog/how-to-do-vapt-process" className="text-inherit underline">full process breakdown</Link>). What's specific to web applications is the reconnaissance phase mapping every page, form, API endpoint and user role before testing starts, since access control bugs specifically depend on understanding what each role should and shouldn't be able to reach.</>,
+      },
+      { type: 'h2', text: 'Web VAPT vs. Desktop Application VAPT' },
+      {
+        type: 'p',
+        text: "Desktop applications share some overlap with web apps - both need input validation, authentication and secure data handling - but desktop VAPT additionally covers local file system interactions, DLL hijacking, insecure local storage of credentials, and reverse-engineering resistance, since an attacker with the installer in hand has a fundamentally different level of access than one hitting a web app over HTTPS.",
+      },
+      { type: 'h2', text: 'Why AI Accelerates Web VAPT' },
+      {
+        type: 'p',
+        text: "Web applications tend to have the largest number of testable endpoints of any asset type, which is exactly where AI-powered scanning and correlation save the most time - triaging hundreds of candidate findings down to the real, exploitable ones far faster than doing that cross-referencing by hand, without skipping any of the attack vectors above.",
+      },
+    ],
+    faq: [
+      {
+        question: 'What is web application VAPT?',
+        answer: "Web application VAPT is vulnerability assessment and penetration testing scoped specifically to a web app - testing for injection flaws, XSS, broken authentication, broken access control, SSRF, business logic flaws and API security issues, covering both the OWASP Top 10 and application-specific logic.",
+      },
+      {
+        question: 'What is the difference between client-side and server-side web vulnerabilities?',
+        answer: "Client-side vulnerabilities exist in code that runs in the browser (like XSS or insecure local storage), while server-side vulnerabilities exist in backend logic (like SQL injection or broken access control). A thorough web VAPT engagement tests both.",
+      },
+      {
+        question: 'Is API testing part of web application VAPT?',
+        answer: "Increasingly, yes - most modern web applications are built on top of APIs, so web VAPT typically includes testing API authorization, rate limiting and data exposure alongside traditional frontend and backend testing.",
+      },
+    ],
+  },
+  {
+    slug: 'how-to-choose-vapt-service-provider',
+    title: "How to Choose a VAPT Service Provider: A Buyer's Checklist",
+    metaTitle: 'How to Choose a VAPT Service Provider: Buyer\'s Checklist',
+    description: "Not all VAPT providers are equal. Here's what to actually check - expertise, methodology, report quality, compliance alignment and retest support - before you sign.",
+    keywords: 'vapt service provider, how to choose a vapt company, vapt vendor checklist, top vapt companies, best vapt companies, vapt providers, vapt company',
+    publishDate: '2026-08-24',
+    readTime: '8 min read',
+    excerpt: "A bad VAPT engagement is worse than no VAPT at all - it gives you a false sense of security. Here's what actually separates a credible provider from a rubber-stamp one.",
+    author: authors.sundar,
+    heroIcon: ClipboardCheck,
+    content: [
+      {
+        type: 'p',
+        text: "A bad VAPT engagement is arguably worse than skipping it entirely - it produces a report that gives you (and your auditor, and your customers) a false sense of security. Here's what to actually check before you sign with a provider.",
+      },
+      { type: 'h2', text: 'Technical Expertise & Certifications' },
+      {
+        type: 'p',
+        text: "Look for testers holding recognized certifications (OSCP, OSCE, CREST, CEH and similar) and, more importantly, ask for redacted sample reports relevant to your asset type - a provider that's strong at network testing isn't automatically strong at mobile or API testing.",
+      },
+      { type: 'h2', text: 'Methodology & Testing Approach' },
+      {
+        type: 'p',
+        text: "Ask directly: is this automated scanning with a template report attached, or does it include real exploitation and verification? A credible provider can explain their methodology in specific terms - which frameworks they test against (OWASP Top 10, OWASP API Top 10, PTES, OSSTMM), and how they separate confirmed findings from raw scanner output.",
+      },
+      { type: 'image', icon: BadgeCheck, caption: "Certifications and named methodology are what separate a real engagement from a scan with a report template." },
+      { type: 'h2', text: 'Report Quality & Actionability' },
+      {
+        type: 'p',
+        text: <>Ask to see a sample report before you commit. A good one has clear reproduction steps, evidence, CVSS-based severity, and specific remediation guidance per finding - not just a list of CVE numbers. (We cover exactly what to expect in <Link to="/blog/vapt-report-explained" className="text-inherit underline">our breakdown of what's in a VAPT report</Link>.)</>,
+      },
+      { type: 'h2', text: 'Scope Flexibility' },
+      {
+        type: 'p',
+        text: "Your environment rarely maps neatly onto a fixed package. A provider that can scope precisely to your actual assets - and clearly states what happens if scope needs to expand mid-engagement - saves you from either overpaying for unused coverage or getting surprise change-order invoices.",
+      },
+      { type: 'h2', text: 'Compliance Alignment' },
+      {
+        type: 'p',
+        text: <>If the engagement needs to satisfy a specific auditor - <Link to="/compliance/soc2" className="text-inherit underline">SOC 2</Link>, <Link to="/compliance/iso-27001" className="text-inherit underline">ISO 27001</Link>, <Link to="/compliance/pci-dss" className="text-inherit underline">PCI-DSS</Link>, <Link to="/compliance/hipaa" className="text-inherit underline">HIPAA</Link> - confirm directly with the provider (and ideally your auditor) that their report format and methodology are accepted, before the engagement starts, not after.</>,
+      },
+      { type: 'h2', text: 'Turnaround Time' },
+      {
+        type: 'p',
+        text: "Ask for a realistic timeline from kickoff to final report, and what drives variability in it. Providers using AI-assisted scanning and correlation can often deliver in days rather than the multi-week timelines that used to be standard - which matters a lot if you're working against an audit deadline.",
+      },
+      { type: 'image', icon: AlertOctagon, caption: 'Vague methodology, no sample report, and no retest included are the three biggest red flags.' },
+      { type: 'h2', text: 'Remediation & Retest Support' },
+      {
+        type: 'p',
+        text: 'Confirm whether a round of retesting after you fix findings is included in the price or billed separately. Most compliance frameworks care about the retest as much as the original test - it proves issues were actually resolved, not just reworded.',
+      },
+      { type: 'h2', text: 'Red Flags to Watch For' },
+      {
+        type: 'ul',
+        items: [
+          "Pricing quoted instantly with zero scoping conversation - real pricing depends on your actual environment.",
+          "A sample report that's a generic scanner printout with no evidence, reproduction steps or business context.",
+          "No named methodology or framework they test against, when asked directly.",
+          "Reluctance to name specific certifications held by the actual testers on your engagement.",
+          "No retest included, or vague answers about what happens after you remediate.",
+        ],
+      },
+      { type: 'h2', text: 'Questions to Ask Before Signing' },
+      {
+        type: 'ol',
+        items: [
+          "Can I see a redacted sample report for an engagement similar to mine?",
+          "What methodology and frameworks do you test against?",
+          "Is retesting after remediation included?",
+          "Will your report format satisfy my specific compliance requirement?",
+          "What's the realistic turnaround from kickoff to final report?",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: 'What certifications should a VAPT provider have?',
+        answer: 'Look for recognized individual tester certifications like OSCP, OSCE, CREST or CEH, and ask for sample reports relevant to your specific asset type (web, mobile, network, cloud or API), since expertise doesn\'t transfer evenly across all of them.',
+      },
+      {
+        question: 'Should I ask for a sample VAPT report before signing?',
+        answer: "Yes - a legitimate provider will share a redacted sample report. It's the fastest way to judge whether findings will include real evidence and actionable remediation guidance, or just a generic scanner printout.",
+      },
+      {
+        question: 'Does a cheaper VAPT quote mean lower quality?',
+        answer: "Not necessarily, but an instant quote with no scoping conversation is a red flag - accurate VAPT pricing depends on understanding your specific environment, so a provider quoting a fixed number without asking questions is either applying a generic template or underscoping the work.",
+      },
+    ],
+  },
+  {
+    slug: 'vapt-report-explained',
+    title: "What's in a VAPT Report? A Section-by-Section Breakdown",
+    metaTitle: "What's in a VAPT Report? Section-by-Section Breakdown",
+    description: 'The VAPT report is the actual deliverable. Here is what a credible report contains - executive summary, findings, evidence, CVSS scoring, remediation guidance and retest results.',
+    keywords: 'vapt report, vapt report format, penetration testing report sample, vapt report sample, what is in a vapt report, vapt report template',
+    publishDate: '2026-08-24',
+    readTime: '7 min read',
+    excerpt: 'The report is the actual deliverable of a VAPT engagement - everything else is process. Here is what should be inside one, section by section.',
+    author: authors.minakshi,
+    heroIcon: FileText,
+    content: [
+      {
+        type: 'p',
+        text: "Everything about a VAPT engagement - the scoping, the testing, the exploitation - exists to produce one deliverable: the report. If you've never seen one, or you're trying to judge whether a sample report from a prospective provider is any good, here's what should be inside.",
+      },
+      { type: 'h2', text: 'Executive Summary' },
+      {
+        type: 'p',
+        text: "A short, non-technical overview for stakeholders who won't read the full findings: overall risk posture, number of findings by severity, and the two or three issues that matter most. This is what gets forwarded to leadership and auditors who need the headline, not the technical detail.",
+      },
+      { type: 'h2', text: 'Scope & Methodology' },
+      {
+        type: 'p',
+        text: "What was tested, what wasn't, the testing window, and the methodology or framework followed (OWASP Top 10, OWASP API Top 10, PTES, and so on). This section is what lets an auditor confirm the engagement actually covered what their compliance requirement needs.",
+      },
+      { type: 'h2', text: 'Findings, with Severity Scoring' },
+      {
+        type: 'p',
+        text: "Each finding gets documented individually with a severity rating - most commonly CVSS-based - reflecting both technical severity and real business impact. A critical-severity bug on an isolated test server should not outrank a medium-severity one that exposes customer data; a good report reflects that judgment, not just a raw score.",
+      },
+      { type: 'image', icon: Gauge, caption: 'Severity scoring should reflect real business impact, not just a raw technical CVSS number.' },
+      { type: 'h2', text: 'Evidence & Proof of Exploitation' },
+      {
+        type: 'p',
+        text: "Screenshots, request/response captures, or step-by-step reproduction instructions for each confirmed finding. This is what separates a penetration test from a vulnerability scan - proof that a finding is real and exploitable, not just theoretically possible.",
+      },
+      { type: 'image', icon: Camera, caption: 'Evidence and reproduction steps are what prove a finding is real, not theoretical.' },
+      { type: 'h2', text: 'Risk Prioritization & Business Impact' },
+      {
+        type: 'p',
+        text: "Beyond individual severity scores, a strong report groups and prioritizes findings by what an attacker could actually achieve by chaining them - which handful of issues represent a real path to sensitive data or system compromise, versus which are low-risk in isolation.",
+      },
+      { type: 'h2', text: 'Remediation Recommendations' },
+      {
+        type: 'p',
+        text: "Specific, actionable guidance for each finding - not \"patch your systems,\" but the actual configuration change, code fix, or control needed to close the gap. This is the section your engineering team will actually use.",
+      },
+      { type: 'h2', text: 'Retest Results' },
+      {
+        type: 'p',
+        text: "After remediation, a retest confirms each fix actually closes the gap. This section documents which findings were resolved, which weren't, and any new issues introduced by the fix itself - and it's usually what an auditor is really checking for, not just that testing happened once.",
+      },
+      { type: 'h2', text: 'Compliance Mapping' },
+      {
+        type: 'p',
+        text: <>For engagements scoped to a specific framework, a good report explicitly maps findings to the relevant controls - <Link to="/compliance/pci-dss" className="text-inherit underline">PCI-DSS Requirement 11.3</Link>, <Link to="/compliance/soc2" className="text-inherit underline">SOC 2</Link> trust service criteria, <Link to="/compliance/iso-27001" className="text-inherit underline">ISO 27001</Link> Annex A, or <Link to="/compliance/hipaa" className="text-inherit underline">HIPAA</Link>'s risk analysis requirement - so an auditor doesn't have to do that translation themselves.</>,
+      },
+      { type: 'h2', text: 'Red Flags in a Weak Report' },
+      {
+        type: 'ul',
+        items: [
+          "Findings that are just a list of CVE numbers with no reproduction steps or evidence.",
+          "Severity ratings that don't account for actual business context.",
+          "No remediation guidance beyond \"update software\" or \"apply patches.\"",
+          "No retest section, or no retest offered at all.",
+          "Generic, template-looking language that doesn't reference your specific environment.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: 'What sections should a VAPT report include?',
+        answer: 'An executive summary, scope and methodology, detailed findings with severity scoring, evidence of exploitation, risk prioritization, remediation recommendations, retest results, and (where relevant) compliance framework mapping.',
+      },
+      {
+        question: 'What is CVSS scoring in a VAPT report?',
+        answer: "CVSS (Common Vulnerability Scoring System) is a standardized way to rate the technical severity of a vulnerability. A good report uses it as a starting point but also weighs real business impact, since a technically critical bug on a low-value asset may matter less than a medium-severity one exposing customer data.",
+      },
+      {
+        question: 'Why does a VAPT report need a retest section?',
+        answer: "Because fixing a finding and actually closing the security gap aren't always the same thing. A retest confirms the fix worked, which is usually what compliance frameworks and auditors are actually checking for - not just that a test happened once.",
       },
     ],
   },
