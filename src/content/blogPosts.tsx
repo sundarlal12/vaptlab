@@ -7,6 +7,7 @@ import {
   Wrench, Terminal, ShieldAlert, Award, GraduationCap, Building,
   TrendingUp, Cpu, CloudCog,
   GitCompare, Zap, Timer, Boxes, EyeOff, Eye, Contrast,
+  Landmark, Gavel, HeartPulse,
 } from 'lucide-react';
 
 export interface FAQBlock {
@@ -935,6 +936,76 @@ export const blogPosts: BlogPost[] = [
       {
         question: 'Is white box testing better than black box testing?',
         answer: "Neither is universally better - they answer different questions. White box finds more through full code and architecture access; black box more realistically simulates what an actual outside attacker with no prior knowledge could achieve. Many engagements use gray box as the practical middle ground.",
+      },
+    ],
+  },
+  {
+    slug: 'vapt-india-compliance-rbi-sebi-cert-in',
+    title: 'VAPT for Indian Compliance: RBI, SEBI & CERT-In Guidelines Explained',
+    metaTitle: 'VAPT for Indian Compliance: RBI, SEBI & CERT-In Explained',
+    description: 'Indian regulated businesses face their own VAPT expectations beyond SOC 2 or ISO 27001 - CERT-In guidelines, the RBI IT framework, and the SEBI cyber security framework. Here is what each expects.',
+    keywords: 'cert-in vapt, rbi vapt guidelines, sebi cyber security framework, vapt for nbfc, vapt india compliance, cert-in empanelled vapt, vapt india',
+    publishDate: '2026-08-24',
+    readTime: '7 min read',
+    excerpt: 'Indian regulated businesses - banks, NBFCs, fintechs, healthtechs - face their own VAPT expectations beyond the usual SOC 2 or ISO 27001 conversation: CERT-In, the RBI IT framework, and SEBI.',
+    author: authors.sundar,
+    heroIcon: Landmark,
+    content: [
+      {
+        type: 'p',
+        text: <>Most of what gets written about VAPT compliance focuses on <Link to="/compliance/soc2" className="text-inherit underline">SOC 2</Link>, <Link to="/compliance/iso-27001" className="text-inherit underline">ISO 27001</Link> and other international frameworks. If you're operating in India - especially in BFSI, fintech or healthtech - there's a parallel set of expectations from Indian regulators that matter just as much, and sometimes more.</>,
+      },
+      { type: 'h2', text: 'CERT-In Guidelines' },
+      {
+        type: 'p',
+        text: "CERT-In (the Indian Computer Emergency Response Team) sets national-level cybersecurity direction for Indian organizations, including expectations around vulnerability management, security auditing and incident reporting. Regulated entities and government-linked systems are frequently expected to demonstrate testing performed by a CERT-In empanelled auditor specifically - a distinct requirement from generic \"we did a pentest\" evidence accepted elsewhere.",
+      },
+      { type: 'image', icon: Gavel, caption: "CERT-In-aligned testing is a distinct requirement from generic penetration testing evidence - the empanelment status of the auditor matters." },
+      { type: 'h2', text: 'RBI IT Framework' },
+      {
+        type: 'p',
+        text: "The Reserve Bank of India's IT governance and cybersecurity framework applies to banks, NBFCs (Non-Banking Financial Companies) and payment aggregators, and expects regular, documented security testing as part of a broader IT risk management program - not a one-off exercise, but an ongoing part of how regulated financial entities are expected to operate.",
+      },
+      { type: 'h2', text: 'SEBI Cyber Security Framework' },
+      {
+        type: 'p',
+        text: "SEBI's cyber security and cyber resilience framework applies to market infrastructure institutions and registered intermediaries - stock brokers, depositories and similar entities - with its own expectations around periodic security assessment and incident reporting distinct from the banking-focused RBI framework.",
+      },
+      { type: 'h2', text: 'VAPT for BFSI — Banks, NBFCs & Payment Aggregators' },
+      {
+        type: 'p',
+        text: "Financial entities typically face the most layered requirements: RBI expectations, CERT-In alignment, and often PCI-DSS on top if card payments are involved. Testing scope usually needs to cover core banking or lending platforms, payment flows, and the APIs connecting to partner institutions.",
+      },
+      { type: 'image', icon: Building2, caption: 'BFSI entities often need testing that satisfies RBI, CERT-In and PCI-DSS simultaneously.' },
+      { type: 'h2', text: 'VAPT for FinTech — Lending, WealthTech & Payments' },
+      {
+        type: 'p',
+        text: <>Fintechs sit at the intersection of startup shipping speed and regulated-entity expectations, which is exactly where <Link to="/blog/vapt-trends-2026" className="text-inherit underline">faster, AI-accelerated VAPT</Link> matters most - regulatory testing cadence that doesn't force a choice between compliance and release velocity.</>,
+      },
+      { type: 'h2', text: 'VAPT for HealthTech — Patient Data & Regulated Platforms' },
+      {
+        type: 'p',
+        text: "Healthtech platforms handling patient data in India face their own data protection expectations, and increasingly look to the same kind of rigor established internationally under frameworks like HIPAA, even without a direct US healthcare relationship, since patient data sensitivity is treated similarly by security-conscious customers and partners regardless of jurisdiction.",
+      },
+      { type: 'image', icon: HeartPulse, caption: 'Patient data platforms are held to a high bar regardless of which specific regulation technically applies.' },
+      { type: 'h2', text: 'How This Differs from International Frameworks' },
+      {
+        type: 'p',
+        text: <>The underlying testing methodology overlaps heavily with what satisfies <Link to="/compliance/soc2" className="text-inherit underline">SOC 2</Link> or <Link to="/compliance/iso-27001" className="text-inherit underline">ISO 27001</Link> - the difference is mainly in reporting format, auditor empanelment status, and specific regulatory reporting obligations. An engagement scoped correctly from the start can often satisfy both an Indian regulatory expectation and an international framework without duplicating the work.</>,
+      },
+    ],
+    faq: [
+      {
+        question: 'What is CERT-In empanelment for VAPT?',
+        answer: "CERT-In maintains a list of empanelled security auditing organizations. Some Indian regulatory and government contexts specifically expect testing to be performed by a CERT-In empanelled auditor, which is a distinct requirement from generic penetration testing evidence.",
+      },
+      {
+        question: 'Does RBI require VAPT for banks and NBFCs?',
+        answer: "The RBI's IT governance and cybersecurity framework expects regulated banks and NBFCs to maintain regular, documented security testing as part of ongoing IT risk management - talk to a qualified compliance advisor for exact requirements applicable to your specific entity type.",
+      },
+      {
+        question: 'Can one VAPT engagement satisfy both Indian and international compliance requirements?',
+        answer: "Often, yes - the underlying testing methodology overlaps significantly with what satisfies SOC 2 or ISO 27001. Scoping the engagement correctly from the start, with the right reporting format and auditor qualifications, can frequently cover both without duplicating work.",
       },
     ],
   },
