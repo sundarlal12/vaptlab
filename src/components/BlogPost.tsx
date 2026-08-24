@@ -8,6 +8,7 @@ import SEO from './SEO';
 import AuthorAvatar from './AuthorAvatar';
 import BlogHeroGraphic from './BlogHeroGraphic';
 import TableOfContents, { TocItem } from './TableOfContents';
+import ExitIntentPopup from './ExitIntentPopup';
 import { getBlogPostBySlug, blogPosts, ContentBlock, slugifyHeading } from '../content/blogPosts';
 
 const RED_GRAD = "linear-gradient(to right, rgb(217, 47, 97), rgb(143, 15, 56))";
@@ -275,6 +276,7 @@ const BlogPost: React.FC = () => {
       </div>
 
       <Footer />
+      <ExitIntentPopup />
     </div>
   );
 };
