@@ -571,6 +571,7 @@ const Footer = () => {
   {[
     { name: "About Us", path: "/about/vaptlabs" },
     { name: "Our Clients", path: "/about/clients" },
+    { name: "Blog", path: "/blog" },
     { name: "VAPT Services Brochure", url: "https://ik.imagekit.io/5biqvaptlabsnfbqw/Design%201.pdf?updatedAt=1758474539462", external: true }, // new browser link
   ].map((item) => (
     <li key={item.name}>

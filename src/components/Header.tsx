@@ -25,6 +25,7 @@ import {
   Menu,
   X,
   Settings,
+  BookOpen,
 } from "lucide-react";
 
 const SERVICE_LINKS: [string, string, any][] = [
@@ -248,6 +249,15 @@ const Header: React.FC = () => {
                           <span className="text-gray-700">Our Clients</span>
                         </Link>
 
+                        <Link
+                          to="/blog"
+                          onClick={closeMenus}
+                          className="flex items-center p-2 hover:bg-gray-50 rounded w-full text-left"
+                        >
+                          <BookOpen style={{ color: BRAND_RED }} className="h-5 w-5 mr-3" />
+                          <span className="text-gray-700">Blog</span>
+                        </Link>
+
                         <a
                           href={BROCHURE_URL}
                           target="_blank"
@@ -379,6 +389,17 @@ const Header: React.FC = () => {
             >
               <Globe style={{ color: BRAND_RED }} className="h-4 w-4" />
               Our Clients
+            </Link>
+
+            <Link
+              to="/blog"
+              onClick={closeMenus}
+              className="flex items-center gap-3 px-3 py-2 rounded-md text-gray-600"
+              onMouseEnter={(e) => (e.currentTarget.style.background = "linear-gradient(90deg, rgba(217,47,97,0.12), rgba(143,15,56,0.08))")}
+              onMouseLeave={(e) => (e.currentTarget.style.background = "transparent")}
+            >
+              <BookOpen style={{ color: BRAND_RED }} className="h-4 w-4" />
+              Blog
             </Link>
 
             <a

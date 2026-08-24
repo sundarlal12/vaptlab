@@ -34,6 +34,8 @@ const GDPRPentesting = React.lazy(() => import('./GDPRPentesting'));
 const HIPAAPentesting = React.lazy(() => import('./HIPAAPentesting'));
 const FDA510KCompliance = React.lazy(() => import('./FDA510KCompliance'));
 const TermsOfService = React.lazy(() => import('./TermsOfService'));
+const Blog = React.lazy(() => import('./Blog'));
+const BlogPost = React.lazy(() => import('./BlogPost'));
 const ContactUs = React.lazy(() => import('./ContactUs'));
 const SecureLintProtect = React.lazy(() => import('./SecureLintProtect'));
 const SecureLintExtension = React.lazy(() => import('./SecureLintExtension'));
@@ -151,7 +153,8 @@ const Router: React.FC = () => {
           <Route path="/team" element={<PageWrapper><ComingSoon title="Our Team" /></PageWrapper>} />
           <Route path="/careers" element={<PageWrapper><ComingSoon title="Careers" /></PageWrapper>} />
           <Route path="/case-studies" element={<PageWrapper><ComingSoon title="Case Studies" /></PageWrapper>} />
-          <Route path="/blog" element={<PageWrapper><ComingSoon title="Blog" /></PageWrapper>} />
+          <Route path="/blog" element={<PageWrapper><Blog /></PageWrapper>} />
+          <Route path="/blog/:slug" element={<PageWrapper><BlogPost /></PageWrapper>} />
           <Route path="/press-kit" element={<PageWrapper><ComingSoon title="Press Kit" /></PageWrapper>} />
           <Route path="/partnerships" element={<PageWrapper><ComingSoon title="Partnerships" /></PageWrapper>} />
 

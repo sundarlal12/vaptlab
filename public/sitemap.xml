@@ -46,4 +46,10 @@
   <url><loc>https://vaptlabs.com/privacy-policy</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
   <url><loc>https://vaptlabs.com/terms-of-service</loc><changefreq>yearly</changefreq><priority>0.5</priority></url>
 
+  <!-- Blog -->
+  <url><loc>https://vaptlabs.com/blog</loc><lastmod>2026-08-24</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vaptlabs.com/blog/what-is-vapt</loc><lastmod>2026-08-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vaptlabs.com/blog/how-to-do-vapt-process</loc><lastmod>2026-08-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://vaptlabs.com/blog/vapt-pricing-guide</loc><lastmod>2026-08-24</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+
 </urlset>
