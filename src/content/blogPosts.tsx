@@ -6,6 +6,7 @@ import {
   Code2, ClipboardCheck, FileText, Bug, KeySquare, BadgeCheck, AlertOctagon, Gauge, Camera,
   Wrench, Terminal, ShieldAlert, Award, GraduationCap, Building,
   TrendingUp, Cpu, CloudCog,
+  GitCompare, Zap, Timer, Boxes, EyeOff, Eye, Contrast,
 } from 'lucide-react';
 
 export interface FAQBlock {
@@ -775,6 +776,165 @@ export const blogPosts: BlogPost[] = [
       {
         question: 'Is cloud and API testing now part of standard VAPT scope?',
         answer: "Increasingly, yes. As applications move to cloud-native, API-first architectures, cloud and API testing have shifted from specialist add-ons to a default part of most VAPT engagements.",
+      },
+    ],
+  },
+  {
+    slug: 'dast-vs-vapt',
+    title: 'DAST vs. VAPT: Which Security Testing Approach Do You Need?',
+    metaTitle: 'DAST vs. VAPT: Which Security Testing Do You Need?',
+    description: "DAST and VAPT get compared constantly, and often conflated. Here's what each actually does, where each falls short alone, and why most mature teams run both.",
+    keywords: 'dast vs vapt, dast vs pentest, difference between dast and vapt, dast testing, dynamic application security testing vs penetration testing',
+    publishDate: '2026-08-24',
+    readTime: '7 min read',
+    excerpt: 'DAST and VAPT solve different problems. One scans continuously at every deploy; the other verifies deeply at a point in time. Most mature security programs need both.',
+    author: authors.minakshi,
+    heroIcon: GitCompare,
+    content: [
+      {
+        type: 'p',
+        text: "DAST and VAPT get compared constantly, and often conflated - partly because DAST tools are one of the categories of tooling used inside a VAPT engagement. They're not competing options for the same job; they solve different problems, on different timescales.",
+      },
+      { type: 'h2', text: 'What Is DAST?' },
+      {
+        type: 'p',
+        text: "Dynamic Application Security Testing (DAST) is automated scanning of a running application from the outside, without access to source code - crawling the app and testing its inputs for common vulnerability patterns. It's built to run continuously and automatically, typically wired directly into a CI/CD pipeline so every deploy gets scanned.",
+      },
+      { type: 'h2', text: 'What Is VAPT?' },
+      {
+        type: 'p',
+        text: <>VAPT combines that kind of automated scanning with active exploitation and expert verification - proving which findings are real and how far an attacker could get. (See our full <Link to="/blog/what-is-vapt" className="text-inherit underline">guide to what VAPT is</Link> if you haven't already.)</>,
+      },
+      { type: 'h2', text: 'Key Differences' },
+      {
+        type: 'ul',
+        items: [
+          <><strong>Automation level:</strong> DAST is fully automated by design; VAPT combines automation with exploitation and human or AI-verified judgment.</>,
+          <><strong>Frequency:</strong> DAST typically runs continuously, on every build or deploy; VAPT is usually scoped as a periodic, deeper engagement.</>,
+          <><strong>False positive rate:</strong> DAST alone tends to produce more false positives, since nothing verifies whether a flagged issue is actually exploitable.</>,
+          <><strong>Business logic coverage:</strong> DAST is weak at catching business-logic flaws that require understanding what the app is supposed to do; VAPT's exploitation phase is built for exactly that.</>,
+          <><strong>Pipeline integration:</strong> DAST is built to sit inside DevSecOps workflows; VAPT is typically scoped as a distinct engagement, though AI-powered VAPT increasingly closes that gap.</>,
+        ],
+      },
+      { type: 'image', icon: Zap, caption: 'DAST is built for speed and continuous coverage; VAPT is built for depth and verified proof.' },
+      { type: 'h2', text: 'Limitations of Traditional Point-in-Time VAPT' },
+      {
+        type: 'ul',
+        items: [
+          "Gaps between assessments - a report from months ago says nothing about code shipped last week.",
+          "Manual-heavy processes don't scale to test every release.",
+          "Limited integration into day-to-day development workflows.",
+          "Feedback can arrive too late to catch an issue before it ships.",
+        ],
+      },
+      { type: 'h2', text: 'Limitations of DAST Alone' },
+      {
+        type: 'ul',
+        items: [
+          "Misses business-logic flaws that require understanding intended application behavior, not just input patterns.",
+          "Produces false positives without a verification layer to confirm real exploitability.",
+          "No exploitation step, so severity and business impact aren't validated - just flagged.",
+          "Limited runtime and chained-attack visibility compared to active exploitation testing.",
+        ],
+      },
+      { type: 'image', icon: Timer, caption: 'Continuous scanning catches regressions fast; periodic deep testing catches what scanning alone cannot.' },
+      { type: 'h2', text: 'When to Prioritize DAST' },
+      {
+        type: 'p',
+        text: "When you need continuous, automated coverage integrated into your deployment pipeline, catching regressions and known-pattern vulnerabilities as code ships - especially valuable for fast-moving teams shipping multiple times a week.",
+      },
+      { type: 'h2', text: 'When VAPT Is Essential' },
+      {
+        type: 'p',
+        text: <>When you need verified, exploitation-tested findings - for a <Link to="/compliance/soc2" className="text-inherit underline">SOC 2</Link>, <Link to="/compliance/pci-dss" className="text-inherit underline">PCI-DSS</Link> or similar compliance requirement, before a launch, or any time you need to know not just what might be wrong but what an attacker could actually do with it.</>,
+      },
+      { type: 'h2', text: 'The Right Approach: Combining Both' },
+      {
+        type: 'p',
+        text: "Most mature security programs run both: continuous DAST scanning to catch regressions as code ships, layered with periodic (or, increasingly, AI-accelerated near-continuous) VAPT for the deep verification, business-logic testing and compliance-ready reporting that scanning alone can't provide.",
+      },
+    ],
+    faq: [
+      {
+        question: 'Is DAST the same as VAPT?',
+        answer: "No. DAST is automated scanning of a running application, typically run continuously in a CI/CD pipeline. VAPT combines that kind of scanning with active exploitation and expert or AI-verified confirmation of real risk - DAST tools are often one input into a broader VAPT engagement, not a replacement for it.",
+      },
+      {
+        question: 'Can DAST replace VAPT for compliance?',
+        answer: "Generally no. Most compliance frameworks (PCI-DSS, SOC 2, HIPAA) specifically expect penetration testing with exploitation and verification, not just automated scan output, so DAST alone typically doesn't satisfy those requirements on its own.",
+      },
+      {
+        question: 'Should I run DAST and VAPT together?',
+        answer: "Yes, for most mature security programs - continuous DAST catches regressions between formal testing cycles, while periodic VAPT provides the deep, verified, compliance-ready assessment that DAST alone can't produce.",
+      },
+    ],
+  },
+  {
+    slug: 'black-box-white-box-gray-box-testing',
+    title: 'Black Box vs. White Box vs. Gray Box Penetration Testing',
+    metaTitle: 'Black Box vs. White Box vs. Gray Box Penetration Testing',
+    description: 'The three penetration testing methodologies - black box, white box and gray box - test from different levels of access. Here is what each finds, and how to choose.',
+    keywords: 'black box vs white box testing, gray box testing, black box penetration testing, white box penetration testing, types of penetration testing methodology, grey box testing',
+    publishDate: '2026-08-24',
+    readTime: '6 min read',
+    excerpt: 'Black box, white box and gray box testing simulate different levels of attacker access - and each finds a different slice of your real risk.',
+    author: authors.sundar,
+    heroIcon: Boxes,
+    content: [
+      {
+        type: 'p',
+        text: <>Beyond scoping <em>what</em> gets tested, every <Link to="/blog/how-to-do-vapt-process" className="text-inherit underline">VAPT engagement</Link> also picks <em>how much the tester already knows</em> going in. That choice - black box, white box or gray box - shapes what the engagement is realistically able to find.</>,
+      },
+      { type: 'h2', text: 'Black Box Testing' },
+      {
+        type: 'p',
+        text: "The tester starts with zero prior knowledge of the target - no source code, no credentials, no architecture documentation - and works entirely from what an outside attacker could discover. It's the most realistic simulation of an external attack, but time constraints mean some deeper, credential-gated functionality may go untested within a typical engagement window.",
+      },
+      { type: 'image', icon: EyeOff, caption: 'Black box testing starts from zero knowledge - the most realistic simulation of an outside attacker.' },
+      { type: 'h2', text: 'White Box Testing' },
+      {
+        type: 'p',
+        text: "The tester gets full access to source code, architecture diagrams and credentials up front. This enables the deepest possible coverage - finding logic flaws and subtle bugs that would be difficult to discover from the outside in a limited time window - at the cost of being a less realistic simulation of what an actual external attacker faces.",
+      },
+      { type: 'image', icon: Eye, caption: 'White box testing trades attacker realism for maximum depth of coverage.' },
+      { type: 'h2', text: 'Gray Box Testing' },
+      {
+        type: 'p',
+        text: "The middle ground, and the most common choice in practice: the tester gets partial access, typically a standard user account, mirroring what an authenticated user or a moderately-informed insider could do. It balances realism with efficiency - testing what a logged-in attacker could reach without the time cost of full black-box discovery for every function.",
+      },
+      { type: 'h2', text: 'Comparing the Three' },
+      {
+        type: 'ul',
+        items: [
+          <><strong>Realism:</strong> Black box &gt; Gray box &gt; White box.</>,
+          <><strong>Depth of coverage:</strong> White box &gt; Gray box &gt; Black box.</>,
+          <><strong>Time efficiency for a fixed budget:</strong> Gray box and white box generally find more per hour of testing time than black box, since less time is spent on discovery.</>,
+          <><strong>Best for:</strong> Black box for realistic external-attacker simulation; white box for maximum-depth code-level review; gray box for testing what an authenticated user or insider threat could do - the most common real-world scope.</>,
+        ],
+      },
+      { type: 'h2', text: 'Which One Should You Choose?' },
+      {
+        type: 'p',
+        text: <>It depends on the question you're trying to answer. If it's "could an anonymous outsider break in," go black box. If it's "are there deep logic flaws anywhere in this codebase," go white box. If it's "what could a customer, employee, or leaked credential actually do," - the scenario most breaches start from - gray box is usually the right default, which is why it's the most commonly scoped approach across <Link to="/services/web-app-security" className="text-inherit underline">web</Link>, <Link to="/services/mobile-app-security" className="text-inherit underline">mobile</Link> and <Link to="/services/api-penetration-testing" className="text-inherit underline">API VAPT</Link> engagements.</>,
+      },
+      { type: 'h2', text: 'How VAPTlabs Approaches This' },
+      {
+        type: 'p',
+        text: "We scope the methodology to the actual question you need answered, not a default - and because AI-powered VAPT compresses the discovery phase regardless of approach, even black box engagements move faster than the traditional timeline without sacrificing the realism that makes them valuable.",
+      },
+    ],
+    faq: [
+      {
+        question: 'What is the difference between black box, white box and gray box testing?',
+        answer: "Black box testing starts with zero prior knowledge, simulating an external attacker. White box testing gives the tester full access to source code and architecture for maximum coverage. Gray box testing is the middle ground - typically a standard user account - simulating what an authenticated user or insider could do.",
+      },
+      {
+        question: 'Which penetration testing methodology is most common?',
+        answer: "Gray box testing is the most commonly scoped approach in practice, since it balances realistic attacker simulation with efficient use of testing time by mirroring what an authenticated user or leaked credential could actually access.",
+      },
+      {
+        question: 'Is white box testing better than black box testing?',
+        answer: "Neither is universally better - they answer different questions. White box finds more through full code and architecture access; black box more realistically simulates what an actual outside attacker with no prior knowledge could achieve. Many engagements use gray box as the practical middle ground.",
       },
     ],
   },
