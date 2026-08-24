@@ -207,7 +207,7 @@ const SecureLintExtension: React.FC = () => {
               VAPT secures your systems. SecureLint secures the people using them.
             </h2>
             <p className="text-gray-700 leading-relaxed mb-4">
-              VAPTlabs' AI-powered and human-led VAPT tests your applications and infrastructure. SecureLint Protect
+              VAPTlabs' AI-powered VAPT tests your applications and infrastructure. SecureLint Protect
               defends your mobile app at runtime. SecureLint closes the last gap — the everyday browser tab where
               developers and employees can leak a credential or fall for a phishing link — with zero-server, on-device
               protection.

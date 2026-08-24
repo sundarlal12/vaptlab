@@ -131,7 +131,7 @@ const ContactUs: React.FC = () => {
       {/* Site Header */}
       <SEO
         title="Contact VAPTlabs — Get a VAPT Quote"
-        description="Talk to VAPTlabs about AI-powered or human-led penetration testing for your web, mobile, cloud or API. We serve clients across the US, UAE, Saudi Arabia, Singapore, Europe and Australia — get a scoped quote in hours."
+        description="Talk to VAPTlabs about AI-powered penetration testing for your web, mobile, cloud or API. We serve clients across the US, UAE, Saudi Arabia, Singapore, Europe and Australia — get a scoped quote in hours."
         path="/contact"
         keywords="vapt quote, contact vaptlabs, vapt service provider"
       />

@@ -16,8 +16,8 @@ const AboutVAPTlabs: React.FC = () => {
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
       <SEO
-        title="About VAPTlabs — AI-Powered & Human-Led VAPT Company"
-        description="VAPTlabs combines AI-driven automation with expert manual validation to deliver fast, accurate VAPT for startups to Fortune 500 companies across the US, UAE, Saudi Arabia, Singapore, Europe and Australia."
+        title="About VAPTlabs — AI-Powered VAPT Company"
+        description="VAPTlabs uses AI-driven automation to deliver fast, accurate VAPT for startups to Fortune 500 companies across the US, UAE, Saudi Arabia, Singapore, Europe and Australia."
         path="/about/vaptlabs"
         keywords="vapt company, vapt labs, about vaptlabs"
       />

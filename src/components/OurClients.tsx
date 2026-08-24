@@ -260,7 +260,7 @@ const OurClients: React.FC = () => {
     <div className="min-h-screen bg-white">
       <SEO
         title="Our Clients"
-        description="Startups to Fortune 500 companies trust VAPTlabs for AI-powered and human-led penetration testing and compliance-ready security audits."
+        description="Startups to Fortune 500 companies trust VAPTlabs for AI-powered penetration testing and compliance-ready security audits."
         path="/about/clients"
         keywords="vapt clients, vapt case studies"
       />

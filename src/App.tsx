@@ -196,10 +196,10 @@ function App() {
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
       <SEO
-        title="VAPT — AI-Powered & Human-Led Penetration Testing | VAPTlabs"
-        description="VAPTlabs runs AI-powered and human-led VAPT (vulnerability assessment & penetration testing), validated by experts, so you get an audit-ready report for SOC 2, ISO 27001, HIPAA or PCI-DSS in hours. Serving clients across the US, UAE, Saudi Arabia, Singapore, Europe, Germany and Australia."
+        title="VAPT — AI-Powered Penetration Testing, Delivered in Hours | VAPTlabs"
+        description="VAPTlabs runs AI-powered VAPT (vulnerability assessment & penetration testing), so you get an audit-ready report for SOC 2, ISO 27001, HIPAA or PCI-DSS in hours — not weeks. Serving clients across the US, UAE, Saudi Arabia, Singapore, Europe, Germany and Australia."
         path="/"
-        keywords="vapt, vapt labs, ai vapt, vapt ai, genai vapt, automated vapt, ai powered vapt, ai audits, human-led vapt, human-made vapt audits, manual penetration testing, vapt services, vapt testing, vapt companies, penetration testing, ethical hacking, vapt services usa, vapt company uae, penetration testing singapore, vapt saudi arabia"
+        keywords="vapt, vapt labs, ai vapt, vapt ai, genai vapt, automated vapt, ai powered vapt, ai audits, vapt services, vapt testing, vapt companies, penetration testing, ethical hacking, vapt services usa, vapt company uae, penetration testing singapore, vapt saudi arabia"
       />
       <Header />
 

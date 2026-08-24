@@ -140,7 +140,7 @@ const SecureLintProtect: React.FC = () => {
                 VAPT finds the gaps. SecureLint Protect closes them at runtime.
               </h2>
               <p className="text-gray-700 mb-4 leading-relaxed">
-                VAPTlabs' AI-powered and human-led VAPT identifies vulnerabilities before launch and for compliance
+                VAPTlabs' AI-powered VAPT identifies vulnerabilities before launch and for compliance
                 audits like SOC 2, ISO 27001 and HIPAA. SecureLint Protect complements that work with continuous,
                 on-device runtime protection — so your mobile app stays defended against tampering, hooking and
                 reverse-engineering attempts long after the audit report is delivered.
