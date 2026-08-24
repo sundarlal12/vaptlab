@@ -276,7 +276,7 @@ const BlogPost: React.FC = () => {
       </div>
 
       <Footer />
-      <ExitIntentPopup />
+      <ExitIntentPopup key={post.slug} postSlug={post.slug} />
     </div>
   );
 };

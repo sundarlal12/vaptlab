@@ -3,20 +3,33 @@ import { Link } from 'react-router-dom';
 import { X, Shield, ArrowRight } from 'lucide-react';
 
 const RED_GRAD = "linear-gradient(135deg, rgb(217, 47, 97), rgb(143, 15, 56))";
-const SESSION_KEY = 'vaptlabs_exit_popup_shown';
+const SESSION_KEY_PREFIX = 'vaptlabs_exit_popup_shown_';
 
-// Exit-intent lead capture for blog readers: fires once per session, either
-// when the cursor leaves toward the browser chrome (desktop) or past a
-// scroll-depth threshold (mobile/touch, where mouseleave never fires) - and
-// never before a minimum dwell time, so it doesn't fire on someone who just
-// glances at the page and immediately moves their mouse.
-const ExitIntentPopup: React.FC = () => {
+interface ExitIntentPopupProps {
+  // Scopes dismissal to this one post rather than the whole session, so
+  // dismissing "I'll Still Look Around" on one post doesn't suppress the
+  // popup on a different post the reader visits afterward. Render this
+  // component with `key={postSlug}` from the parent too - React Router
+  // reuses the same component instance across /blog/:slug navigations, so
+  // without a key change here, this effect (and its timers) would only ever
+  // run once, on the very first post visited, and never re-arm.
+  postSlug: string;
+}
+
+// Exit-intent lead capture for blog readers: fires once per post per
+// session, either when the cursor leaves toward the browser chrome
+// (desktop) or past a scroll-depth threshold (mobile/touch, where
+// mouseleave never fires) - and never before a minimum dwell time, so it
+// doesn't fire on someone who just glances at the page and immediately
+// moves their mouse.
+const ExitIntentPopup: React.FC<ExitIntentPopupProps> = ({ postSlug }) => {
   const [visible, setVisible] = useState(false);
   const shownRef = useRef(false);
   const readyRef = useRef(false);
+  const sessionKey = SESSION_KEY_PREFIX + postSlug;
 
   useEffect(() => {
-    if (sessionStorage.getItem(SESSION_KEY)) return;
+    if (sessionStorage.getItem(sessionKey)) return;
 
     const readyTimer = setTimeout(() => {
       readyRef.current = true;
@@ -26,7 +39,7 @@ const ExitIntentPopup: React.FC = () => {
       if (shownRef.current || !readyRef.current) return;
       shownRef.current = true;
       setVisible(true);
-      sessionStorage.setItem(SESSION_KEY, '1');
+      sessionStorage.setItem(sessionKey, '1');
     };
 
     const handleMouseLeave = (e: MouseEvent) => {
@@ -47,7 +60,10 @@ const ExitIntentPopup: React.FC = () => {
       document.removeEventListener('mouseleave', handleMouseLeave);
       window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+    // sessionKey only actually changes via a remount (parent renders this
+    // with key={postSlug}), so this still only runs once per post visited.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [sessionKey]);
 
   if (!visible) return null;
 
