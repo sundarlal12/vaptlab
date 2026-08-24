@@ -4,6 +4,8 @@ import { ArrowRight, Clock } from 'lucide-react';
 import Header from './Header';
 import Footer from './Footer';
 import SEO from './SEO';
+import AuthorAvatar from './AuthorAvatar';
+import BlogHeroGraphic from './BlogHeroGraphic';
 import { blogPosts } from '../content/blogPosts';
 
 const RED_GRAD = "linear-gradient(to right, rgb(217, 47, 97), rgb(143, 15, 56))";
@@ -35,18 +37,27 @@ const Blog: React.FC = () => {
               <Link
                 key={post.slug}
                 to={`/blog/${post.slug}`}
-                className="block bg-white rounded-2xl p-8 shadow-sm border border-gray-100 hover:shadow-lg transition-shadow"
+                className="group flex flex-col sm:flex-row overflow-hidden bg-white rounded-2xl shadow-sm border border-gray-100 hover:shadow-lg transition-shadow"
               >
-                <div className="flex items-center gap-3 text-sm text-gray-500 mb-3">
-                  <span>{new Date(post.publishDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
-                  <span>&middot;</span>
-                  <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5" /> {post.readTime}</span>
+                <BlogHeroGraphic icon={post.heroIcon} className="w-full sm:w-64 aspect-[16/10] sm:aspect-auto flex-none" />
+                <div className="p-8 flex-1">
+                  <div className="flex items-center gap-3 text-sm text-gray-500 mb-3">
+                    <span>{new Date(post.publishDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
+                    <span>&middot;</span>
+                    <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5" /> {post.readTime}</span>
+                  </div>
+                  <h2 className="text-2xl font-bold text-gray-900 mb-3 group-hover:text-[rgb(217,47,97)] transition-colors">{post.title}</h2>
+                  <p className="text-gray-600 leading-relaxed mb-4">{post.excerpt}</p>
+                  <div className="flex items-center justify-between flex-wrap gap-4">
+                    <div className="flex items-center gap-2">
+                      <AuthorAvatar author={post.author} size={28} />
+                      <span className="text-sm font-semibold text-gray-700">{post.author.name}</span>
+                    </div>
+                    <span className="inline-flex items-center gap-2 font-semibold" style={{ color: 'rgb(217,47,97)' }}>
+                      Read more <ArrowRight className="w-4 h-4" />
+                    </span>
+                  </div>
                 </div>
-                <h2 className="text-2xl font-bold text-gray-900 mb-3">{post.title}</h2>
-                <p className="text-gray-600 leading-relaxed mb-4">{post.excerpt}</p>
-                <span className="inline-flex items-center gap-2 font-semibold" style={{ color: 'rgb(217,47,97)' }}>
-                  Read more <ArrowRight className="w-4 h-4" />
-                </span>
               </Link>
             ))}
           </div>

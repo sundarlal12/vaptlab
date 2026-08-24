@@ -1,13 +1,22 @@
 import React from 'react';
 import { useParams, Link, Navigate } from 'react-router-dom';
-import { ArrowRight, Clock, ArrowLeft } from 'lucide-react';
+import { ArrowRight, Clock, ArrowLeft, CalendarDays } from 'lucide-react';
+import { FaFacebookF, FaLinkedinIn, FaInstagram } from 'react-icons/fa';
 import Header from './Header';
 import Footer from './Footer';
 import SEO from './SEO';
-import { getBlogPostBySlug, ContentBlock } from '../content/blogPosts';
+import AuthorAvatar from './AuthorAvatar';
+import BlogHeroGraphic from './BlogHeroGraphic';
+import { getBlogPostBySlug, blogPosts, ContentBlock } from '../content/blogPosts';
 
 const RED_GRAD = "linear-gradient(to right, rgb(217, 47, 97), rgb(143, 15, 56))";
 const SITE_URL = 'https://vaptlabs.com';
+
+const SOCIAL_LINKS = [
+  { href: 'https://www.facebook.com/people/VAPTlabs-Cyber-Defense-RASP-solutions/61571086805016/', label: 'Facebook', Icon: FaFacebookF },
+  { href: 'https://www.linkedin.com/company/vaptlabs/', label: 'LinkedIn', Icon: FaLinkedinIn },
+  { href: 'https://www.instagram.com/vaptlabs', label: 'Instagram', Icon: FaInstagram },
+];
 
 const renderBlock = (block: ContentBlock, idx: number) => {
   switch (block.type) {
@@ -45,6 +54,26 @@ const renderBlock = (block: ContentBlock, idx: number) => {
   }
 };
 
+const InlineCTA: React.FC = () => (
+  <div
+    className="my-10 rounded-2xl p-8 flex flex-col sm:flex-row items-center gap-6 justify-between text-white"
+    style={{ background: RED_GRAD }}
+  >
+    <div>
+      <p className="text-lg font-bold mb-1">Need a VAPT report fast?</p>
+      <p className="text-white/90">Talk to VAPTlabs about AI-powered penetration testing for your app, API or infrastructure.</p>
+    </div>
+    <Link
+      to="/contact"
+      className="flex-none inline-flex items-center gap-2 bg-white px-6 py-3 rounded-lg font-semibold transition-transform hover:scale-105 whitespace-nowrap"
+      style={{ color: 'rgb(143,15,56)' }}
+    >
+      Talk to Us
+      <ArrowRight className="w-4 h-4" />
+    </Link>
+  </div>
+);
+
 const BlogPost: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
   const post = slug ? getBlogPostBySlug(slug) : undefined;
@@ -55,6 +84,10 @@ const BlogPost: React.FC = () => {
 
   const path = `/blog/${post.slug}`;
   const canonical = `${SITE_URL}${path}`;
+  const relatedPosts = blogPosts.filter((p) => p.slug !== post.slug).slice(0, 3);
+  const midpoint = Math.ceil(post.content.length / 2);
+  const firstHalf = post.content.slice(0, midpoint);
+  const secondHalf = post.content.slice(midpoint);
 
   return (
     <div className="min-h-screen bg-white overflow-x-hidden">
@@ -71,30 +104,70 @@ const BlogPost: React.FC = () => {
           description: post.description,
           datePublished: post.publishDate,
           dateModified: post.publishDate,
-          author: { '@type': 'Organization', name: 'VAPTlabs', url: SITE_URL },
+          author: { '@type': 'Person', name: post.author.name },
           publisher: { '@type': 'Organization', name: 'VAPTlabs', url: SITE_URL },
           mainEntityOfPage: { '@type': 'WebPage', '@id': canonical },
         }}
       />
       <Header />
 
-      <div className="relative text-white py-16" style={{ background: 'linear-gradient(135deg, #0A0F1F 0%, rgb(143,15,56) 100%)' }}>
+      <div className="relative text-white pt-16 pb-10" style={{ background: 'linear-gradient(135deg, #0A0F1F 0%, rgb(143,15,56) 100%)' }}>
         <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <Link to="/blog" className="inline-flex items-center gap-2 text-white/70 hover:text-white text-sm mb-6">
             <ArrowLeft className="w-4 h-4" /> Back to Blog
           </Link>
-          <h1 className="text-3xl lg:text-4xl font-bold mb-6">{post.title}</h1>
-          <div className="flex items-center gap-3 text-sm text-white/70">
-            <span>{new Date(post.publishDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}</span>
-            <span>&middot;</span>
-            <span className="flex items-center gap-1"><Clock className="w-3.5 h-3.5" /> {post.readTime}</span>
+          <h1 className="text-3xl lg:text-4xl font-bold mb-8">{post.title}</h1>
+
+          <div className="flex flex-wrap items-center justify-between gap-6 pt-6 border-t border-white/15">
+            <div className="flex flex-wrap items-center gap-4">
+              <div className="flex items-center gap-2 text-sm text-white/70">
+                <CalendarDays className="w-4 h-4" />
+                {new Date(post.publishDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+              </div>
+              <span className="hidden sm:inline text-white/20">&middot;</span>
+              <div className="flex items-center gap-2 text-sm text-white/70">
+                <Clock className="w-4 h-4" /> {post.readTime}
+              </div>
+              <span className="hidden sm:inline text-white/20">&middot;</span>
+              <div className="flex items-center gap-2">
+                <AuthorAvatar author={post.author} />
+                <div>
+                  <p className="text-sm font-bold leading-tight">{post.author.name}</p>
+                  <p className="text-xs text-white/60 leading-tight">{post.author.role}</p>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex flex-col gap-2 sm:items-end">
+              <span className="text-xs font-bold tracking-widest uppercase text-white/60">Connect With Us</span>
+              <div className="flex items-center gap-2">
+                {SOCIAL_LINKS.map(({ href, label, Icon }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title={label}
+                    className="w-8 h-8 grid place-items-center rounded-full border border-white/20 text-white/80 hover:border-white hover:text-white transition-colors"
+                  >
+                    <Icon className="w-3.5 h-3.5" />
+                  </a>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 -mt-1">
+        <BlogHeroGraphic icon={post.heroIcon} className="w-full aspect-[16/7] rounded-2xl shadow-lg" />
+      </div>
+
       <article className="py-16">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          {post.content.map(renderBlock)}
+          {firstHalf.map(renderBlock)}
+          <InlineCTA />
+          {secondHalf.map((block, i) => renderBlock(block, midpoint + i))}
 
           {post.faq && post.faq.length > 0 && (
             <div className="mt-12 pt-8 border-t border-gray-200">
@@ -109,8 +182,44 @@ const BlogPost: React.FC = () => {
               </div>
             </div>
           )}
+
+          <div className="mt-12 pt-8 border-t border-gray-200 flex items-center gap-4">
+            <AuthorAvatar author={post.author} size={48} />
+            <div>
+              <p className="font-bold text-gray-900">{post.author.name}</p>
+              <p className="text-sm text-gray-500">{post.author.role}</p>
+            </div>
+          </div>
         </div>
       </article>
+
+      {relatedPosts.length > 0 && (
+        <div className="py-16 bg-gray-50">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h3 className="text-center text-2xl sm:text-3xl font-black tracking-tight text-gray-900 mb-12">Related Blogs</h3>
+            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+              {relatedPosts.map((rp) => (
+                <Link
+                  key={rp.slug}
+                  to={`/blog/${rp.slug}`}
+                  className="group flex flex-col overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
+                >
+                  <BlogHeroGraphic icon={rp.heroIcon} className="aspect-[16/10] w-full group-hover:opacity-90 transition-opacity" />
+                  <div className="flex flex-1 flex-col p-6">
+                    <span className="text-xs font-bold uppercase tracking-wider" style={{ color: 'rgb(217,47,97)' }}>
+                      {new Date(rp.publishDate).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                    </span>
+                    <h4 className="mt-3 text-lg font-bold leading-snug text-gray-900 group-hover:text-[rgb(217,47,97)] transition-colors line-clamp-2">
+                      {rp.title}
+                    </h4>
+                    <p className="mt-3 flex-1 text-sm text-gray-500 leading-relaxed line-clamp-3">{rp.excerpt}</p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
 
       <div className="py-16 text-white text-center" style={{ background: RED_GRAD }}>
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">

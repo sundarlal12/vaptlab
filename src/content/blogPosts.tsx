@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { ShieldCheck, Workflow, Coins, LucideIcon } from 'lucide-react';
 
 export interface FAQBlock {
   question: string;
@@ -12,6 +13,17 @@ export interface ContentBlock {
   items?: React.ReactNode[];
 }
 
+export interface Author {
+  name: string;
+  role: string;
+  initials: string;
+}
+
+export const authors: Record<string, Author> = {
+  sundar: { name: 'Sundar Lal Baror', role: 'Founder, VAPTlabs', initials: 'SB' },
+  minakshi: { name: 'Minakshi Boyal', role: 'Security Content Lead, VAPTlabs', initials: 'MB' },
+};
+
 export interface BlogPost {
   slug: string;
   title: string;
@@ -21,6 +33,8 @@ export interface BlogPost {
   publishDate: string;
   readTime: string;
   excerpt: string;
+  author: Author;
+  heroIcon: LucideIcon;
   content: ContentBlock[];
   faq?: FAQBlock[];
 }
@@ -35,6 +49,8 @@ export const blogPosts: BlogPost[] = [
     publishDate: '2026-08-24',
     readTime: '8 min read',
     excerpt: "VAPT stands for Vulnerability Assessment and Penetration Testing - two related but distinct disciplines that, together, tell you not just what's wrong with your systems but whether an attacker could actually exploit it.",
+    author: authors.sundar,
+    heroIcon: ShieldCheck,
     content: [
       {
         type: 'p',
@@ -137,6 +153,8 @@ export const blogPosts: BlogPost[] = [
     publishDate: '2026-08-24',
     readTime: '9 min read',
     excerpt: 'Every credible VAPT engagement follows roughly the same lifecycle: scope, recon, scan, exploit, report, remediate, retest. Here is what actually happens at each stage.',
+    author: authors.minakshi,
+    heroIcon: Workflow,
     content: [
       {
         type: 'p',
@@ -202,6 +220,8 @@ export const blogPosts: BlogPost[] = [
     publishDate: '2026-08-24',
     readTime: '7 min read',
     excerpt: "\"How much does VAPT cost?\" doesn't have a single answer - the honest answer is \"it depends,\" and here's exactly what it depends on.",
+    author: authors.sundar,
+    heroIcon: Coins,
     content: [
       {
         type: 'p',
