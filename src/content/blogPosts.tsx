@@ -1,6 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ShieldCheck, Workflow, Coins, LucideIcon } from 'lucide-react';
+import {
+  ShieldCheck, Workflow, Coins, LucideIcon,
+  ScanSearch, Swords, Building2, Layers, Radar, Crosshair, FileCheck, RefreshCw, Wallet,
+} from 'lucide-react';
 
 export interface FAQBlock {
   question: string;
@@ -8,9 +11,11 @@ export interface FAQBlock {
 }
 
 export interface ContentBlock {
-  type: 'p' | 'h2' | 'h3' | 'ul' | 'ol';
+  type: 'p' | 'h2' | 'h3' | 'ul' | 'ol' | 'image';
   text?: React.ReactNode;
   items?: React.ReactNode[];
+  icon?: LucideIcon;
+  caption?: string;
 }
 
 export interface Author {
@@ -72,6 +77,7 @@ export const blogPosts: BlogPost[] = [
         type: 'p',
         text: 'A vulnerability scanner might flag 200 findings. A penetration test tells you which 5 of those are a real, chainable path to your customer database - and which 195 are low-risk noise you can deprioritize. That distinction is why VAPT is usually sold as one combined engagement rather than two separate services.',
       },
+      { type: 'image', icon: ScanSearch, caption: 'Vulnerability assessment finds what could be wrong; penetration testing proves what actually is.' },
       { type: 'h2', text: 'Why VAPT Matters' },
       {
         type: 'ul',
@@ -103,11 +109,13 @@ export const blogPosts: BlogPost[] = [
           <><Link to="/services/iot-security-testing" className="text-inherit underline">IoT VAPT</Link> - hardware, firmware, protocol and cloud-backend attack surfaces for connected devices.</>,
         ],
       },
+      { type: 'image', icon: Layers, caption: 'VAPT is a family of tests, each scoped to a different attack surface.' },
       { type: 'h2', text: 'VAPT vs. Red Teaming' },
       {
         type: 'p',
         text: <>VAPT is scope-defined and coverage-oriented - it systematically works through a defined asset or application to find and validate as many real vulnerabilities as possible. <Link to="/red-team" className="text-inherit underline">Red teaming</Link> is objective-oriented - it simulates a specific real-world adversary trying to achieve a specific goal (say, reaching finance data) using any path available, including social engineering and physical access, and often without the target's IT team knowing it's happening. Most organizations should do VAPT regularly and layer in red teaming periodically once their baseline security posture is solid.</>,
       },
+      { type: 'image', icon: Swords, caption: 'Red teaming simulates a real adversary chasing one goal, by any path available.' },
       { type: 'h2', text: 'Compliance Frameworks That Require or Expect VAPT' },
       {
         type: 'ul',
@@ -170,6 +178,7 @@ export const blogPosts: BlogPost[] = [
         type: 'p',
         text: 'Testers map the attack surface: subdomains, exposed services, technology stack, publicly available information that could aid an attack, and (for grey/white-box engagements) application logic and data flows. This stage determines how much of the target is even visible to an attacker in the first place.',
       },
+      { type: 'image', icon: Radar, caption: 'Recon maps how much of the target is even visible to an attacker before testing begins.' },
       { type: 'h2', text: '3. Vulnerability Scanning' },
       {
         type: 'p',
@@ -180,6 +189,7 @@ export const blogPosts: BlogPost[] = [
         type: 'p',
         text: "This is the step that separates VAPT from a bare vulnerability scan. Each candidate finding gets actively tested to confirm whether it's really exploitable in this specific environment, and what an attacker could reach if it were chained with other findings - escalating privileges, pivoting to another system, or reaching sensitive data. This is also where a scanner's false positives get filtered out, so the final report reflects real risk, not raw tool output.",
       },
+      { type: 'image', icon: Crosshair, caption: 'Exploitation confirms which findings are real, chainable risk - not just scanner noise.' },
       { type: 'h2', text: '5. Risk Prioritization & Reporting' },
       {
         type: 'p',
@@ -190,6 +200,7 @@ export const blogPosts: BlogPost[] = [
         type: 'p',
         text: "The engagement isn't done when the report lands. Findings get fixed, and a retest confirms the fix actually closes the gap rather than just changing its symptoms. This step is what most compliance frameworks are actually checking for - not just that testing happened, but that issues found were resolved.",
       },
+      { type: 'image', icon: RefreshCw, caption: 'A retest confirms the fix actually closes the gap, not just changes its symptoms.' },
       { type: 'h2', text: 'How AI Changes Each Phase' },
       {
         type: 'p',
@@ -250,11 +261,13 @@ export const blogPosts: BlogPost[] = [
           <><Link to="/services/iot-security-testing" className="text-inherit underline">IoT testing</Link></>,
         ],
       },
+      { type: 'image', icon: Building2, caption: 'Scope - how many apps, APIs and environments are in play - is the single biggest cost driver.' },
       { type: 'h2', text: '3. Depth: VA-Only, Full VAPT, or Red Team' },
       {
         type: 'p',
         text: <>An automated-only vulnerability assessment is the least expensive option but gives you the least confidence. Full VAPT - assessment plus exploitation and verification - costs more but tells you what's actually exploitable. <Link to="/red-team" className="text-inherit underline">Red teaming</Link>, which simulates a full real-world attack scenario across multiple vectors, is typically the most involved and highest-cost engagement type, and is usually layered on top of regular VAPT rather than replacing it.</>,
       },
+      { type: 'image', icon: Wallet, caption: 'VA-only, full VAPT, or red team - each layer adds cost and confidence.' },
       { type: 'h2', text: '4. Compliance Requirements' },
       {
         type: 'p',
@@ -279,6 +292,7 @@ export const blogPosts: BlogPost[] = [
           "What's the actual turnaround time from kickoff to final report?",
         ],
       },
+      { type: 'image', icon: FileCheck, caption: 'The right questions upfront avoid surprise scope-creep billing later.' },
       { type: 'h2', text: 'How AI Changes the Cost Equation' },
       {
         type: 'p',
@@ -308,3 +322,11 @@ export const blogPosts: BlogPost[] = [
 
 export const getBlogPostBySlug = (slug: string): BlogPost | undefined =>
   blogPosts.find((post) => post.slug === slug);
+
+// Shared by the h2 headings themselves and the Table of Contents that links
+// to them, so the two can never drift out of sync with each other.
+export const slugifyHeading = (text: string): string =>
+  text
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/(^-|-$)/g, '');

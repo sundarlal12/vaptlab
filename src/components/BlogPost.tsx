@@ -7,7 +7,8 @@ import Footer from './Footer';
 import SEO from './SEO';
 import AuthorAvatar from './AuthorAvatar';
 import BlogHeroGraphic from './BlogHeroGraphic';
-import { getBlogPostBySlug, blogPosts, ContentBlock } from '../content/blogPosts';
+import TableOfContents, { TocItem } from './TableOfContents';
+import { getBlogPostBySlug, blogPosts, ContentBlock, slugifyHeading } from '../content/blogPosts';
 
 const RED_GRAD = "linear-gradient(to right, rgb(217, 47, 97), rgb(143, 15, 56))";
 const SITE_URL = 'https://vaptlabs.com';
@@ -22,7 +23,11 @@ const renderBlock = (block: ContentBlock, idx: number) => {
   switch (block.type) {
     case 'h2':
       return (
-        <h2 key={idx} className="text-2xl font-bold text-gray-900 mt-10 mb-4">
+        <h2
+          key={idx}
+          id={typeof block.text === 'string' ? slugifyHeading(block.text) : undefined}
+          className="text-2xl font-bold text-gray-900 mt-10 mb-4 scroll-mt-28"
+        >
           {block.text}
         </h2>
       );
@@ -43,6 +48,15 @@ const renderBlock = (block: ContentBlock, idx: number) => {
         <ol key={idx} className="list-decimal pl-6 space-y-2 text-gray-700 leading-relaxed mb-4">
           {block.items?.map((item, i) => <li key={i}>{item}</li>)}
         </ol>
+      );
+    case 'image':
+      return (
+        <figure key={idx} className="my-8">
+          {block.icon && <BlogHeroGraphic icon={block.icon} className="w-full aspect-[16/9] rounded-xl" />}
+          {block.caption && (
+            <figcaption className="mt-3 text-sm text-gray-500 text-center italic">{block.caption}</figcaption>
+          )}
+        </figure>
       );
     case 'p':
     default:
@@ -89,8 +103,15 @@ const BlogPost: React.FC = () => {
   const firstHalf = post.content.slice(0, midpoint);
   const secondHalf = post.content.slice(midpoint);
 
+  const tocItems: TocItem[] = post.content
+    .filter((b) => b.type === 'h2' && typeof b.text === 'string')
+    .map((b) => ({ id: slugifyHeading(b.text as string), label: b.text as string }));
+  if (post.faq && post.faq.length > 0) {
+    tocItems.push({ id: 'faq', label: 'Frequently Asked Questions' });
+  }
+
   return (
-    <div className="min-h-screen bg-white overflow-x-hidden">
+    <div className="min-h-screen bg-white">
       <SEO
         title={post.metaTitle}
         description={post.description}
@@ -111,14 +132,14 @@ const BlogPost: React.FC = () => {
       />
       <Header />
 
-      <div className="relative text-white pt-16 pb-10" style={{ background: 'linear-gradient(135deg, #0A0F1F 0%, rgb(143,15,56) 100%)' }}>
+      <div className="relative text-white pt-24 pb-14" style={{ background: 'linear-gradient(135deg, #0A0F1F 0%, rgb(143,15,56) 100%)' }}>
         <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <Link to="/blog" className="inline-flex items-center gap-2 text-white/70 hover:text-white text-sm mb-6">
+          <Link to="/blog" className="inline-flex items-center gap-2 text-white/70 hover:text-white text-sm mb-8">
             <ArrowLeft className="w-4 h-4" /> Back to Blog
           </Link>
-          <h1 className="text-3xl lg:text-4xl font-bold mb-8">{post.title}</h1>
+          <h1 className="text-3xl lg:text-4xl font-bold mb-10">{post.title}</h1>
 
-          <div className="flex flex-wrap items-center justify-between gap-6 pt-6 border-t border-white/15">
+          <div className="flex flex-wrap items-center justify-between gap-6 pt-8 border-t border-white/15">
             <div className="flex flex-wrap items-center gap-4">
               <div className="flex items-center gap-2 text-sm text-white/70">
                 <CalendarDays className="w-4 h-4" />
@@ -159,39 +180,54 @@ const BlogPost: React.FC = () => {
         </div>
       </div>
 
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 -mt-1">
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 mt-10">
         <BlogHeroGraphic icon={post.heroIcon} className="w-full aspect-[16/7] rounded-2xl shadow-lg" />
       </div>
 
-      <article className="py-16">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          {firstHalf.map(renderBlock)}
-          <InlineCTA />
-          {secondHalf.map((block, i) => renderBlock(block, midpoint + i))}
-
-          {post.faq && post.faq.length > 0 && (
-            <div className="mt-12 pt-8 border-t border-gray-200">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Frequently Asked Questions</h2>
-              <div className="space-y-6">
-                {post.faq.map((item, i) => (
-                  <div key={i}>
-                    <h3 className="text-lg font-semibold text-gray-900 mb-2">{item.question}</h3>
-                    <p className="text-gray-700 leading-relaxed">{item.answer}</p>
-                  </div>
-                ))}
+      <div className="py-16 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="lg:grid lg:grid-cols-[260px_1fr] lg:gap-12">
+          {tocItems.length > 0 && (
+            <>
+              <aside className="hidden lg:block">
+                <div className="sticky top-24">
+                  <TableOfContents items={tocItems} />
+                </div>
+              </aside>
+              <div className="lg:hidden mb-10">
+                <TableOfContents items={tocItems} />
               </div>
-            </div>
+            </>
           )}
 
-          <div className="mt-12 pt-8 border-t border-gray-200 flex items-center gap-4">
-            <AuthorAvatar author={post.author} size={48} />
-            <div>
-              <p className="font-bold text-gray-900">{post.author.name}</p>
-              <p className="text-sm text-gray-500">{post.author.role}</p>
+          <article className="max-w-3xl">
+            {firstHalf.map(renderBlock)}
+            <InlineCTA />
+            {secondHalf.map((block, i) => renderBlock(block, midpoint + i))}
+
+            {post.faq && post.faq.length > 0 && (
+              <div id="faq" className="mt-12 pt-8 border-t border-gray-200 scroll-mt-28">
+                <h2 className="text-2xl font-bold text-gray-900 mb-6">Frequently Asked Questions</h2>
+                <div className="space-y-6">
+                  {post.faq.map((item, i) => (
+                    <div key={i}>
+                      <h3 className="text-lg font-semibold text-gray-900 mb-2">{item.question}</h3>
+                      <p className="text-gray-700 leading-relaxed">{item.answer}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            <div className="mt-12 pt-8 border-t border-gray-200 flex items-center gap-4">
+              <AuthorAvatar author={post.author} size={48} />
+              <div>
+                <p className="font-bold text-gray-900">{post.author.name}</p>
+                <p className="text-sm text-gray-500">{post.author.role}</p>
+              </div>
             </div>
-          </div>
+          </article>
         </div>
-      </article>
+      </div>
 
       {relatedPosts.length > 0 && (
         <div className="py-16 bg-gray-50">
