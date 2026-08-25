@@ -8,6 +8,7 @@ import {
   TrendingUp, Cpu, CloudCog,
   GitCompare, Zap, Timer, Boxes, EyeOff, Eye, Contrast,
   Landmark, Gavel, HeartPulse,
+  Unlock, Bot, ListOrdered, Hash, Lock, MessageSquareWarning, Brain, ListChecks,
 } from 'lucide-react';
 
 export interface FAQBlock {
@@ -1006,6 +1007,214 @@ export const blogPosts: BlogPost[] = [
       {
         question: 'Can one VAPT engagement satisfy both Indian and international compliance requirements?',
         answer: "Often, yes - the underlying testing methodology overlaps significantly with what satisfies SOC 2 or ISO 27001. Scoping the engagement correctly from the start, with the right reporting format and auditor qualifications, can frequently cover both without duplicating work.",
+      },
+    ],
+  },
+  {
+    slug: 'broken-object-level-authorization-bola',
+    title: 'Broken Object Level Authorization (BOLA): How It Works and How to Prevent It',
+    metaTitle: 'BOLA (Broken Object Level Authorization) Explained',
+    description: 'BOLA is the #1 risk on the OWASP API Security Top 10. Here is how BOLA attacks work, real-world attack patterns, and how to detect and prevent it.',
+    keywords: 'broken object level authorization, bola, bola vulnerability, idor, owasp api top 10, api1:2023, object level authorization',
+    publishDate: '2026-08-25',
+    readTime: '6 min read',
+    excerpt: "BOLA is the #1 risk on the OWASP API Security Top 10 - and one of the simplest attacks to pull off if object-level checks are missing. Here's how it works.",
+    author: authors.minakshi,
+    heroIcon: Unlock,
+    content: [
+      {
+        type: 'p',
+        text: <>Broken Object Level Authorization (BOLA) sits at #1 on the OWASP API Security Top 10, and for a good reason: it's one of the simplest vulnerabilities for an attacker to exploit, and one of the most common findings in real <Link to="/services/api-penetration-testing" className="text-inherit underline">API penetration testing</Link> engagements.</>,
+      },
+      { type: 'h2', text: 'What Is Broken Object Level Authorization?' },
+      {
+        type: 'p',
+        text: "BOLA (also widely known by its older name, IDOR - Insecure Direct Object Reference) happens when an API checks that a user is authenticated, but fails to verify that the specific object they're requesting actually belongs to them. The API trusts the object identifier in the request instead of independently verifying ownership.",
+      },
+      { type: 'h2', text: 'How BOLA Attacks Work' },
+      {
+        type: 'p',
+        text: "The classic pattern: a legitimate, authenticated user calls an endpoint like /api/invoices/1002 and sees their own invoice. If the API doesn't verify that invoice 1002 actually belongs to the requesting user, an attacker can simply change the number - /api/invoices/1003, 1004, and so on - and pull other customers' data, one sequential ID at a time.",
+      },
+      { type: 'image', icon: Hash, caption: "Sequential or predictable object IDs turn a single authenticated session into a way to enumerate everyone else's data." },
+      { type: 'h2', text: 'Why BOLA Is the #1 API Security Risk' },
+      {
+        type: 'p',
+        text: "It's simple to exploit (often just editing a number in a URL or request body), doesn't require bypassing authentication at all, and is easy to miss in code review since the authorization gap is an absence of a check, not a visibly broken one. It also scales badly - once found, an attacker can often enumerate an entire dataset.",
+      },
+      { type: 'h2', text: 'How to Detect BOLA Vulnerabilities' },
+      {
+        type: 'p',
+        text: "Detection requires actively testing object access with a second, unauthorized account - not just scanning for the endpoint's existence. Testers authenticate as one user, note the object identifiers they can legitimately access, then attempt to access other users' objects using a different authenticated session. Automated scanners often miss this class of bug entirely, since it requires understanding the application's intended access model, not just its input patterns.",
+      },
+      { type: 'image', icon: Lock, caption: "Detecting BOLA requires testing with two accounts side by side - not just scanning a single authenticated session." },
+      { type: 'h2', text: 'How to Prevent BOLA' },
+      {
+        type: 'ul',
+        items: [
+          "Enforce object-level authorization checks on every request that touches a specific object - server-side, on every endpoint, not just in the UI.",
+          "Use non-sequential, non-guessable identifiers (UUIDs) instead of incrementing numeric IDs, so enumeration isn't trivial even if a check is missed.",
+          "Treat authorization as a first-class part of the API contract, tested explicitly for every new endpoint, not assumed from authentication alone.",
+          "Log and monitor for access patterns that look like enumeration - rapid sequential requests for different object IDs from the same session.",
+        ],
+      },
+      { type: 'h2', text: 'BOLA and Your VAPT Engagement' },
+      {
+        type: 'p',
+        text: <>Because BOLA requires understanding what "authorized" actually means for your specific application, it's exactly the kind of finding that separates a real <Link to="/blog/web-application-vapt-guide" className="text-inherit underline">API and web VAPT engagement</Link> from an automated scan - a scanner can flag an endpoint exists, but confirming whether object-level authorization is actually enforced requires active, multi-account testing.</>,
+      },
+    ],
+    faq: [
+      {
+        question: 'What is the difference between BOLA and IDOR?',
+        answer: "They're essentially the same vulnerability class under different names - IDOR (Insecure Direct Object Reference) is the older, broader term, while BOLA is the name used specifically in the OWASP API Security Top 10. Both describe an API or application failing to verify that a requested object actually belongs to the requesting user.",
+      },
+      {
+        question: 'Can automated scanners detect BOLA?',
+        answer: "Rarely on their own. BOLA requires testing with two separate authenticated accounts to confirm whether one can access the other's data - most automated scanners test with a single session and can't independently verify the intended ownership model of your application's data.",
+      },
+      {
+        question: 'How common is BOLA in real applications?',
+        answer: "Very common - it's ranked #1 on the OWASP API Security Top 10 and is one of the most frequently confirmed findings in real-world API penetration testing engagements, largely because it's an easy check to accidentally omit and hard to catch without active testing.",
+      },
+    ],
+  },
+  {
+    slug: 'prompt-injection-llm-security',
+    title: 'Prompt Injection: How LLM Attacks Work and How to Defend Against Them',
+    metaTitle: 'Prompt Injection Explained: LLM Attacks & Defense',
+    description: 'Prompt injection is the top risk on the OWASP LLM Top 10. Here is how direct and indirect prompt injection attacks work, and how to defend AI-powered applications against them.',
+    keywords: 'prompt injection, llm01, prompt injection attack, ai security testing, llm security, owasp llm top 10, prompt injection defense',
+    publishDate: '2026-08-25',
+    readTime: '7 min read',
+    excerpt: "As more products get built on top of LLMs, prompt injection has become the top entry on the OWASP LLM Top 10. Here's how it works, and how to defend against it.",
+    author: authors.sundar,
+    heroIcon: Bot,
+    content: [
+      {
+        type: 'p',
+        text: "As more products get built on top of large language models, a new attack class has moved to the top of the OWASP LLM Top 10: prompt injection. If your application lets an LLM read untrusted content - a user message, a document, a webpage - and then act on it, this is worth understanding.",
+      },
+      { type: 'h2', text: 'What Is a Prompt Injection Attack?' },
+      {
+        type: 'p',
+        text: "Prompt injection is an attack where malicious instructions are smuggled into an LLM's input in a way that causes it to ignore its original instructions and follow the attacker's instead. Because LLMs process instructions and data through the same channel - natural language text - there's no hard boundary stopping content from being interpreted as a command.",
+      },
+      { type: 'h2', text: 'Direct vs. Indirect Injection' },
+      {
+        type: 'p',
+        text: "Direct injection is straightforward: an attacker types malicious instructions directly into a chat interface, trying to override the system prompt. Indirect injection is more dangerous in practice - the malicious instructions are hidden in content the LLM is asked to process later, like a webpage it's summarizing, a document it's reading, or an email it's replying to. The user never types anything malicious themselves; the LLM picks up the attack from content it was told to trust.",
+      },
+      { type: 'image', icon: MessageSquareWarning, caption: "Indirect injection hides instructions inside content the LLM is asked to process - a document, webpage or email - not in what the user types." },
+      { type: 'h2', text: 'Prompt Injection vs. Jailbreaking' },
+      {
+        type: 'p',
+        text: "The two get conflated but aren't quite the same thing. Jailbreaking is about getting a model to violate its own safety guidelines (generating content it's meant to refuse). Prompt injection is about getting a model to execute unintended instructions from untrusted input - and it's especially dangerous when that LLM has access to tools, APIs, or sensitive data, since the \"unintended instruction\" can translate directly into a real action.",
+      },
+      { type: 'h2', text: 'What\'s at Risk' },
+      {
+        type: 'ul',
+        items: [
+          "Data leakage - an injected instruction tricking the model into revealing system prompts, other users' data, or connected data sources.",
+          "Unauthorized actions - if the LLM has access to tools or APIs (sending emails, making purchases, modifying records), a successful injection can trigger real-world actions the user never approved.",
+          "Misinformation and manipulation - injected content steering the model's output in ways that mislead the end user.",
+        ],
+      },
+      { type: 'image', icon: Brain, caption: 'The more tools and data access an LLM has, the more a successful prompt injection can actually do.' },
+      { type: 'h2', text: 'How to Defend Against Prompt Injection' },
+      {
+        type: 'ul',
+        items: [
+          "Treat all external content (documents, web pages, retrieved data) as untrusted input, not as instructions, and structure prompts to keep that distinction clear to the model.",
+          "Use context-aware filtering to detect instruction-like patterns embedded in data the model processes.",
+          "Apply the principle of least privilege to what the LLM can actually do - minimize which tools, APIs and data sources it can access without human confirmation.",
+          "Use predefined prompt structures/templates rather than freely concatenating untrusted content into a single prompt.",
+          "Keep model behavior and access controls under regular review as capabilities and integrations change - this isn't a one-time fix.",
+        ],
+      },
+      { type: 'h2', text: 'Why This Matters for AI-Powered Applications' },
+      {
+        type: 'p',
+        text: <>If you're building a product on top of an LLM, the AI layer is now part of your attack surface, the same way your APIs and web frontend are - and it needs to be tested the same way. This is exactly the kind of testing that belongs alongside your regular <Link to="/blog/what-is-vapt" className="text-inherit underline">VAPT</Link> scope as AI features ship, not as an afterthought once something goes wrong. <Link to="/contact" className="text-inherit underline">Talk to VAPTlabs</Link> if AI-powered features are part of what you need tested.</>,
+      },
+    ],
+    faq: [
+      {
+        question: 'What is a prompt injection attack?',
+        answer: "A prompt injection attack smuggles malicious instructions into an LLM's input - directly from a user, or indirectly through content like a document or webpage the LLM processes - causing it to ignore its original instructions and follow the attacker's instead.",
+      },
+      {
+        question: 'Is prompt injection the same as jailbreaking?',
+        answer: "No. Jailbreaking is about getting a model to violate its own safety guidelines. Prompt injection is about getting a model to execute unintended instructions from untrusted input, which is especially dangerous when the LLM has access to tools, APIs or sensitive data.",
+      },
+      {
+        question: 'Can prompt injection be fully prevented?',
+        answer: "Not with complete certainty using current techniques, since LLMs process instructions and data through the same text channel. Defense relies on layered mitigations - input validation, context-aware filtering, least-privilege tool access, and prompt structuring - rather than a single fix.",
+      },
+    ],
+  },
+  {
+    slug: 'owasp-top-10-2025-explained',
+    title: "OWASP Top 10:2025 Explained: What Changed and Why It Matters",
+    metaTitle: 'OWASP Top 10:2025 Explained: What Changed',
+    description: "The OWASP Top 10:2025 update reshuffles and renames several categories from prior versions. Here's a plain-English breakdown of all ten, and what changed.",
+    keywords: 'owasp top 10 2025, owasp top 10 changes, owasp top 10 explained, latest owasp top 10, owasp 2025',
+    publishDate: '2026-08-25',
+    readTime: '7 min read',
+    excerpt: "The OWASP Top 10 is the industry-standard reference for web application risk. Here's a plain-English breakdown of the 2025 update and what changed.",
+    author: authors.minakshi,
+    heroIcon: ListOrdered,
+    content: [
+      {
+        type: 'p',
+        text: <>The OWASP Top 10 is the industry-standard reference for the most critical web application security risks, and it gets periodically revised as the threat landscape shifts. The 2025 update reshuffles category ordering and introduces some renamed and new categories worth understanding if you're scoping <Link to="/services/web-app-security" className="text-inherit underline">web application VAPT</Link>.</>,
+      },
+      { type: 'h2', text: 'The OWASP Top 10:2025 Breakdown' },
+      {
+        type: 'ul',
+        items: [
+          <><strong>A01: Broken Access Control</strong> - failures to properly enforce what an authenticated user is allowed to do or access, including the BOLA/IDOR pattern.</>,
+          <><strong>A02: Security Misconfiguration</strong> - insecure default settings, unnecessary features enabled, verbose error messages, and similar configuration gaps.</>,
+          <><strong>A03: Software Supply Chain Failures</strong> - vulnerabilities introduced through dependencies, third-party libraries and build pipelines, reflecting the industry's growing focus on supply chain risk.</>,
+          <><strong>A04: Cryptographic Failures</strong> - weak, missing or misconfigured encryption protecting sensitive data in transit or at rest.</>,
+          <><strong>A05: Injection</strong> - SQL injection, command injection and related flaws where untrusted input is executed as code or commands.</>,
+          <><strong>A06: Insecure Design</strong> - risks rooted in architecture and design decisions, not just implementation bugs - flaws that secure coding alone can't fix.</>,
+          <><strong>A07: Authentication Failures</strong> - weaknesses in how an application verifies identity - credential handling, session management, multi-factor enforcement.</>,
+          <><strong>A08: Software or Data Integrity Failures</strong> - missing integrity verification for code, updates and critical data, allowing tampering to go undetected.</>,
+          <><strong>A09: Logging & Alerting Failures</strong> - insufficient detection and monitoring, meaning breaches go unnoticed longer than they should.</>,
+          <><strong>A10: Mishandling of Exceptional Conditions</strong> - improper handling of errors and edge cases that can leak information or create exploitable application states.</>,
+        ],
+      },
+      { type: 'image', icon: ListChecks, caption: 'The 2025 list reflects a broader shift: from "did we code this securely" to "did we design and operate this securely."' },
+      { type: 'h2', text: 'Notable Changes from Prior Versions' },
+      {
+        type: 'p',
+        text: "Software Supply Chain Failures and Mishandling of Exceptional Conditions reflect newer thinking - supply chain risk in particular has grown sharply as an industry concern following high-profile dependency-based incidents. The broader shift across the list is toward design-level and operational risks (insecure design, logging failures, supply chain) alongside the classic implementation bugs like injection and access control that have topped every version of this list for years.",
+      },
+      { type: 'image', icon: Award, caption: 'Injection and access control have appeared near the top of every OWASP Top 10 revision - the fundamentals rarely go away.' },
+      { type: 'h2', text: 'Why the OWASP Top 10 Matters for VAPT Scoping' },
+      {
+        type: 'p',
+        text: <>The OWASP Top 10 is the baseline reference most <Link to="/blog/what-is-vapt" className="text-inherit underline">web application VAPT</Link> engagements are scoped against - it's the shared vocabulary between a testing provider, your engineering team, and an auditor. When comparing providers, it's worth confirming explicitly which version of the list they test against, since methodology drifts as the standard itself updates.</>,
+      },
+      { type: 'h2', text: 'How VAPTlabs Tests Against OWASP Top 10:2025' },
+      {
+        type: 'p',
+        text: "Our web application testing is scoped against the current OWASP Top 10 as a baseline, combined with application-specific business logic testing that the standard list, by design, can't fully capture on its own - since every application's intended behavior is different.",
+      },
+    ],
+    faq: [
+      {
+        question: 'What is the OWASP Top 10?',
+        answer: "The OWASP Top 10 is a regularly updated, industry-standard list of the most critical web application security risks, published by the Open Web Application Security Project. It's widely used as a baseline reference for scoping web application penetration testing.",
+      },
+      {
+        question: 'What changed in the OWASP Top 10:2025?',
+        answer: "The 2025 revision reshuffles category ordering and introduces categories like Software Supply Chain Failures and Mishandling of Exceptional Conditions, reflecting a broader shift toward design-level and operational risks alongside classic implementation bugs like injection and access control.",
+      },
+      {
+        question: 'Does passing an OWASP Top 10 test mean an application is fully secure?',
+        answer: "No - the OWASP Top 10 is a baseline of the most common and impactful risk categories, not an exhaustive checklist. A thorough VAPT engagement uses it as a starting point but also tests application-specific business logic that a generic standard list can't fully capture.",
       },
     ],
   },
