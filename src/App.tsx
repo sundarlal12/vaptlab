@@ -21,7 +21,7 @@ import Footer from "./components/Footer";
 import Testimonials from "./components/Testimonials";
 import ClientCarousel from "./components/ClientCarousel";
 import OurServices from "./components/OurServices";
-import RaspHero from "./components/RaspHero";
+import HeroSlider from "./components/HeroSlider";
 import RadarHero from "./components/RadarHero";
 
 import WhyChooseUs from "./components/WhyChooseUs";
@@ -206,12 +206,7 @@ function App() {
 
 
 
- <RaspHero
-        raspLink="https://vaptlabs.com"
-        ctaText="Get Protected Now"
-        badgeText="Best VAPT Testing Service Provider in India"
-        heroLetter="VAPT"
-      />
+ <HeroSlider />
 
 
         {/* <VaptRadar /> */}
